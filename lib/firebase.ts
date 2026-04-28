@@ -10,6 +10,18 @@ const firebaseConfig = {
 };
 
 export const hasFirebaseConfig = Object.values(firebaseConfig).every(Boolean);
+export const adminEmails = (process.env.NEXT_PUBLIC_ADMIN_EMAILS ?? "")
+  .split(",")
+  .map((email) => email.trim().toLowerCase())
+  .filter(Boolean);
+
+export function isAdminEmail(email?: string | null): boolean {
+  if (!email) {
+    return false;
+  }
+
+  return adminEmails.includes(email.toLowerCase());
+}
 
 export function getFirebaseApp(): FirebaseApp | null {
   if (!hasFirebaseConfig) {
