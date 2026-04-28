@@ -36,6 +36,9 @@ export function ContactBlock() {
         <a className="rounded-full border border-[var(--line)] px-4 py-2 transition hover:bg-[var(--card)]" href={`mailto:${settings.email}`}>
           {settings.email}
         </a>
+        <a className="rounded-full border border-[var(--line)] px-4 py-2 transition hover:bg-[var(--card)]" href="https://wa.me/8801711728799" target="_blank" rel="noreferrer">
+          WhatsApp: +8801711728799
+        </a>
         <a className="rounded-full border border-[var(--line)] px-4 py-2 transition hover:bg-[var(--card)]" href={settings.linkedin} target="_blank" rel="noreferrer">
           LinkedIn
         </a>
@@ -55,8 +58,8 @@ export function ContactBlock() {
             Medium
           </a>
         )}
-        <a href="/resume.pdf" download className="rounded-full bg-[var(--text)] px-4 py-2 text-[var(--bg)] transition hover:opacity-90">
-          Download résumé
+        <a href="https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing" target="_blank" rel="noreferrer" className="rounded-full bg-[var(--text)] px-4 py-2 text-[var(--bg)] transition hover:opacity-90">
+          View resume
         </a>
       </div>
     </section>

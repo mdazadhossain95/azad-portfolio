@@ -1,47 +1,7 @@
-import { Article, Project, Review, Settings, TravelPost } from "@/lib/types";
+import { portfolioProjects } from "@/lib/projects-catalog";
+import { Article, Review, Settings, TravelPost } from "@/lib/types";
 
-export const defaultProjects: Project[] = [
-  {
-    id: "p1",
-    title: "Fintech Wallet App",
-    slug: "fintech-wallet-app",
-    description:
-      "Secure Flutter wallet with KYC onboarding, transaction history, push alerts, and smart analytics.",
-    images: ["https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1200&auto=format&fit=crop"],
-    techStack: ["Flutter", "Firebase", "Node.js", "Stripe"],
-    links: {
-      playStore: "https://play.google.com/store",
-      appStore: "https://apps.apple.com",
-    },
-    featured: true,
-  },
-  {
-    id: "p2",
-    title: "Healthcare Appointment App",
-    slug: "healthcare-appointment-app",
-    description:
-      "Telehealth app with real-time booking, reminders, chat, and video consultation.",
-    images: ["https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1200&auto=format&fit=crop"],
-    techStack: ["Flutter", "Firebase", "Agora", "Firestore"],
-    links: {
-      playStore: "https://play.google.com/store",
-    },
-    featured: true,
-  },
-  {
-    id: "p3",
-    title: "Logistics Driver Tracker",
-    slug: "logistics-driver-tracker",
-    description:
-      "Fleet visibility app with live map tracking, route updates, and offline sync.",
-    images: ["https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200&auto=format&fit=crop"],
-    techStack: ["Flutter", "Supabase", "Maps API"],
-    links: {
-      live: "https://github.com/mdazadhossain95",
-    },
-    featured: false,
-  },
-];
+export const defaultProjects = portfolioProjects;
 
 export const defaultArticles: Article[] = [
   {
@@ -52,7 +12,7 @@ export const defaultArticles: Article[] = [
     content:
       "Choosing backend depends on team speed, realtime needs, and pricing profile. Firebase wins on ecosystem and realtime out-of-the-box. Supabase wins on SQL-first control, open-source flexibility, and no vendor lock-in. For most Flutter startups shipping fast, Firebase still edges it.",
     publishedAt: "2025-10-20",
-    mediumUrl: "https://medium.com/@mdazadhossain95/firebase-vs-supabase-for-flutter-apps-which-one-should-you-choose-a-practical-seo-friendly-guide",
+    mediumUrl: "https://medium.com/@mdazadhossain95/firebase-vs-supabase-for-flutter-apps-which-one-should-you-choose-0cf9dd897123",
   },
   {
     id: "a2",
@@ -62,7 +22,7 @@ export const defaultArticles: Article[] = [
     content:
       "Scalable Flutter apps start with architecture decisions: BLoC vs Riverpod, layered feature folders, CI/CD on day one. I walk through my real process — from wireframe review to Play Store release — based on 200+ apps shipped.",
     publishedAt: "2025-10-16",
-    mediumUrl: "https://medium.com/@mdazadhossain95/building-scalable-apps-with-flutter-my-process-from-idea-to-deployment",
+    mediumUrl: "https://medium.com/@mdazadhossain95/building-scalable-apps-with-flutter-my-process-from-idea-to-deployment-ef7cbb31a50e",
   },
   {
     id: "a3",
@@ -72,7 +32,7 @@ export const defaultArticles: Article[] = [
     content:
       "Profile first. Then: reduce widget rebuilds with const constructors, lazy-load heavy lists with ListView.builder, optimize image decode sizes, defer non-critical init, cache aggressively with flutter_cache_manager, and avoid setState on large subtrees.",
     publishedAt: "2025-08-24",
-    mediumUrl: "https://medium.com/@mdazadhossain95/6-flutter-performance-hacks-every-developer-should-know",
+    mediumUrl: "https://medium.com/@mdazadhossain95/6-flutter-performance-hacks-every-developer-should-know-cd0f8d211bce",
   },
   {
     id: "a4",
@@ -82,7 +42,7 @@ export const defaultArticles: Article[] = [
     content:
       "Android uses wg-quick under the hood via a Kotlin method channel. iOS requires a Packet Tunnel Provider extension — a separate target in Xcode that handles tunnel lifecycle. One Dart API, two platform implementations.",
     publishedAt: "2025-08-23",
-    mediumUrl: "https://medium.com/@mdazadhossain95/flutter-wireguard-vpn-one-codebase-android-and-ios",
+    mediumUrl: "https://medium.com/@mdazadhossain95/flutter-wireguard-vpn-one-codebase-android-and-ios-dedb9d4286ec",
   },
   {
     id: "a5",
@@ -92,24 +52,18 @@ export const defaultArticles: Article[] = [
     content:
       "From debug to production: configure keystore, set up build.gradle signing configs, run flutter build appbundle --release, upload to Play Console. Include obfuscation flags and deobfuscation file upload for crash reporting.",
     publishedAt: "2023-10-07",
-    mediumUrl: "https://medium.com/@mdazadhossain95/build-and-release-an-android-app-flutter",
+    mediumUrl: "https://medium.com/@mdazadhossain95/build-and-release-an-android-app-flutter-27a97974315c",
   },
 ];
 
 export const defaultReviews: Review[] = [
   {
     id: "r1",
-    name: "Product Manager",
-    role: "Fintech Client",
-    text: "Azad delivered stable release fast, with excellent communication and clean architecture.",
+    name: "Verified Upwork Client",
+    role: "Flutter SMS Forwarder App",
+    text: "I had a fantastic experience with this developer. They delivered a high-quality Flutter app that perfectly met all requirements, including a successful remote setup and live testing on my device. Their expertise and communication were excellent, and I highly recommend Azad.",
     rating: 5,
-  },
-  {
-    id: "r2",
-    name: "Startup Founder",
-    role: "Healthtech",
-    text: "Strong Flutter expertise, proactive problem-solving, and reliable support post launch.",
-    rating: 5,
+    company: "Upwork",
   },
 ];
 

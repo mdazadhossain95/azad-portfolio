@@ -3,7 +3,7 @@ import { SectionTitle } from "@/components/section-title";
 
 export const metadata = {
   title: "Projects | Azad Portfolio",
-  description: "Flutter mobile app case studies by Md Azad Hossain Tutul.",
+  description: "Structured real project portfolio grouped by domain with production-ready project cards, detail pages, and verified screenshots.",
 };
 
 export default function ProjectsPage() {
@@ -11,8 +11,8 @@ export default function ProjectsPage() {
     <section className="mx-auto w-full max-w-6xl space-y-8 px-5 py-16 md:px-8">
       <SectionTitle
         eyebrow="Projects"
-        title="Selected Android and iOS app builds"
-        description="Product-focused Flutter projects with screenshots, outcomes, and platform links."
+        title="Real shipped apps organized for client decisions"
+        description="Grouped by FinTech & Payments, AI & Smart Apps, Social / Utility Apps, and E-commerce & Lifestyle. Built only from verified project data and real screenshots."
       />
       <LiveProjects />
     </section>

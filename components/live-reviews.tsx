@@ -37,18 +37,26 @@ export function LiveReviews() {
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-2">
-        {reviews.map((review) => (
-          <article key={review.id} className="flex flex-col gap-4 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6">
-            <Stars rating={review.rating} />
-            <p className="flex-1 text-sm leading-7 text-[var(--text)]">&quot;{review.text}&quot;</p>
-            <div>
-              <p className="text-sm font-semibold text-[var(--text)]">{review.name}</p>
-              <p className="text-xs text-[var(--muted)]">{review.role}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+      {reviews.length > 0 ? (
+        <div className="grid gap-4 md:grid-cols-2">
+          {reviews.map((review) => (
+            <article key={review.id} className="flex flex-col gap-4 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6">
+              <Stars rating={review.rating} />
+              <p className="flex-1 text-sm leading-7 text-[var(--text)]">&quot;{review.text}&quot;</p>
+              <div>
+                <p className="text-sm font-semibold text-[var(--text)]">{review.name}</p>
+                <p className="text-xs text-[var(--muted)]">{review.role}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <article className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6">
+          <p className="text-sm leading-7 text-[var(--text)]">
+            No review text shown here until imported from public source. Upwork profile remains primary source for client feedback.
+          </p>
+        </article>
+      )}
       <p className="text-center text-xs text-[var(--muted)]">
         <a
           href="https://www.upwork.com/freelancers/~01082f851b8bed7bd1"

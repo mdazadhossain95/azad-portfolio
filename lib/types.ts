@@ -2,13 +2,17 @@ export type Project = {
   id: string;
   title: string;
   slug: string;
+  role?: string;
   description: string;
+  details?: string;
   images: string[];
   techStack: string[];
+  features?: string[];
   links: {
     playStore?: string;
     appStore?: string;
     live?: string;
+    website?: string;
   };
   featured: boolean;
   createdAt?: number;

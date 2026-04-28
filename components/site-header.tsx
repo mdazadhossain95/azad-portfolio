@@ -28,11 +28,12 @@ export function SiteHeader() {
             </Link>
           ))}
           <a
-            href="/resume.pdf"
-            download
+            href="https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
             className="rounded-full border border-[var(--line)] px-4 py-1.5 text-xs font-medium text-[var(--text)] transition hover:bg-[var(--card)]"
           >
-            Résumé
+            View resume
           </a>
         </nav>
         <ThemeToggle />

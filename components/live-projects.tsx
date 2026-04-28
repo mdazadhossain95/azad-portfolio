@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { ProjectGrid } from "@/components/project-grid";
 import { defaultProjects } from "@/lib/default-content";
 import { watchCollection } from "@/lib/firestore-client";
 import { Project } from "@/lib/types";
-import { ProjectCard } from "@/components/project-card";
 
 type LiveProjectsProps = {
   featuredOnly?: boolean;
@@ -15,9 +15,19 @@ export function LiveProjects({ featuredOnly = false }: LiveProjectsProps) {
 
   useEffect(() => {
     const unsubscribe = watchCollection<Project>("projects", (items) => {
-      if (items.length > 0) {
-        setProjects(items);
+      if (items.length === 0) {
+        setProjects(defaultProjects);
+        return;
       }
+
+      // Firestore can be partial during content updates. Merge with local catalog so no project disappears.
+      const itemBySlug = new Map(items.map((item) => [item.slug, item]));
+      const merged = [
+        ...items,
+        ...defaultProjects.filter((project) => !itemBySlug.has(project.slug)),
+      ];
+
+      setProjects(merged);
     });
 
     return unsubscribe;
@@ -28,11 +38,5 @@ export function LiveProjects({ featuredOnly = false }: LiveProjectsProps) {
     [featuredOnly, projects],
   );
 
-  return (
-    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {visibleProjects.map((project) => (
-        <ProjectCard key={project.id} project={project} />
-      ))}
-    </div>
-  );
+  return <ProjectGrid projects={visibleProjects} groupByCategory={!featuredOnly} />;
 }
