@@ -8,7 +8,13 @@ export const metadata = {
 
 export default function TravelPage() {
   return (
-    <section className="mx-auto w-full max-w-6xl space-y-8 px-5 py-16 md:px-8">
+    <section
+      className="mx-auto w-full max-w-6xl space-y-10 rounded-2xl border px-5 py-20 md:px-8 md:py-24"
+      style={{
+        borderColor: "color-mix(in srgb, var(--line) 92%, var(--accent) 8%)",
+        backgroundColor: "color-mix(in srgb, var(--card) 74%, var(--bg))",
+      }}
+    >
       <SectionTitle
         eyebrow="Travel"
         title="Places, people, and remote work stories"

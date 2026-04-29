@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { defaultProjects } from "@/lib/default-content";
 import { findBySlug } from "@/lib/firestore-client";
 import { Project } from "@/lib/types";
-import { ImageGalleryModal } from "@/components/image-gallery-modal";
+import { ImageGalleryModal } from "./image-gallery-modal";
 
 type ProjectDetailsProps = {
   slug: string;
@@ -17,6 +17,7 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
     defaultProjects.find((item) => item.slug === slug) ?? null,
   );
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     let mounted = true;
@@ -34,6 +35,10 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
     };
   }, [slug]);
 
+  useEffect(() => {
+    setActiveSlide(0);
+  }, [project?.slug]);
+
   if (!project) {
     return (
       <section className="mx-auto w-full max-w-6xl px-5 py-20 md:px-8">
@@ -45,6 +50,17 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
     );
   }
 
+  const hasManyImages = project.images.length > 1;
+  const prevSlide = () => {
+    if (!hasManyImages) return;
+    setActiveSlide((i) => (i - 1 + project.images.length) % project.images.length);
+  };
+
+  const nextSlide = () => {
+    if (!hasManyImages) return;
+    setActiveSlide((i) => (i + 1) % project.images.length);
+  };
+
   return (
     <section className="mx-auto w-full max-w-6xl px-5 py-16 md:px-8">
       <Link href="/projects" className="text-sm text-[var(--accent)]">
@@ -53,34 +69,77 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
 
       <div className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-4">
-          <button
-            type="button"
-            onClick={() => setGalleryIndex(0)}
-            className="relative block aspect-[4/3] w-full overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--card)]"
-          >
-            <Image
-              src={project.images[0]}
-              alt={project.title}
-              fill
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              className="object-cover"
-              priority
-            />
-          </button>
-          {project.images.length > 1 ? (
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-              {project.images.slice(1).map((image, index) => (
+          <div className="surface-card relative aspect-[4/3] w-full overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setGalleryIndex(activeSlide)}
+              className="relative block h-full w-full"
+            >
+              <Image
+                src={project.images[activeSlide]}
+                alt={`${project.title} screenshot ${activeSlide + 1}`}
+                fill
+                sizes="(min-width: 1024px) 60vw, 100vw"
+                className="object-cover"
+                priority
+              />
+            </button>
+
+            {hasManyImages ? (
+              <>
                 <button
                   type="button"
-                  key={`${project.slug}-${index + 1}`}
-                  onClick={() => setGalleryIndex(index + 1)}
-                  className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)]"
+                  aria-label="Previous image"
+                  onClick={prevSlide}
+                  className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 p-2.5 text-white transition hover:bg-black/70"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next image"
+                  onClick={nextSlide}
+                  className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 p-2.5 text-white transition hover:bg-black/70"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+                <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5 rounded-full bg-black/35 px-2 py-1">
+                  {project.images.map((_, index) => (
+                    <button
+                      key={`${project.slug}-dot-${index}`}
+                      type="button"
+                      onClick={() => setActiveSlide(index)}
+                      aria-label={`Go to image ${index + 1}`}
+                      className={`h-1.5 w-1.5 rounded-full transition ${
+                        index === activeSlide ? "bg-white" : "bg-white/45 hover:bg-white/75"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            ) : null}
+          </div>
+
+          {hasManyImages ? (
+            <div className="grid grid-cols-3 gap-3 md:grid-cols-4">
+              {project.images.map((image, index) => (
+                <button
+                  type="button"
+                  key={`${project.slug}-${index}`}
+                  onClick={() => setActiveSlide(index)}
+                  className={`surface-card relative aspect-[4/3] overflow-hidden border-2 transition ${
+                    index === activeSlide ? "border-[var(--accent)]" : "border-transparent"
+                  }`}
                 >
                   <Image
                     src={image}
-                    alt={`${project.title} screenshot ${index + 2}`}
+                    alt={`${project.title} thumbnail ${index + 1}`}
                     fill
-                    sizes="(min-width: 768px) 30vw, 50vw"
+                    sizes="(min-width: 768px) 20vw, 33vw"
                     className="object-cover"
                   />
                 </button>
@@ -102,11 +161,11 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
             ) : null}
           </div>
 
-          <div className="rounded-3xl border border-[var(--line)] bg-[var(--card)] p-6">
+          <div className="surface-card p-6">
             <p className="text-sm font-semibold text-[var(--text)]">Tech Stack</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {project.techStack.map((item) => (
-                <span key={item} className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--muted)]">
+                <span key={item} className="soft-chip text-xs text-[var(--muted)]">
                   {item}
                 </span>
               ))}
@@ -114,7 +173,7 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
           </div>
 
           {project.features?.length ? (
-            <div className="rounded-3xl border border-[var(--line)] bg-[var(--card)] p-6">
+            <div className="surface-card p-6">
               <p className="text-sm font-semibold text-[var(--text)]">Highlights</p>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-[var(--muted)]">
                 {project.features.map((feature) => (
@@ -128,26 +187,26 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
           ) : null}
 
           <div className="flex flex-wrap gap-3 text-sm">
-            <Link href="/projects" className="rounded-full border border-[var(--line)] px-4 py-2 text-[var(--text)] transition hover:bg-[var(--card)]">
+            <Link href="/projects" className="btn-secondary px-4 py-2 text-[var(--text)]">
               All projects
             </Link>
             {project.links.playStore ? (
-              <a href={project.links.playStore} target="_blank" rel="noreferrer" className="rounded-full bg-[var(--text)] px-4 py-2 text-[var(--bg)] transition hover:opacity-90">
+              <a href={project.links.playStore} target="_blank" rel="noreferrer" className="btn-primary px-4 py-2 text-[var(--bg)]">
                 Play Store
               </a>
             ) : null}
             {project.links.appStore ? (
-              <a href={project.links.appStore} target="_blank" rel="noreferrer" className="rounded-full border border-[var(--line)] px-4 py-2 text-[var(--text)] transition hover:bg-[var(--card)]">
+              <a href={project.links.appStore} target="_blank" rel="noreferrer" className="btn-secondary px-4 py-2 text-[var(--text)]">
                 App Store
               </a>
             ) : null}
             {project.links.website ? (
-              <a href={project.links.website} target="_blank" rel="noreferrer" className="rounded-full border border-[var(--line)] px-4 py-2 text-[var(--text)] transition hover:bg-[var(--card)]">
+              <a href={project.links.website} target="_blank" rel="noreferrer" className="btn-secondary px-4 py-2 text-[var(--text)]">
                 Website
               </a>
             ) : null}
             {project.links.live ? (
-              <a href={project.links.live} target="_blank" rel="noreferrer" className="rounded-full border border-[var(--line)] px-4 py-2 text-[var(--text)] transition hover:bg-[var(--card)]">
+              <a href={project.links.live} target="_blank" rel="noreferrer" className="btn-secondary px-4 py-2 text-[var(--text)]">
                 Live Link
               </a>
             ) : null}

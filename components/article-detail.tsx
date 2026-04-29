@@ -40,14 +40,14 @@ export function ArticleDetail({ slug }: ArticleDetailProps) {
   }
 
   return (
-    <section className="mx-auto w-full max-w-3xl px-5 py-20 md:px-8">
+    <section className="mx-auto w-full max-w-3xl px-5 py-20 md:px-8 md:py-24">
       <Link href="/articles" className="text-sm text-[var(--accent)]">
         Back to articles
       </Link>
       <p className="mt-5 text-xs uppercase tracking-[0.14em] text-[var(--muted)]">
         {new Date(article.publishedAt).toLocaleDateString()}
       </p>
-      <h1 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--text)]">{article.title}</h1>
+      <h1 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--text)] md:text-5xl">{article.title}</h1>
       <article className="prose prose-zinc mt-8 max-w-none dark:prose-invert">
         <p>{article.content}</p>
       </article>

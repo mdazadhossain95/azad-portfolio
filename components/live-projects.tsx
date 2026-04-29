@@ -8,9 +8,10 @@ import { Project } from "@/lib/types";
 
 type LiveProjectsProps = {
   featuredOnly?: boolean;
+  limit?: number;
 };
 
-export function LiveProjects({ featuredOnly = false }: LiveProjectsProps) {
+export function LiveProjects({ featuredOnly = false, limit }: LiveProjectsProps) {
   const [projects, setProjects] = useState<Project[]>(defaultProjects);
 
   useEffect(() => {
@@ -34,8 +35,11 @@ export function LiveProjects({ featuredOnly = false }: LiveProjectsProps) {
   }, []);
 
   const visibleProjects = useMemo(
-    () => (featuredOnly ? projects.filter((item) => item.featured) : projects),
-    [featuredOnly, projects],
+    () => {
+      const base = featuredOnly ? projects.filter((item) => item.featured) : projects;
+      return typeof limit === "number" ? base.slice(0, limit) : base;
+    },
+    [featuredOnly, limit, projects],
   );
 
   return <ProjectGrid projects={visibleProjects} groupByCategory={!featuredOnly} />;

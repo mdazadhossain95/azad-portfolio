@@ -7,11 +7,11 @@ import { Review } from "@/lib/types";
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <div className="flex gap-0.5" aria-label={`${rating} out of 5`}>
+    <div className="flex gap-1" aria-label={`${rating} out of 5`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
-          className={`h-3.5 w-3.5 ${i < rating ? "text-yellow-400" : "text-[var(--line)]"}`}
+          className={`h-4 w-4 ${i < rating ? "text-yellow-400" : "text-[var(--line)]"}`}
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -36,16 +36,27 @@ export function LiveReviews() {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {reviews.length > 0 ? (
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {reviews.map((review) => (
-            <article key={review.id} className="flex flex-col gap-4 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-6">
-              <Stars rating={review.rating} />
-              <p className="flex-1 text-sm leading-7 text-[var(--text)]">&quot;{review.text}&quot;</p>
-              <div>
-                <p className="text-sm font-semibold text-[var(--text)]">{review.name}</p>
-                <p className="text-xs text-[var(--muted)]">{review.role}</p>
+            <article
+              key={review.id}
+              className="surface-card surface-card-hover relative mx-auto flex max-w-2xl flex-col gap-5 p-8 text-center md:p-10"
+            >
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Stars rating={review.rating} />
+                <span className="rounded-full bg-[var(--text)] px-3 py-1 text-[11px] font-semibold tracking-[0.08em] text-[var(--bg)]">
+                  ⭐ 5.0 Rated on Upwork
+                </span>
+                <span className="rounded-full border border-[var(--line)] bg-[var(--bg)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]">
+                  Verified Upwork Client
+                </span>
+              </div>
+              <p className="flex-1 text-base leading-8 text-[var(--text)]">&quot;{review.text}&quot;</p>
+              <div className="space-y-1">
+                <p className="text-base font-semibold text-[var(--text)]">{review.name}</p>
+                <p className="text-sm text-[var(--muted)]">{review.role}</p>
               </div>
             </article>
           ))}

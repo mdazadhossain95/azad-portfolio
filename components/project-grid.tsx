@@ -48,10 +48,10 @@ export function ProjectGrid({ projects, groupByCategory = false }: ProjectGridPr
   });
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-12">
       {categoryOrder.map((category) => (
         grouped[category].length > 0 ? (
-          <section key={category} className="space-y-4">
+          <section key={category} className="space-y-5">
             <h2 className="text-xl font-semibold tracking-tight text-[var(--text)] md:text-2xl">{category}</h2>
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {grouped[category].map((project) => (
