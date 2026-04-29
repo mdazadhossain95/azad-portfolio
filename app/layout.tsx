@@ -15,19 +15,45 @@ const mono = Space_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://azadhossain.dev";
+const PREVIEW_IMAGE = `${SITE_URL}/preview.png`;
+const TITLE = "Md Azad Hossain | Flutter & AI Mobile App Developer";
+const DESCRIPTION =
+  "Senior Flutter Developer with 5+ years experience building fintech, AI-powered, and scalable mobile apps. 200+ apps delivered with 100% client satisfaction.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://azad-portfolio.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Azad Portfolio | Flutter Developer",
-    template: "%s | Azad Portfolio",
+    default: TITLE,
+    template: `%s | Md Azad Hossain`,
   },
-  description:
-    "Modern Flutter portfolio by Md Azad Hossain Tutul. Showcasing mobile apps, articles, and delivery-focused case studies.",
+  description: DESCRIPTION,
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
-    title: "Azad Portfolio | Flutter Developer",
-    description:
-      "Flutter developer portfolio with app projects, writings, travel notes, and client-ready contact channels.",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: "Md Azad Hossain",
     type: "website",
+    images: [
+      {
+        url: PREVIEW_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: TITLE,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [PREVIEW_IMAGE],
+  },
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 
