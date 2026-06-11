@@ -45,6 +45,7 @@ export function ContactBlock() {
         >
           <span>✉</span> Email me
         </a>
+        {/**
         <a
           href="https://wa.me/8801711728799"
           target="_blank"
@@ -53,6 +54,7 @@ export function ContactBlock() {
         >
           <span>💬</span> WhatsApp
         </a>
+        */}
         <a
           href={settings.upwork}
           target="_blank"
