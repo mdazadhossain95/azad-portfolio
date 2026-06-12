@@ -55,10 +55,6 @@ export function ImageGalleryModal({ images, initialIndex, title, onClose }: Imag
   }, []);
 
   useEffect(() => {
-    setIsImageReady(false);
-  }, [current]);
-
-  useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") prev();
       else if (e.key === "ArrowRight") next();

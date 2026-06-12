@@ -29,8 +29,8 @@ export function ProjectGrid({ projects, groupByCategory = false }: ProjectGridPr
   if (!groupByCategory) {
     return (
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {sortedProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {sortedProjects.map((project, idx) => (
+          <ProjectCard key={project.id} project={project} priority={idx < 3} />
         ))}
       </div>
     );

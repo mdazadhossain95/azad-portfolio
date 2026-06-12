@@ -5,6 +5,7 @@ import { Project } from "@/lib/types";
 
 type ProjectCardProps = {
   project: Project;
+  priority?: boolean;
 };
 
 const TOP_FEATURED_SLUGS = new Set(["codegopay-individual", "codegopay-business"]);
@@ -23,12 +24,13 @@ const KEY_RESULTS: Record<string, string> = {
   "nexflix": "Optimized media browsing and playback handoff flows.",
 };
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, priority = false }: ProjectCardProps) {
   const primaryLink = getPrimaryProjectLink(project);
   const integrations = project.techStack.length;
   const fallbackResult = `Integrated ${integrations}+ production services.`;
   const keyResult = KEY_RESULTS[project.slug] ?? fallbackResult;
   const isTopFeatured = TOP_FEATURED_SLUGS.has(project.slug);
+  const shouldPrioritizeImage = priority || isTopFeatured;
 
   return (
     <article className="surface-card surface-card-hover group flex h-full flex-col overflow-hidden">
@@ -38,7 +40,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
           alt={project.title}
           fill
           sizes="(min-width: 1280px) 28vw, (min-width: 768px) 42vw, 100vw"
-          className="object-cover transition duration-300 group-hover:scale-[1.03]"
+          className="object-cover transition duration-300 group-hover:scale-[1.07]"
+          priority={shouldPrioritizeImage}
         />
         <div
           className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -58,7 +61,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <h3 className="text-xl font-semibold tracking-tight text-[var(--text)]">{project.title}</h3>
           {project.role ? <p className="text-xs uppercase tracking-[0.14em] text-[var(--muted)]">{project.role}</p> : null}
           <p className="text-sm leading-6 text-[var(--muted)]">{project.description}</p>
-          <p className="rounded-xl border border-[var(--line)] bg-[var(--bg)] px-3 py-2 text-xs leading-6 text-[var(--text)]">
+          <p className="rounded-xl border-2 px-3 py-2.5 text-xs leading-6 font-medium"
+            style={{
+              borderColor: 'var(--accent)',
+              backgroundColor: 'color-mix(in srgb, var(--accent) 8%, var(--bg))',
+              color: 'var(--text)'
+            }}
+          >
             <span className="font-semibold">Key Result:</span> {keyResult}
           </p>
           <div className="flex flex-wrap gap-2">

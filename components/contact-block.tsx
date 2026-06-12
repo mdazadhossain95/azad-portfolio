@@ -31,7 +31,7 @@ export function ContactBlock() {
 
       {/* Header */}
       <div className="space-y-2">
-        <h3 className="text-2xl font-semibold text-[var(--text)]">Let&apos;s work together</h3>
+        <h3 className="text-2xl font-semibold bg-gradient-to-r from-[var(--text)] to-[var(--accent)] bg-clip-text text-transparent">Let&apos;s work together</h3>
         <p className="text-sm leading-6 text-[var(--muted)] max-w-lg">
           Have a mobile app idea or an existing product that needs work? Reach out — I respond within 24 hours.
         </p>
@@ -41,7 +41,7 @@ export function ContactBlock() {
       <div className="flex flex-wrap gap-3">
         <a
           href={`mailto:${settings.email}`}
-          className="btn-primary gap-2 px-5 py-2.5 text-sm font-medium"
+          className="btn-primary gap-2 px-6 py-3 text-sm font-medium"
         >
           <span>✉</span> Email me
         </a>
@@ -59,9 +59,9 @@ export function ContactBlock() {
           href={settings.upwork}
           target="_blank"
           rel="noreferrer"
-          className="btn-secondary gap-2 px-5 py-2.5 text-sm font-medium"
+          className="btn-secondary gap-2 px-6 py-3 text-sm font-medium"
         >
-          Hire on Upwork ↗
+          Hire me ↗
         </a>
       </div>
 

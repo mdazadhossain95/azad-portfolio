@@ -66,22 +66,20 @@ export default function HomePage() {
                 rel="noreferrer"
                 className="btn-primary px-6 py-3 text-sm font-medium"
               >
-                Hire me on Upwork
+                Hire me
               </a>
               <Link
                 href="/projects"
                 className="btn-secondary px-6 py-3 text-sm font-medium"
               >
-                See my work
+                See work
               </Link>
-              <a
-                href="https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing"
-                target="_blank"
-                rel="noreferrer"
-                className="text-sm font-medium text-[var(--muted)] underline underline-offset-4 transition hover:text-[var(--text)]"
-              >
-                View Resume
-              </a>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <span className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--muted)]">FinTech • AI • E-commerce • Healthcare</span>
+              <span className="rounded-full bg-[var(--accent)]/10 px-3 py-1 text-xs font-semibold text-[var(--accent)]">200+ apps shipped</span>
+              <span className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--muted)]">100% Upwork success</span>
             </div>
 
             {/* Stats */}
@@ -105,6 +103,28 @@ export default function HomePage() {
                 <p className="text-2xl font-semibold text-[var(--text)]">15+</p>
                 <p className="mt-0.5 text-xs text-[var(--muted)]">Happy clients</p>
               </div>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              {[
+                {
+                  title: "Fast product launches",
+                  description: "Release mobile MVPs with clear scope, polished UX, and reliable production delivery.",
+                },
+                {
+                  title: "FinTech focus",
+                  description: "Wallets, transfers, payments, and regulatory-ready flows for modern finance apps.",
+                },
+                {
+                  title: "AI integration",
+                  description: "ChatGPT, recommendation, and automation features that make apps smarter.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="surface-card rounded-3xl border p-5">
+                  <p className="text-xs uppercase tracking-[0.16em] text-[var(--accent)]">{item.title}</p>
+                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
+                </div>
+              ))}
             </div>
 
           </div>

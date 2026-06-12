@@ -26,6 +26,7 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
       .then((item) => {
         if (mounted && item) {
           setProject(item);
+          setActiveSlide(0);
         }
       })
       .catch(() => {});
@@ -34,10 +35,6 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
       mounted = false;
     };
   }, [slug]);
-
-  useEffect(() => {
-    setActiveSlide(0);
-  }, [project?.slug]);
 
   if (!project) {
     return (
@@ -173,12 +170,12 @@ export function ProjectDetailsPage({ slug }: ProjectDetailsProps) {
           </div>
 
           {project.features?.length ? (
-            <div className="surface-card p-6">
+            <div className="surface-card p-6 space-y-4">
               <p className="text-sm font-semibold text-[var(--text)]">Highlights</p>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-[var(--muted)]">
+              <ul className="space-y-3 text-sm leading-6 text-[var(--muted)]">
                 {project.features.map((feature) => (
                   <li key={feature} className="flex gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                    <span className="mt-1.5 h-2 w-2 rounded-full flex-shrink-0" style={{ backgroundColor: 'var(--accent)' }} />
                     <span>{feature}</span>
                   </li>
                 ))}
