@@ -42,10 +42,11 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex h-10 items-center rounded-full border border-[var(--line)] px-4 text-sm font-medium text-[var(--text)] transition hover:bg-[var(--card)]"
-      aria-label="Toggle color mode"
+      className="inline-flex h-10 items-center gap-2 rounded-full border border-[var(--line)] px-4 text-sm font-medium text-[var(--text)] transition hover:bg-[var(--card)]"
+      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      title={`Current: ${theme === "light" ? "Light mode" : "Dark mode"}`}
     >
-      Toggle theme
+      {theme === "light" ? "☀️ Light" : "🌙 Dark"}
     </button>
   );
 }
