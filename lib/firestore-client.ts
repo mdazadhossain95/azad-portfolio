@@ -115,6 +115,8 @@ export async function findBySlug<T>(
     return null;
   }
 
+  // NOTE: If multiple documents share a slug, this returns the first arbitrarily.
+  // Consider adding a uniqueness constraint in Firestore security rules.
   const firstDoc = snapshot.docs[0];
   return {
     id: firstDoc.id,

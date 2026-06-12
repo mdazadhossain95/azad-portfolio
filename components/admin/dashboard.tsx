@@ -27,10 +27,13 @@ type ProjectForm = {
   title: string;
   slug: string;
   description: string;
-  image: string;
+  details: string;
+  role: string;
+  images: string;
   techStack: string;
   playStore: string;
   appStore: string;
+  website: string;
   live: string;
   featured: boolean;
 };
@@ -70,10 +73,13 @@ const emptyProject: ProjectForm = {
   title: "",
   slug: "",
   description: "",
-  image: "",
+  details: "",
+  role: "",
+  images: "",
   techStack: "Flutter, Firebase",
   playStore: "",
   appStore: "",
+  website: "",
   live: "",
   featured: false,
 };
@@ -110,14 +116,14 @@ export function AdminDashboard() {
   const [articles, setArticles] = useState<Article[]>(defaultArticles);
   const [reviews, setReviews] = useState<Review[]>(defaultReviews);
   const [travels, setTravels] = useState<TravelPost[]>(defaultTravels);
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const [settingsForm, setSettingsForm] = useState(defaultSettings);
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [projectForm, setProjectForm] = useState<ProjectForm>(emptyProject);
   const [articleForm, setArticleForm] = useState<ArticleForm>(emptyArticle);
   const [reviewForm, setReviewForm] = useState<ReviewForm>(emptyReview);
   const [travelForm, setTravelForm] = useState<TravelForm>(emptyTravel);
-  const [settingsForm, setSettingsForm] = useState(defaultSettings);
 
   useEffect(() => {
     const unsubProjects = watchCollection<Project>("projects", (items) => {
@@ -148,7 +154,6 @@ export function AdminDashboard() {
               id: snapshot.id,
               ...(snapshot.data() as Omit<Settings, "id">),
             };
-            setSettings(loaded);
             setSettingsForm(loaded);
           }
         })
@@ -161,7 +166,24 @@ export function AdminDashboard() {
       unsubTravels();
       unsubSettings();
     };
-  }, []);
+  }, [setSettingsForm]);
+
+  // Auto-clear success messages after 3 seconds
+  useEffect(() => {
+    if (!message) return;
+    const timer = setTimeout(() => setMessage(""), 3000);
+    return () => clearTimeout(timer);
+  }, [message]);
+
+  async function handleDelete(collectionName: string, id: string) {
+    if (!window.confirm("Are you sure you want to delete this item?")) return;
+    try {
+      await deleteItem(collectionName, id);
+      setMessage("Item deleted");
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : "Delete failed");
+    }
+  }
 
   const featuredCount = useMemo(
     () => projects.filter((item) => item.featured).length,
@@ -176,7 +198,12 @@ export function AdminDashboard() {
       title: projectForm.title,
       slug: projectForm.slug,
       description: projectForm.description,
-      images: projectForm.image ? [projectForm.image] : [],
+      details: projectForm.details,
+      role: projectForm.role,
+      images: projectForm.images
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean),
       techStack: projectForm.techStack
         .split(",")
         .map((item) => item.trim())
@@ -184,20 +211,27 @@ export function AdminDashboard() {
       links: {
         playStore: projectForm.playStore,
         appStore: projectForm.appStore,
+        website: projectForm.website,
         live: projectForm.live,
       },
       featured: projectForm.featured,
     };
 
-    if (projectForm.id) {
-      await updateItem("projects", projectForm.id, payload);
-      setMessage("Project updated");
-    } else {
-      await createItem("projects", payload);
-      setMessage("Project created");
+    setIsSubmitting(true);
+    try {
+      if (projectForm.id) {
+        await updateItem("projects", projectForm.id, payload);
+        setMessage("Project updated");
+      } else {
+        await createItem("projects", payload);
+        setMessage("Project created");
+      }
+      setProjectForm(emptyProject);
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : "Save failed");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setProjectForm(emptyProject);
   }
 
   async function handleArticleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -211,15 +245,21 @@ export function AdminDashboard() {
       publishedAt: articleForm.publishedAt,
     };
 
-    if (articleForm.id) {
-      await updateItem("articles", articleForm.id, payload);
-      setMessage("Article updated");
-    } else {
-      await createItem("articles", payload);
-      setMessage("Article created");
+    setIsSubmitting(true);
+    try {
+      if (articleForm.id) {
+        await updateItem("articles", articleForm.id, payload);
+        setMessage("Article updated");
+      } else {
+        await createItem("articles", payload);
+        setMessage("Article created");
+      }
+      setArticleForm(emptyArticle);
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : "Save failed");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setArticleForm(emptyArticle);
   }
 
   async function handleReviewSubmit(event: FormEvent<HTMLFormElement>) {
@@ -233,15 +273,21 @@ export function AdminDashboard() {
       rating: reviewForm.rating,
     };
 
-    if (reviewForm.id) {
-      await updateItem("reviews", reviewForm.id, payload);
-      setMessage("Review updated");
-    } else {
-      await createItem("reviews", payload);
-      setMessage("Review created");
+    setIsSubmitting(true);
+    try {
+      if (reviewForm.id) {
+        await updateItem("reviews", reviewForm.id, payload);
+        setMessage("Review updated");
+      } else {
+        await createItem("reviews", payload);
+        setMessage("Review created");
+      }
+      setReviewForm(emptyReview);
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : "Save failed");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setReviewForm(emptyReview);
   }
 
   async function handleTravelSubmit(event: FormEvent<HTMLFormElement>) {
@@ -257,22 +303,34 @@ export function AdminDashboard() {
       publishedAt: travelForm.publishedAt,
     };
 
-    if (travelForm.id) {
-      await updateItem("travels", travelForm.id, payload);
-      setMessage("Travel post updated");
-    } else {
-      await createItem("travels", payload);
-      setMessage("Travel post created");
+    setIsSubmitting(true);
+    try {
+      if (travelForm.id) {
+        await updateItem("travels", travelForm.id, payload);
+        setMessage("Travel post updated");
+      } else {
+        await createItem("travels", payload);
+        setMessage("Travel post created");
+      }
+      setTravelForm(emptyTravel);
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : "Save failed");
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setTravelForm(emptyTravel);
   }
 
   async function handleSettingsSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await saveSettings("main", settingsForm);
-    setSettings(settingsForm);
-    setMessage("Settings saved");
+    setIsSubmitting(true);
+    try {
+      await saveSettings("main", settingsForm);
+      setMessage("Settings saved");
+    } catch (err) {
+      setMessage(err instanceof Error ? err.message : "Save failed");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   async function uploadProjectImage(file?: File | null) {
@@ -281,7 +339,10 @@ export function AdminDashboard() {
     }
 
     const url = await uploadImage(file, "projects");
-    setProjectForm((prev) => ({ ...prev, image: url }));
+    setProjectForm((prev) => ({
+      ...prev,
+      images: prev.images ? `${prev.images}, ${url}` : url,
+    }));
     setMessage("Project image uploaded");
   }
 
@@ -319,7 +380,9 @@ export function AdminDashboard() {
         ))}
       </div>
 
-      {message ? <p className="mb-6 text-sm text-emerald-500">{message}</p> : null}
+      <div aria-live="polite" className="mb-6 min-h-[1.25rem]">
+        {message ? <p className={`text-sm ${message.includes("failed") || message.includes("error") || message.includes("Delete") ? "text-rose-500" : "text-emerald-500"}`}>{message}</p> : null}
+      </div>
 
       {tab === "projects" ? (
         <div className="grid gap-8 lg:grid-cols-2">
@@ -327,19 +390,22 @@ export function AdminDashboard() {
             <h2 className="text-xl font-semibold">Project Form</h2>
             <input value={projectForm.title} onChange={(event) => setProjectForm((prev) => ({ ...prev, title: event.target.value }))} placeholder="Title" className="field" required />
             <input value={projectForm.slug} onChange={(event) => setProjectForm((prev) => ({ ...prev, slug: event.target.value }))} placeholder="Slug" className="field" required />
+            <input value={projectForm.role} onChange={(event) => setProjectForm((prev) => ({ ...prev, role: event.target.value }))} placeholder="Role (e.g. Flutter Developer)" className="field" />
             <textarea value={projectForm.description} onChange={(event) => setProjectForm((prev) => ({ ...prev, description: event.target.value }))} placeholder="Description" className="field min-h-24" required />
+            <textarea value={projectForm.details} onChange={(event) => setProjectForm((prev) => ({ ...prev, details: event.target.value }))} placeholder="Details (longer description)" className="field min-h-24" />
             <input value={projectForm.techStack} onChange={(event) => setProjectForm((prev) => ({ ...prev, techStack: event.target.value }))} placeholder="Tech stack (comma separated)" className="field" required />
-            <input value={projectForm.image} onChange={(event) => setProjectForm((prev) => ({ ...prev, image: event.target.value }))} placeholder="Image URL" className="field" />
+            <input value={projectForm.images} onChange={(event) => setProjectForm((prev) => ({ ...prev, images: event.target.value }))} placeholder="Image URLs (comma separated)" className="field" />
             <input type="file" accept="image/*" onChange={(event) => uploadProjectImage(event.target.files?.[0])} className="field" />
             <input value={projectForm.playStore} onChange={(event) => setProjectForm((prev) => ({ ...prev, playStore: event.target.value }))} placeholder="Play Store URL" className="field" />
             <input value={projectForm.appStore} onChange={(event) => setProjectForm((prev) => ({ ...prev, appStore: event.target.value }))} placeholder="App Store URL" className="field" />
+            <input value={projectForm.website} onChange={(event) => setProjectForm((prev) => ({ ...prev, website: event.target.value }))} placeholder="Website URL" className="field" />
             <input value={projectForm.live} onChange={(event) => setProjectForm((prev) => ({ ...prev, live: event.target.value }))} placeholder="Live URL" className="field" />
             <label className="flex items-center gap-2 text-sm">
               <input type="checkbox" checked={projectForm.featured} onChange={(event) => setProjectForm((prev) => ({ ...prev, featured: event.target.checked }))} />
               Featured project
             </label>
-            <button type="submit" className="rounded-full bg-[var(--text)] px-5 py-2 text-sm text-[var(--bg)]">
-              {projectForm.id ? "Update" : "Create"} project
+            <button type="submit" disabled={isSubmitting} className="rounded-full bg-[var(--text)] px-5 py-2 text-sm text-[var(--bg)] disabled:opacity-60">
+              {isSubmitting ? "Saving..." : projectForm.id ? "Update" : "Create"} project
             </button>
           </form>
 
@@ -349,8 +415,8 @@ export function AdminDashboard() {
                 <p className="text-sm font-semibold">{item.title}</p>
                 <p className="mt-1 text-xs text-[var(--muted)]">/{item.slug}</p>
                 <div className="mt-3 flex gap-2 text-xs">
-                  <button type="button" className="rounded-full border border-[var(--line)] px-3 py-1" onClick={() => setProjectForm({ id: item.id, title: item.title, slug: item.slug, description: item.description, image: item.images[0] ?? "", techStack: item.techStack.join(", "), playStore: item.links.playStore ?? "", appStore: item.links.appStore ?? "", live: item.links.live ?? "", featured: item.featured })}>Edit</button>
-                  <button type="button" className="rounded-full border border-rose-400 px-3 py-1 text-rose-500" onClick={() => deleteItem("projects", item.id)}>Delete</button>
+                  <button type="button" className="rounded-full border border-[var(--line)] px-3 py-1" onClick={() => setProjectForm({ id: item.id, title: item.title, slug: item.slug, description: item.description, details: item.details ?? "", role: item.role ?? "", images: item.images.join(", "), techStack: item.techStack.join(", "), playStore: item.links.playStore ?? "", appStore: item.links.appStore ?? "", website: item.links.website ?? "", live: item.links.live ?? "", featured: item.featured })}>Edit</button>
+                  <button type="button" className="rounded-full border border-rose-400 px-3 py-1 text-rose-500" onClick={() => handleDelete("projects", item.id)}>Delete</button>
                 </div>
               </article>
             ))}
@@ -377,7 +443,7 @@ export function AdminDashboard() {
                 <p className="mt-1 text-xs text-[var(--muted)]">/{item.slug}</p>
                 <div className="mt-3 flex gap-2 text-xs">
                   <button type="button" className="rounded-full border border-[var(--line)] px-3 py-1" onClick={() => setArticleForm({ id: item.id, title: item.title, slug: item.slug, preview: item.preview, content: item.content, publishedAt: item.publishedAt })}>Edit</button>
-                  <button type="button" className="rounded-full border border-rose-400 px-3 py-1 text-rose-500" onClick={() => deleteItem("articles", item.id)}>Delete</button>
+                  <button type="button" className="rounded-full border border-rose-400 px-3 py-1 text-rose-500" onClick={() => handleDelete("articles", item.id)}>Delete</button>
                 </div>
               </article>
             ))}
@@ -394,7 +460,7 @@ export function AdminDashboard() {
             <input value={reviewForm.company} onChange={(event) => setReviewForm((prev) => ({ ...prev, company: event.target.value }))} placeholder="Company" className="field" />
             <textarea value={reviewForm.text} onChange={(event) => setReviewForm((prev) => ({ ...prev, text: event.target.value }))} placeholder="Review text" className="field min-h-32" required />
             <input type="number" min={1} max={5} value={reviewForm.rating} onChange={(event) => setReviewForm((prev) => ({ ...prev, rating: Number(event.target.value) }))} className="field" />
-            <button type="submit" className="rounded-full bg-[var(--text)] px-5 py-2 text-sm text-[var(--bg)]">{reviewForm.id ? "Update" : "Create"} review</button>
+            <button type="submit" disabled={isSubmitting} className="rounded-full bg-[var(--text)] px-5 py-2 text-sm text-[var(--bg)] disabled:opacity-60">{isSubmitting ? "Saving..." : reviewForm.id ? "Update" : "Create"} review</button>
           </form>
 
           <div className="space-y-3">
@@ -434,7 +500,7 @@ export function AdminDashboard() {
                 <p className="mt-1 text-xs text-[var(--muted)]">/{item.slug}</p>
                 <div className="mt-3 flex gap-2 text-xs">
                   <button type="button" className="rounded-full border border-[var(--line)] px-3 py-1" onClick={() => setTravelForm({ id: item.id, title: item.title, slug: item.slug, summary: item.summary, content: item.content, image: item.images[0] ?? "", location: item.location ?? "", publishedAt: item.publishedAt })}>Edit</button>
-                  <button type="button" className="rounded-full border border-rose-400 px-3 py-1 text-rose-500" onClick={() => deleteItem("travels", item.id)}>Delete</button>
+                  <button type="button" className="rounded-full border border-rose-400 px-3 py-1 text-rose-500" onClick={() => handleDelete("travels", item.id)}>Delete</button>
                 </div>
               </article>
             ))}
@@ -449,9 +515,10 @@ export function AdminDashboard() {
           <input value={settingsForm.linkedin} onChange={(event) => setSettingsForm((prev) => ({ ...prev, linkedin: event.target.value }))} placeholder="LinkedIn" className="field" />
           <input value={settingsForm.github} onChange={(event) => setSettingsForm((prev) => ({ ...prev, github: event.target.value }))} placeholder="GitHub" className="field" />
           <input value={settingsForm.upwork} onChange={(event) => setSettingsForm((prev) => ({ ...prev, upwork: event.target.value }))} placeholder="Upwork" className="field" />
+          <input value={settingsForm.resume ?? ""} onChange={(event) => setSettingsForm((prev) => ({ ...prev, resume: event.target.value }))} placeholder="Resume URL" className="field" />
           <input value={settingsForm.x ?? ""} onChange={(event) => setSettingsForm((prev) => ({ ...prev, x: event.target.value }))} placeholder="X / Twitter" className="field" />
           <button type="submit" className="w-fit rounded-full bg-[var(--text)] px-5 py-2 text-sm text-[var(--bg)]">Save settings</button>
-          <p className="text-xs text-[var(--muted)]">Current contact email: {settings.email}</p>
+          <p className="text-xs text-[var(--muted)]">Current contact email: {settingsForm.email}</p>
         </form>
       ) : null}
     </section>

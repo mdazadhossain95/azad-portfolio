@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ContactBlock } from "@/components/contact-block";
 import { LiveProjects } from "@/components/live-projects";
 import { LiveReviews } from "@/components/live-reviews";
 import { SectionTitle } from "@/components/section-title";
@@ -187,7 +186,7 @@ export default function HomePage() {
             { label: "Design", skills: ["Figma"] },
           ].map((group) => (
             <div key={group.label} className="flex flex-wrap items-start gap-2">
-              <span className="w-20 shrink-0 pt-1 text-xs text-[var(--muted)] md:w-28">{group.label}</span>
+              <span className="min-w-[4.5rem] shrink-0 pt-1 text-xs text-[var(--muted)] md:min-w-28">{group.label}</span>
               {group.skills.map((s) => (
                 <span key={s} className="soft-chip text-xs text-[var(--text)]">
                   {s}
@@ -345,10 +344,6 @@ export default function HomePage() {
             </a>
           </div>
         </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5 pb-16 md:px-8 md:pb-20">
-        <ContactBlock />
       </section>
     </>
   );

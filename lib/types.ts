@@ -58,6 +58,7 @@ export type Settings = {
   linkedin: string;
   github: string;
   upwork: string;
+  resume?: string;
   x?: string;
   stackoverflow?: string;
   instagram?: string;

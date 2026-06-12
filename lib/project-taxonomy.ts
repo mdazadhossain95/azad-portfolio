@@ -28,7 +28,7 @@ const projectMetaBySlug: Record<string, ProjectMeta> = {
   "codegopay-business": { category: "FinTech & Payments", priority: 11 },
   "studygenie-ai": { category: "AI & Smart Apps", priority: 12 },
   "nxmart": { category: "E-commerce & Lifestyle", priority: 13 },
-  "nexo-mart": { category: "E-commerce & Lifestyle", priority: 14 },
+  // "nexo-mart": { category: "E-commerce & Lifestyle", priority: 14 }, // No project with this slug exists
   "runava": { category: "Social / Utility Apps", priority: 15 },
   "kream-suger": { category: "Social / Utility Apps", priority: 16 },
   "nexflix": { category: "E-commerce & Lifestyle", priority: 17 },

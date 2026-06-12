@@ -80,7 +80,7 @@ export function ContactBlock() {
           {settings.stackoverflow && (
             <a className="soft-chip text-[var(--muted)] transition hover:text-[var(--text)]" href={settings.stackoverflow} target="_blank" rel="noreferrer">Stack Overflow</a>
           )}
-          <a className="soft-chip text-[var(--muted)] transition hover:text-[var(--text)]" href="https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing" target="_blank" rel="noreferrer">View Resume</a>
+          <a className="soft-chip text-[var(--muted)] transition hover:text-[var(--text)]" href={settings.resume || "https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing"} target="_blank" rel="noreferrer">View Resume</a>
         </div>
       </div>
 

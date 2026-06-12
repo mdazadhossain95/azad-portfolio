@@ -51,7 +51,11 @@ export function ImageGalleryModal({ images, initialIndex, title, onClose }: Imag
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => setIsOpen(true));
-    return () => window.cancelAnimationFrame(frame);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.cancelAnimationFrame(frame);
+      document.body.style.overflow = "";
+    };
   }, []);
 
   useEffect(() => {
@@ -59,6 +63,22 @@ export function ImageGalleryModal({ images, initialIndex, title, onClose }: Imag
       if (e.key === "ArrowLeft") prev();
       else if (e.key === "ArrowRight") next();
       else if (e.key === "Escape") onClose();
+      else if (e.key === "Tab") {
+        const modal = document.querySelector("[data-gallery-modal]");
+        if (!modal) return;
+        const focusable = modal.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -105,6 +125,7 @@ export function ImageGalleryModal({ images, initialIndex, title, onClose }: Imag
 
   return (
     <div
+      data-gallery-modal
       className={`fixed inset-0 z-50 flex items-center justify-center p-2 transition-opacity duration-300 md:p-4 ${
         isOpen ? "bg-black/55 opacity-100" : "bg-black/0 opacity-0"
       }`}
@@ -200,7 +221,7 @@ export function ImageGalleryModal({ images, initialIndex, title, onClose }: Imag
               }}
               onPointerDown={(e) => e.stopPropagation()}
               aria-label="Next image"
-              className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/45 p-4 text-white transition duration-200 hover:scale-110 hover:bg-black/65 md:right-4"
+              className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/45 p-3 text-white transition duration-200 hover:scale-110 hover:bg-black/65 md:right-4 md:p-4"
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="9 18 15 12 9 6" />

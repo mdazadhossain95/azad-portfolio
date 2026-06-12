@@ -57,6 +57,37 @@ export const metadata: Metadata = {
   },
 };
 
+function JsonLd() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Md Azad Hossain Tutul",
+    url: SITE_URL,
+    jobTitle: "Senior Flutter Developer",
+    description: DESCRIPTION,
+    sameAs: [
+      "https://www.linkedin.com/in/azadhossain-tutul/",
+      "https://github.com/mdazadhossain95",
+      "https://www.upwork.com/freelancers/~01082f851b8bed7bd1",
+      "https://medium.com/@mdazadhossain95",
+    ],
+    knowsAbout: [
+      "Flutter",
+      "Dart",
+      "Mobile App Development",
+      "FinTech",
+      "AI Integration",
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -70,6 +101,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <JsonLd />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

@@ -47,11 +47,13 @@ export function LiveReviews() {
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Stars rating={review.rating} />
                 <span className="rounded-full bg-[var(--text)] px-3 py-1 text-[11px] font-semibold tracking-[0.08em] text-[var(--bg)]">
-                  ⭐ 5.0 Rated on Upwork
+                  ⭐ {review.rating.toFixed(1)} Rated
                 </span>
-                <span className="rounded-full border border-[var(--line)] bg-[var(--bg)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]">
-                  Verified Upwork Client
-                </span>
+                {review.company === "Upwork" ? (
+                  <span className="rounded-full border border-[var(--line)] bg-[var(--bg)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--muted)]">
+                    Verified Upwork Client
+                  </span>
+                ) : null}
               </div>
               <p className="flex-1 text-base leading-8 text-[var(--text)]">&quot;{review.text}&quot;</p>
               <div className="space-y-1">

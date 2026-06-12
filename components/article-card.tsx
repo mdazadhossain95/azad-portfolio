@@ -8,7 +8,11 @@ export function ArticleCard({ article }: ArticleCardProps) {
   return (
     <article className="surface-card surface-card-hover flex flex-col p-6 md:p-7">
       <p className="text-xs uppercase tracking-[0.15em] text-[var(--muted)]">
-        {new Date(article.publishedAt).toLocaleDateString()}
+        {new Date(article.publishedAt).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
       </p>
       <h3 className="mt-3 flex-1 text-xl font-semibold tracking-tight text-[var(--text)] md:text-[1.35rem]">{article.title}</h3>
       <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{article.preview}</p>

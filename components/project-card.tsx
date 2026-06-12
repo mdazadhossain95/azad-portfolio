@@ -84,7 +84,7 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
           </Link>
           {primaryLink ? (
             <a href={primaryLink} target="_blank" rel="noreferrer" className="btn-secondary px-4 py-2 text-sm font-medium">
-              Play Store / External Link
+              {project.links.playStore ? "Play Store" : project.links.appStore ? "App Store" : project.links.website ? "Website" : "Live Link"} ↗
             </a>
           ) : null}
         </div>

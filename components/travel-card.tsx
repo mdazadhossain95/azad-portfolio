@@ -11,7 +11,9 @@ export function TravelCard({ post }: TravelCardProps) {
       <div
         className="relative aspect-[4/3] w-full bg-cover bg-center"
         style={{
-          backgroundImage: `linear-gradient(180deg, transparent, rgba(0,0,0,0.45)), url(${post.images[0] ?? ""})`,
+          backgroundImage: post.images[0]
+            ? `linear-gradient(180deg, transparent, rgba(0,0,0,0.45)), url(${post.images[0]})`
+            : "linear-gradient(180deg, transparent, rgba(0,0,0,0.45))",
         }}
       >
         <div
