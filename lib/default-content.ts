@@ -20,7 +20,7 @@ export const defaultArticles: Article[] = [
     slug: "building-scalable-apps-with-flutter",
     preview: "A behind-the-scenes playbook for founders — based on real projects shipped end to end.",
     content:
-      "Scalable Flutter apps start with architecture decisions: BLoC vs Riverpod, layered feature folders, CI/CD on day one. I walk through my real process — from wireframe review to Play Store release — based on 200+ apps shipped.",
+      "Scalable Flutter apps start with architecture decisions: BLoC vs Riverpod, layered feature folders, CI/CD on day one. I walk through my real process — from wireframe review to Play Store release — based on numerous production apps shipped.",
     publishedAt: "2025-10-16",
     mediumUrl: "https://medium.com/@mdazadhossain95/building-scalable-apps-with-flutter-my-process-from-idea-to-deployment-ef7cbb31a50e",
   },
@@ -87,7 +87,7 @@ export const defaultSettings: Settings = {
   linkedin: "https://www.linkedin.com/in/azadhossain-tutul/",
   github: "https://github.com/mdazadhossain95",
   upwork: "https://www.upwork.com/freelancers/~01082f851b8bed7bd1",
-  resume: "https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing",
+  resume: "/azad-hossain-resume.pdf",
   x: "https://twitter.com/mdazadhossain95",
   stackoverflow: "https://stackoverflow.com/users/14659281/azad-hossain",
   instagram: "https://www.instagram.com/azad.officialll",

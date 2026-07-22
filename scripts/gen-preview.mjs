@@ -21,7 +21,7 @@ const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http:/
   <text x="80" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="400" fill="#818cf8">Flutter &amp; AI Mobile App Developer</text>
   <rect x="80" y="345" width="600" height="2" rx="1" fill="#334155"/>
   <text x="80" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="26" fill="#94a3b8">Senior Flutter Developer · 5+ Years Experience</text>
-  <text x="80" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="26" fill="#94a3b8">Fintech · AI-Powered Apps · 200+ Apps Delivered</text>
+  <text x="80" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="26" fill="#94a3b8">Fintech · AI-Powered Apps · Production Releases</text>
   <rect x="80" y="490" width="200" height="44" rx="22" fill="#1e293b" stroke="#6366f1" stroke-width="1.5"/>
   <text x="180" y="518" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#a5b4fc" text-anchor="middle">Flutter</text>
   <rect x="296" y="490" width="200" height="44" rx="22" fill="#1e293b" stroke="#6366f1" stroke-width="1.5"/>
