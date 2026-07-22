@@ -1,30 +1,7 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { doc, onSnapshot } from "firebase/firestore";
-import { defaultSettings } from "@/lib/default-content";
-import { db } from "@/lib/firebase-client";
-import { Settings } from "@/lib/types";
+import { profile } from "@/content/profile";
 
 export function ContactBlock() {
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
-
-  useEffect(() => {
-    if (!db) {
-      return;
-    }
-
-    const unsubscribe = onSnapshot(doc(db, "settings", "main"), (snapshot) => {
-      if (snapshot.exists()) {
-        setSettings({
-          id: snapshot.id,
-          ...(snapshot.data() as Omit<Settings, "id">),
-        });
-      }
-    });
-
-    return unsubscribe;
-  }, []);
+  const settings = profile.links;
 
   return (
     <section className="surface-card space-y-6 p-8">
@@ -40,21 +17,11 @@ export function ContactBlock() {
       {/* Primary CTAs */}
       <div className="flex flex-wrap gap-3">
         <a
-          href={`mailto:${settings.email}`}
+          href={`mailto:${profile.email}`}
           className="btn-primary gap-2 px-6 py-3 text-sm font-medium"
         >
           <span>✉</span> Email me
         </a>
-        {/**
-        <a
-          href="https://wa.me/8801711728799"
-          target="_blank"
-          rel="noreferrer"
-          className="btn-secondary gap-2 px-5 py-2.5 text-sm font-medium"
-        >
-          <span>💬</span> WhatsApp
-        </a>
-        */}
         <a
           href={settings.upwork}
           target="_blank"
@@ -80,7 +47,7 @@ export function ContactBlock() {
           {settings.stackoverflow && (
             <a className="soft-chip text-[var(--muted)] transition hover:text-[var(--text)]" href={settings.stackoverflow} target="_blank" rel="noreferrer">Stack Overflow</a>
           )}
-          <a className="soft-chip text-[var(--muted)] transition hover:text-[var(--text)]" href={settings.resume || "https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing"} target="_blank" rel="noreferrer">View Resume</a>
+          <a className="soft-chip text-[var(--muted)] transition hover:text-[var(--text)]" href={settings.resume} target="_blank" rel="noreferrer">View Resume</a>
         </div>
       </div>
 

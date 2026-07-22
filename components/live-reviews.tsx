@@ -1,9 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { defaultReviews } from "@/lib/default-content";
-import { watchCollection } from "@/lib/firestore-client";
-import { Review } from "@/lib/types";
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -23,23 +18,11 @@ function Stars({ rating }: { rating: number }) {
 }
 
 export function LiveReviews() {
-  const [reviews, setReviews] = useState<Review[]>(defaultReviews);
-
-  useEffect(() => {
-    const unsubscribe = watchCollection<Review>("reviews", (items) => {
-      if (items.length > 0) {
-        setReviews(items);
-      }
-    });
-
-    return unsubscribe;
-  }, []);
-
   return (
     <div className="space-y-6">
-      {reviews.length > 0 ? (
+      {defaultReviews.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2">
-          {reviews.map((review) => (
+          {defaultReviews.map((review) => (
             <article
               key={review.id}
               className="surface-card surface-card-hover relative mx-auto flex max-w-2xl flex-col gap-5 p-8 text-center md:p-10"

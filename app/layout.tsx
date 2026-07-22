@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Sora, Space_Mono } from "next/font/google";
+import { CursorGlow } from "@/components/cursor-glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { profile } from "@/content/profile";
 import "./globals.css";
 
 const sora = Sora({
@@ -15,17 +17,16 @@ const mono = Space_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://azadhossain.dev";
+const SITE_URL = profile.links.portfolio;
 const PREVIEW_IMAGE = `${SITE_URL}/preview.png`;
-const TITLE = "Md Azad Hossain | Flutter & AI Mobile App Developer";
-const DESCRIPTION =
-  "Senior Flutter Developer with 5+ years experience building fintech, AI-powered, and scalable mobile apps. 200+ apps delivered with 100% client satisfaction.";
+const TITLE = profile.meta.title;
+const DESCRIPTION = profile.meta.description;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: `%s | Md Azad Hossain`,
+    template: `%s | ${profile.shortName}`,
   },
   description: DESCRIPTION,
   icons: {
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: SITE_URL,
-    siteName: "Md Azad Hossain",
+    siteName: profile.name,
     type: "website",
     images: [
       {
@@ -61,16 +62,16 @@ function JsonLd() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Md Azad Hossain Tutul",
+    name: profile.name,
     url: SITE_URL,
-    jobTitle: "Senior Flutter Developer",
+    jobTitle: profile.title,
     description: DESCRIPTION,
     sameAs: [
-      "https://www.linkedin.com/in/azadhossain-tutul/",
-      "https://github.com/mdazadhossain95",
-      "https://www.upwork.com/freelancers/~01082f851b8bed7bd1",
-      "https://medium.com/@mdazadhossain95",
-    ],
+      profile.links.linkedin,
+      profile.links.github,
+      profile.links.upwork,
+      profile.links.medium,
+    ].filter(Boolean),
     knowsAbout: [
       "Flutter",
       "Dart",
@@ -96,14 +97,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="dark"
       className={`${sora.variable} ${mono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <JsonLd />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[var(--accent)] focus:px-4 focus:py-2 focus:text-[var(--bg-deep)]"
+        >
+          Skip to content
+        </a>
+        <CursorGlow />
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="relative z-10 flex-1 pt-20">
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

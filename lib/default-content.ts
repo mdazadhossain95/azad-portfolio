@@ -1,7 +1,7 @@
-import { portfolioProjects } from "@/lib/projects-catalog";
+import { projects } from "@/content/projects";
 import { Article, Review, Settings, TravelPost } from "@/lib/types";
 
-export const defaultProjects = portfolioProjects;
+export const defaultProjects = projects;
 
 export const defaultArticles: Article[] = [
   {

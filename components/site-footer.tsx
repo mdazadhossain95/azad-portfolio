@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { profile } from "@/content/profile";
 
 function GitHubIcon({ size = 18 }: { size?: number }) {
   return (
@@ -26,94 +26,54 @@ function UpworkIcon({ size = 18 }: { size?: number }) {
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
+
   return (
-    <footer
-      className="mt-8 border-t py-14"
-      style={{
-        borderColor: "color-mix(in srgb, var(--line) 90%, var(--accent) 10%)",
-        backgroundColor: "color-mix(in srgb, var(--card) 62%, var(--bg))",
-      }}
-    >
-      <div className="surface-card mx-auto w-full max-w-6xl space-y-8 px-5 py-9 md:px-8">
-
-        {/* Top row */}
-        <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-          <div className="space-y-1.5">
-            <p className="text-sm font-semibold text-[var(--text)]">Md Azad Hossain Tutul</p>
-            <p className="text-xs text-[var(--muted)]">Senior Flutter Developer · Android & iOS</p>
-            <p className="text-xs text-[var(--muted)]">FinTech · AI · E-commerce · Healthcare</p>
+    <footer className="border-t border-[var(--line)] bg-[var(--surface)]/50">
+      <div className="mx-auto w-full max-w-6xl px-5 py-12 md:px-8">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-2">
+            <p className="text-sm font-semibold text-[var(--text)]">{profile.name}</p>
+            <p className="text-xs text-[var(--text-muted)]">
+              {profile.title} · FinTech · Payments · AI Mobile Products
+            </p>
           </div>
 
-          <div className="flex flex-col gap-4 md:items-end">
-            {/* Nav links */}
-            <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-[var(--muted)]">
-              <Link href="/projects" className="hover:text-[var(--text)] transition">Projects</Link>
-              <Link href="/articles" className="hover:text-[var(--text)] transition">Articles</Link>
-              <Link href="/contact" className="hover:text-[var(--text)] transition">Contact</Link>
-            </nav>
-
-            {/* Social icon links */}
-            <div className="flex items-center gap-4">
-              <a
-                href="https://www.linkedin.com/in/mdazadhossain95"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                className="rounded-full border border-[var(--line)] p-2 text-[var(--muted)] transition hover:-translate-y-0.5 hover:text-[#0A66C2]"
-              >
-                <LinkedInIcon size={20} />
-              </a>
-              <a
-                href="https://github.com/mdazadhossain95"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                className="rounded-full border border-[var(--line)] p-2 text-[var(--muted)] transition hover:-translate-y-0.5 hover:text-[var(--text)]"
-              >
-                <GitHubIcon size={20} />
-              </a>
-              <a
-                href="https://www.upwork.com/freelancers/~01082f851b8bed7bd1?s=996364627857502209"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Upwork"
-                className="rounded-full border border-[var(--line)] p-2 text-[var(--muted)] transition hover:-translate-y-0.5 hover:text-[#6FDA44]"
-              >
-                <UpworkIcon size={20} />
-              </a>
-              <a
-                href="https://medium.com/@mdazadhossain95"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Medium"
-                className="rounded-full border border-[var(--line)] p-2 text-[var(--muted)] transition hover:-translate-y-0.5 hover:text-[var(--text)]"
-              >
-                <svg width={20} height={20} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
-                </svg>
-              </a>
-              <a
-                href="https://stackoverflow.com/users/14659281/azad-hossain"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Stack Overflow"
-                className="rounded-full border border-[var(--line)] p-2 text-[var(--muted)] transition hover:-translate-y-0.5 hover:text-[#F48024]"
-              >
-                <svg width={20} height={20} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M15.725 0l-1.72 1.277 6.39 8.588 1.72-1.277L15.725 0zm-3.94 3.418l-1.369 1.644 8.225 6.85 1.369-1.644-8.225-6.85zm-3.15 4.465l-.905 1.94 9.702 4.517.904-1.94-9.701-4.517zm-1.85 4.86l-.44 2.093 10.473 2.201.44-2.092-10.473-2.203zM1.89 15.47V24h19.19v-8.53h-2.133v6.397H4.021v-6.396H1.89zm4.265 2.133v2.13h10.66v-2.13H6.154z"/>
-                </svg>
-              </a>
-            </div>
+          <div className="flex items-center gap-4">
+            <a
+              href={profile.links.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="text-[var(--text-muted)] transition hover:text-[var(--text)]"
+            >
+              <GitHubIcon size={20} />
+            </a>
+            <a
+              href={profile.links.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="text-[var(--text-muted)] transition hover:text-[var(--text)]"
+            >
+              <LinkedInIcon size={20} />
+            </a>
+            <a
+              href={profile.links.upwork}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Upwork"
+              className="text-[var(--text-muted)] transition hover:text-[var(--text)]"
+            >
+              <UpworkIcon size={20} />
+            </a>
           </div>
         </div>
 
-        {/* Bottom row */}
-        <div className="flex flex-col gap-1 border-t border-[var(--line)] pt-6 text-xs text-[var(--muted)]">
-          <p>© {year} Md Azad Hossain Tutul. All rights reserved.</p>
+        <div className="mt-8 flex flex-col gap-2 border-t border-[var(--line)] pt-8 text-xs text-[var(--text-muted)] md:flex-row md:items-center md:justify-between">
+          <p>Designed and built with Next.js and TypeScript.</p>
+          <p>© {year} {profile.name}. All rights reserved.</p>
         </div>
-
       </div>
     </footer>
   );
 }
-

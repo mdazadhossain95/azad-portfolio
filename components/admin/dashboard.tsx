@@ -72,11 +72,10 @@ const tabs: Tab[] = ["projects", "articles", "reviews", "travels", "settings"];
 const emptyProject: ProjectForm = {
   title: "",
   slug: "",
-  description: "",
-  details: "",
+  summary: "",
   role: "",
-  images: "",
-  techStack: "Flutter, Firebase",
+  coverImage: "",
+  technologies: "Flutter, Firebase",
   playStore: "",
   appStore: "",
   website: "",
@@ -197,14 +196,10 @@ export function AdminDashboard() {
     const payload = {
       title: projectForm.title,
       slug: projectForm.slug,
-      description: projectForm.description,
-      details: projectForm.details,
+      summary: projectForm.summary,
       role: projectForm.role,
-      images: projectForm.images
-        .split(",")
-        .map((item) => item.trim())
-        .filter(Boolean),
-      techStack: projectForm.techStack
+      coverImage: projectForm.coverImage,
+      technologies: projectForm.technologies
         .split(",")
         .map((item) => item.trim())
         .filter(Boolean),
@@ -521,6 +516,20 @@ export function AdminDashboard() {
           <p className="text-xs text-[var(--muted)]">Current contact email: {settingsForm.email}</p>
         </form>
       ) : null}
+    </section>
+  );
+}
+l}
+    </section>
+  );
+}
+t email: {settingsForm.email}</p>
+        </form>
+      ) : null}
+    </section>
+  );
+}
+l}
     </section>
   );
 }

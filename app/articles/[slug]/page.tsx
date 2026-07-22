@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { ArticleDetail } from "@/components/article-detail";
 import { defaultArticles } from "@/lib/default-content";
 
@@ -18,5 +19,11 @@ export async function generateMetadata(
 
 export default async function ArticleDetailPage(props: ArticleDetailPageProps) {
   const { slug } = await props.params;
-  return <ArticleDetail slug={slug} />;
+  const article = defaultArticles.find((a) => a.slug === slug);
+
+  if (!article) {
+    notFound();
+  }
+
+  return <ArticleDetail article={article} />;
 }

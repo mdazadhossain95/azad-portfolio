@@ -1,44 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { defaultTravels } from "@/lib/default-content";
-import { findBySlug } from "@/lib/firestore-client";
 import { TravelPost } from "@/lib/types";
 
 type TravelDetailProps = {
-  slug: string;
+  post: TravelPost;
 };
 
-export function TravelDetail({ slug }: TravelDetailProps) {
-  const [post, setPost] = useState<TravelPost | null>(
-    defaultTravels.find((item) => item.slug === slug) ?? null,
-  );
-
-  useEffect(() => {
-    let mounted = true;
-
-    findBySlug<TravelPost>("travels", slug)
-      .then((item) => {
-        if (mounted && item) {
-          setPost(item);
-        }
-      })
-      .catch(() => {});
-
-    return () => {
-      mounted = false;
-    };
-  }, [slug]);
-
-  if (!post) {
-    return (
-      <section className="mx-auto w-full max-w-3xl px-5 py-20 md:px-8">
-        <p className="text-[var(--muted)]">Travel post not found.</p>
-      </section>
-    );
-  }
-
+export function TravelDetail({ post }: TravelDetailProps) {
   return (
     <section className="mx-auto w-full max-w-3xl px-5 py-20 md:px-8 md:py-24">
       <Link href="/travel" className="text-sm text-[var(--accent)]">

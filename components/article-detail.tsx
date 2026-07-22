@@ -1,44 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { defaultArticles } from "@/lib/default-content";
-import { findBySlug } from "@/lib/firestore-client";
 import { Article } from "@/lib/types";
 
 type ArticleDetailProps = {
-  slug: string;
+  article: Article;
 };
 
-export function ArticleDetail({ slug }: ArticleDetailProps) {
-  const [article, setArticle] = useState<Article | null>(
-    defaultArticles.find((item) => item.slug === slug) ?? null,
-  );
-
-  useEffect(() => {
-    let mounted = true;
-
-    findBySlug<Article>("articles", slug)
-      .then((item) => {
-        if (mounted && item) {
-          setArticle(item);
-        }
-      })
-      .catch(() => {});
-
-    return () => {
-      mounted = false;
-    };
-  }, [slug]);
-
-  if (!article) {
-    return (
-      <section className="mx-auto w-full max-w-3xl px-5 py-20 md:px-8">
-        <p className="text-[var(--muted)]">Article not found.</p>
-      </section>
-    );
-  }
-
+export function ArticleDetail({ article }: ArticleDetailProps) {
   return (
     <section className="mx-auto w-full max-w-3xl px-5 py-20 md:px-8 md:py-24">
       <Link href="/articles" className="text-sm text-[var(--accent)]">

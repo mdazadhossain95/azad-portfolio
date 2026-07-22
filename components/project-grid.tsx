@@ -1,17 +1,15 @@
 import { ProjectCard } from "@/components/project-card";
-import { categoryOrder, getProjectMeta, type ProjectCategory } from "@/lib/project-taxonomy";
-import { Project } from "@/lib/types";
+import { categoryOrder, getPrimaryProjectLink, type ProjectCategory } from "@/lib/project-taxonomy";
+import { CaseStudy } from "@/lib/types";
 
 type ProjectGridProps = {
-  projects: Project[];
+  projects: CaseStudy[];
   groupByCategory?: boolean;
 };
 
-function sortProjects(items: Project[]) {
+function sortProjects(items: CaseStudy[]) {
   return [...items].sort((a, b) => {
-    const aMeta = getProjectMeta(a);
-    const bMeta = getProjectMeta(b);
-    return aMeta.priority - bMeta.priority || a.title.localeCompare(b.title);
+    return a.priority - b.priority || a.title.localeCompare(b.title);
   });
 }
 
@@ -36,9 +34,8 @@ export function ProjectGrid({ projects, groupByCategory = false }: ProjectGridPr
     );
   }
 
-  const grouped = sortedProjects.reduce<Record<ProjectCategory, Project[]>>((acc, project) => {
-    const { category } = getProjectMeta(project);
-    acc[category].push(project);
+  const grouped = sortedProjects.reduce<Record<ProjectCategory, CaseStudy[]>>((acc, project) => {
+    acc[project.category].push(project);
     return acc;
   }, {
     "FinTech & Payments": [],
