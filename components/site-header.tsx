@@ -142,14 +142,12 @@ export function SiteHeader() {
                 <span>{item.label}</span>
               </Link>
             ))}
-            <a
-              href={profile.links.resume}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/resume"
               className="btn-secondary ml-2 px-4 py-2 text-xs font-medium"
             >
               Resume
-            </a>
+            </Link>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -207,15 +205,13 @@ export function SiteHeader() {
                   <span className="text-base">{item.label}</span>
                 </Link>
               ))}
-              <a
-                href={profile.links.resume}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/resume"
                 onClick={() => setOpen(false)}
                 className="mt-4 btn-secondary justify-center py-3 text-sm font-medium"
               >
                 Resume ↗
-              </a>
+              </Link>
             </nav>
           </div>
         </>
