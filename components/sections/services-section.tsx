@@ -24,10 +24,10 @@ export function ServicesSection() {
               {service.description}
             </p>
             <Link
-              href={`/projects/${service.caseStudySlug}`}
+              href={`/services/${service.id}`}
               className="mt-5 inline-flex items-center text-sm font-medium text-[var(--accent)] transition hover:underline"
             >
-              See related case study →
+              View service details →
             </Link>
           </div>
         ))}
