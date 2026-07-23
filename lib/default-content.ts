@@ -86,7 +86,7 @@ export const defaultSettings: Settings = {
   email: "mdazadhossain95@gmail.com",
   linkedin: "https://www.linkedin.com/in/azadhossain-tutul/",
   github: "https://github.com/mdazadhossain95",
-  upwork: "https://www.upwork.com/freelancers/~01082f851b8bed7bd1",
+  upwork: "https://www.upwork.com/freelancers/azadflutterdev",
   resume: "/azad-hossain-resume.pdf",
   x: "https://twitter.com/mdazadhossain95",
   stackoverflow: "https://stackoverflow.com/users/14659281/azad-hossain",

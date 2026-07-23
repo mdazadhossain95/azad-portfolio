@@ -55,7 +55,7 @@ export function LiveReviews() {
       )}
       <p className="text-center text-xs text-[var(--muted)]">
         <a
-          href="https://www.upwork.com/freelancers/~01082f851b8bed7bd1"
+          href="https://www.upwork.com/freelancers/azadflutterdev"
           target="_blank"
           rel="noreferrer"
           className="underline underline-offset-4 hover:text-[var(--text)]"
