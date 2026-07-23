@@ -1,26 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #07111f;
-  --bg-deep: #040b14;
-  --surface: #0d1b2a;
-  --surface-raised: #12243a;
-  --surface-hover: #162b45;
+  --bg: #0B1F3A;
+  --bg-deep: #071B3A;
+  --surface: #102A4C;
+  --surface-raised: #1E3A5F;
+  --surface-hover: #243B63;
 
-  --text: #e7f0fb;
-  --text-secondary: #94a8c1;
-  --text-muted: #657991;
+  --text: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #64748B;
 
-  --accent: #42c8f5;
-  --accent-strong: #19b8ee;
-  --accent-soft: rgba(66, 200, 245, 0.12);
+  --accent: #2563EB;
+  --accent-strong: #1D4ED8;
+  --accent-soft: rgba(37, 99, 235, 0.15);
 
-  --success: #5fd69b;
-  --warning: #f4c46b;
-  --danger: #f07d86;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #7F1D1D;
+  --ai-purple: #8B5CF6;
 
-  --line: rgba(148, 168, 193, 0.16);
-  --border-strong: rgba(148, 168, 193, 0.28);
+  --line: rgba(203, 213, 225, 0.1);
+  --border-strong: rgba(203, 213, 225, 0.2);
   --card: var(--surface);
 
   --pointer-x: 50%;
@@ -49,7 +50,8 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background: var(--bg-deep) radial-gradient(circle at center 20%, var(--bg) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-sora), system-ui, sans-serif;
 }
@@ -71,7 +73,7 @@ body {
   z-index: 0;
   background: radial-gradient(
     650px at var(--pointer-x) var(--pointer-y),
-    rgba(66, 200, 245, 0.11),
+    rgba(37, 99, 235, 0.11),
     transparent 78%
   );
 }
