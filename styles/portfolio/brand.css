@@ -1,0 +1,16 @@
+/* Shared cross-version brand tokens */
+:root {
+  --brand-navy: #0B1F3A;
+  --brand-navy-dark: #071B3A;
+  --brand-charcoal: #2B2F35;
+  --brand-gray: #30343A;
+  
+  --brand-blue: #2563EB;
+  --brand-green: #10B981;
+  --brand-purple: #8B5CF6;
+  --brand-lavender: #A9B8FF;
+  --brand-burgundy: #7F1D1D;
+  
+  --brand-white: #F8FAFC;
+  --brand-cool-gray: #CBD5E1;
+}
