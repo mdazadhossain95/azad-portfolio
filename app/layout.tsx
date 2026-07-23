@@ -4,6 +4,7 @@ import { CursorGlow } from "@/components/cursor-glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SocialRails } from "@/components/social-rails";
+import { SplashScreen } from "@/components/splash-screen";
 import { profile } from "@/content/profile";
 import "./globals.css";
 
@@ -103,6 +104,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <SplashScreen />
         <JsonLd />
         <a
           href="#main-content"

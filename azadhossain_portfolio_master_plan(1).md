@@ -2224,3 +2224,16 @@ The strongest portfolio message is not:
 It is:
 
 > **I can take responsibility for a real Flutter product, understand its risks, build the right features, communicate clearly, and help deliver a stable Android and iOS release.**
+
+---
+
+# 43. Phase 9: V4 Refinement & Splash Screen (Final Polish)
+
+To perfectly mirror the Brittany Chiang v4 design pattern:
+1. **Header Layout**: Top bar must have the logo on the far left, and all navigation links packed to the far right, eliminating the dead center placement.
+2. **Splash/Preloader**: Add an animated splash screen on initial load featuring an animated SVG path of the letter "A" (for Azad), drawn slowly before fading out.
+3. **Color Palette Update**: Use the final premium combination:
+   - **Background**: Midnight Navy (`#0B1F3A`) to Deep Navy (`#071B3A`) radial gradient.
+   - **Accent**: Tech Blue (`#2563EB`) and FinTech Green (`#10B981`) for numbers and active states.
+   - **Text**: Soft White (`#F8FAFC`) and Slate Gray (`#64748B`).
+4. **Always Dark Mode**: Ensure the site uses a default and permanent dark-mode tech aesthetic.
