@@ -519,17 +519,3 @@ export function AdminDashboard() {
     </section>
   );
 }
-l}
-    </section>
-  );
-}
-t email: {settingsForm.email}</p>
-        </form>
-      ) : null}
-    </section>
-  );
-}
-l}
-    </section>
-  );
-}
