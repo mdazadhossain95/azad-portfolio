@@ -36,6 +36,32 @@ function useScrollDirection() {
   return direction;
 }
 
+function useActiveSection(sectionIds: string[]) {
+  const [activeId, setActiveId] = useState<string>("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -80% 0px" }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [sectionIds]);
+
+  return activeId;
+}
+
 function useFocusTrap(open: boolean, onClose: () => void) {
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -83,6 +109,7 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const scrollDirection = useScrollDirection();
   const pathname = usePathname();
+  const activeSection = useActiveSection(["about", "experience", "work", "contact"]);
   const { containerRef, triggerRef } = useFocusTrap(open, () => setOpen(false));
 
   useEffect(() => {
@@ -107,7 +134,11 @@ export function SiteHeader() {
 
   const isActive = (href: string) => {
     if (href.startsWith("/#")) {
-      return pathname === "/";
+      const sectionId = href.replace("/#", "");
+      if (pathname === "/") {
+        return activeSection === sectionId;
+      }
+      return false;
     }
     return pathname === href || pathname.startsWith(`${href}/`);
   };

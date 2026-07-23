@@ -18,12 +18,12 @@ export function SplashScreen() {
     // Prevent scrolling while splash screen is active
     document.body.style.overflow = "hidden";
     
-    // Hide splash screen after 2.5 seconds
+    // Hide splash screen after 0.5 seconds
     const timer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = "";
       sessionStorage.setItem("hasSeenSplash", "true");
-    }, 2500);
+    }, 500);
 
     return () => {
       clearTimeout(timer);
@@ -37,7 +37,7 @@ export function SplashScreen() {
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--bg-deep)]"
       style={{
-        animation: "fadeOut 0.5s ease-out 2s forwards"
+        animation: "fadeOut 0.3s ease-out 0.4s forwards"
       }}
     >
       <div className="relative flex h-24 w-24 items-center justify-center">
@@ -60,7 +60,7 @@ export function SplashScreen() {
         <span
           className="mono text-4xl font-semibold text-[var(--accent)]"
           style={{
-            animation: "fadeIn 0.5s ease-out 0.8s both"
+            animation: "fadeIn 0.3s ease-out 0.1s both"
           }}
         >
           A
@@ -73,7 +73,7 @@ export function SplashScreen() {
           100% { stroke-dasharray: 400, 1000; opacity: 1; }
         }
         .path-anim {
-          animation: drawPath 1.5s ease-in-out forwards;
+          animation: drawPath 0.4s ease-in-out forwards;
         }
         @keyframes fadeIn {
           from { opacity: 0; transform: scale(0.8); }

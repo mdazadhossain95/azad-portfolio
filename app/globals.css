@@ -73,8 +73,8 @@ body {
   z-index: 0;
   background: radial-gradient(
     650px at var(--pointer-x) var(--pointer-y),
-    rgba(37, 99, 235, 0.11),
-    transparent 78%
+    rgba(56, 189, 248, 0.15),
+    transparent 80%
   );
 }
 
