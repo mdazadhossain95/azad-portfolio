@@ -56,6 +56,14 @@ export type CaseStudy = {
   technologies: string[];
   integrations?: string[];
 
+  constraints?: string[];
+  edgeCases?: string[];
+  testingAndRelease?: string[];
+  relatedProjects?: Array<{
+    title: string;
+    slug: string;
+  }>;
+
   coverImage: string;
   gallery: GalleryImage[];
   video?: {

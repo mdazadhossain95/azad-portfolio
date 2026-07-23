@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { profile } from "@/content/profile";
 import { CaseStudy } from "@/lib/types";
 import { ImageGalleryModal } from "./image-gallery-modal";
@@ -43,6 +44,8 @@ function BulletList({ items }: { items: string[] }) {
 export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const searchParams = useSearchParams();
+  const returnVersion = searchParams?.get("v");
 
   const hasManyImages = project.gallery.length > 1;
   const prevSlide = () => {
@@ -56,9 +59,15 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
 
   return (
     <section className="mx-auto w-full max-w-6xl px-5 py-10 md:px-8">
-      <Link href="/projects" className="text-sm text-[var(--accent)] hover:underline">
-        ← Back to projects
-      </Link>
+      {returnVersion ? (
+        <Link href={`/${returnVersion}`} className="text-sm text-[var(--accent)] hover:underline">
+          ← Return to {returnVersion.toUpperCase()}
+        </Link>
+      ) : (
+        <Link href="/projects" className="text-sm text-[var(--accent)] hover:underline">
+          ← Back to projects
+        </Link>
+      )}
 
       {/* Hero */}
       <div className="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -214,6 +223,12 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
             </CaseStudySection>
           ) : null}
 
+          {project.constraints && project.constraints.length > 0 ? (
+            <CaseStudySection title="Constraints">
+              <BulletList items={project.constraints} />
+            </CaseStudySection>
+          ) : null}
+
           {project.approach.length > 0 ? (
             <CaseStudySection title="My Approach">
               <BulletList items={project.approach} />
@@ -236,6 +251,18 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
                   </div>
                 ))}
               </div>
+            </CaseStudySection>
+          ) : null}
+
+          {project.edgeCases && project.edgeCases.length > 0 ? (
+            <CaseStudySection title="Edge Cases">
+              <BulletList items={project.edgeCases} />
+            </CaseStudySection>
+          ) : null}
+
+          {project.testingAndRelease && project.testingAndRelease.length > 0 ? (
+            <CaseStudySection title="Testing & Release">
+              <BulletList items={project.testingAndRelease} />
             </CaseStudySection>
           ) : null}
 
@@ -305,6 +332,19 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
                   <span key={item} className="soft-chip text-xs text-[var(--text)]">
                     {item}
                   </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {project.relatedProjects && project.relatedProjects.length > 0 ? (
+            <div className="surface-card p-6">
+              <p className="text-xs uppercase tracking-[0.12em] text-[var(--text-muted)]">Related Work</p>
+              <div className="mt-4 flex flex-col gap-3">
+                {project.relatedProjects.map((rp) => (
+                  <Link key={rp.slug} href={`/projects/${rp.slug}`} className="text-sm font-medium text-[var(--accent)] hover:underline">
+                    {rp.title}
+                  </Link>
                 ))}
               </div>
             </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectDetailsPage } from "@/components/project-details";
 import { defaultProjects } from "@/lib/default-content";
+import { Suspense } from "react";
 import { CaseStudy } from "@/lib/types";
 
 type ProjectDetailPageProps = {
@@ -28,5 +29,9 @@ export default async function ProjectDetailPage(props: ProjectDetailPageProps) {
     notFound();
   }
 
-  return <ProjectDetailsPage project={project} />;
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Loading case study...</div>}>
+      <ProjectDetailsPage project={project} />
+    </Suspense>
+  );
 }
