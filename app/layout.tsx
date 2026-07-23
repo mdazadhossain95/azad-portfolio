@@ -3,6 +3,7 @@ import { Sora, Space_Mono } from "next/font/google";
 import { CursorGlow } from "@/components/cursor-glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SocialRails } from "@/components/social-rails";
 import { profile } from "@/content/profile";
 import "./globals.css";
 
@@ -110,6 +111,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <CursorGlow />
+        <SocialRails />
         <SiteHeader />
         <main id="main-content" className="relative z-10 flex-1 pt-20">
           {children}
