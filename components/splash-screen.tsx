@@ -3,18 +3,26 @@
 import { useEffect, useState } from "react";
 
 export function SplashScreen() {
-  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
+    // Check if we've already shown the splash screen in this session
+    const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
     
+    if (hasSeenSplash) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setVisible(false);
+      return;
+    }
+
     // Prevent scrolling while splash screen is active
     document.body.style.overflow = "hidden";
     
+    // Hide splash screen after 2.5 seconds
     const timer = setTimeout(() => {
       setVisible(false);
       document.body.style.overflow = "";
+      sessionStorage.setItem("hasSeenSplash", "true");
     }, 2500);
 
     return () => {
@@ -23,7 +31,6 @@ export function SplashScreen() {
     };
   }, []);
 
-  if (!mounted) return null;
   if (!visible) return null;
 
   return (

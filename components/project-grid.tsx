@@ -35,7 +35,9 @@ export function ProjectGrid({ projects, groupByCategory = false }: ProjectGridPr
   }
 
   const grouped = sortedProjects.reduce<Record<ProjectCategory, CaseStudy[]>>((acc, project) => {
-    acc[project.category].push(project);
+    if (project.category in acc) {
+      acc[project.category as ProjectCategory].push(project);
+    }
     return acc;
   }, {
     "FinTech & Payments": [],

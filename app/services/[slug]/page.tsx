@@ -71,7 +71,7 @@ export default async function ServicePage(props: ServicePageProps) {
             Ready to discuss your project?
           </h2>
           <p className="mt-4 text-[var(--text-muted)] max-w-xl mx-auto">
-            If you need help with {service.title.toLowerCase()}, I'm available for new opportunities. Let's build something great together.
+            If you need help with {service.title.toLowerCase()}, I&apos;m available for new opportunities. Let&apos;s build something great together.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a

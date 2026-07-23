@@ -18,7 +18,7 @@ import {
   defaultTravels,
 } from "@/lib/default-content";
 import { uploadImage } from "@/lib/storage-client";
-import { Article, Project, Review, Settings, TravelPost } from "@/lib/types";
+import { Article, CaseStudy, Review, Settings, TravelPost } from "@/lib/types";
 
 type Tab = "projects" | "articles" | "reviews" | "travels" | "settings";
 
@@ -26,11 +26,10 @@ type ProjectForm = {
   id?: string;
   title: string;
   slug: string;
-  description: string;
-  details: string;
+  summary: string;
   role: string;
-  images: string;
-  techStack: string;
+  coverImage: string;
+  technologies: string;
   playStore: string;
   appStore: string;
   website: string;
@@ -44,6 +43,7 @@ type ArticleForm = {
   slug: string;
   preview: string;
   content: string;
+  coverImage?: string;
   publishedAt: string;
 };
 
@@ -111,7 +111,7 @@ const emptyTravel: TravelForm = {
 
 export function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("projects");
-  const [projects, setProjects] = useState<Project[]>(defaultProjects);
+  const [projects, setProjects] = useState<CaseStudy[]>(defaultProjects);
   const [articles, setArticles] = useState<Article[]>(defaultArticles);
   const [reviews, setReviews] = useState<Review[]>(defaultReviews);
   const [travels, setTravels] = useState<TravelPost[]>(defaultTravels);
@@ -125,7 +125,7 @@ export function AdminDashboard() {
   const [travelForm, setTravelForm] = useState<TravelForm>(emptyTravel);
 
   useEffect(() => {
-    const unsubProjects = watchCollection<Project>("projects", (items) => {
+    const unsubProjects = watchCollection<CaseStudy>("projects", (items) => {
       if (items.length > 0) {
         setProjects(items);
       }
@@ -336,7 +336,7 @@ export function AdminDashboard() {
     const url = await uploadImage(file, "projects");
     setProjectForm((prev) => ({
       ...prev,
-      images: prev.images ? `${prev.images}, ${url}` : url,
+      coverImage: url,
     }));
     setMessage("Project image uploaded");
   }
@@ -386,10 +386,9 @@ export function AdminDashboard() {
             <input value={projectForm.title} onChange={(event) => setProjectForm((prev) => ({ ...prev, title: event.target.value }))} placeholder="Title" className="field" required />
             <input value={projectForm.slug} onChange={(event) => setProjectForm((prev) => ({ ...prev, slug: event.target.value }))} placeholder="Slug" className="field" required />
             <input value={projectForm.role} onChange={(event) => setProjectForm((prev) => ({ ...prev, role: event.target.value }))} placeholder="Role (e.g. Flutter Developer)" className="field" />
-            <textarea value={projectForm.description} onChange={(event) => setProjectForm((prev) => ({ ...prev, description: event.target.value }))} placeholder="Description" className="field min-h-24" required />
-            <textarea value={projectForm.details} onChange={(event) => setProjectForm((prev) => ({ ...prev, details: event.target.value }))} placeholder="Details (longer description)" className="field min-h-24" />
-            <input value={projectForm.techStack} onChange={(event) => setProjectForm((prev) => ({ ...prev, techStack: event.target.value }))} placeholder="Tech stack (comma separated)" className="field" required />
-            <input value={projectForm.images} onChange={(event) => setProjectForm((prev) => ({ ...prev, images: event.target.value }))} placeholder="Image URLs (comma separated)" className="field" />
+            <textarea value={projectForm.summary} onChange={(event) => setProjectForm((prev) => ({ ...prev, summary: event.target.value }))} placeholder="Summary" className="field min-h-24" required />
+            <input value={projectForm.technologies} onChange={(event) => setProjectForm((prev) => ({ ...prev, technologies: event.target.value }))} placeholder="Technologies (comma separated)" className="field" required />
+            <input value={projectForm.coverImage} onChange={(event) => setProjectForm((prev) => ({ ...prev, coverImage: event.target.value }))} placeholder="Cover Image URL" className="field" />
             <input type="file" accept="image/*" onChange={(event) => uploadProjectImage(event.target.files?.[0])} className="field" />
             <input value={projectForm.playStore} onChange={(event) => setProjectForm((prev) => ({ ...prev, playStore: event.target.value }))} placeholder="Play Store URL" className="field" />
             <input value={projectForm.appStore} onChange={(event) => setProjectForm((prev) => ({ ...prev, appStore: event.target.value }))} placeholder="App Store URL" className="field" />
@@ -410,7 +409,7 @@ export function AdminDashboard() {
                 <p className="text-sm font-semibold">{item.title}</p>
                 <p className="mt-1 text-xs text-[var(--muted)]">/{item.slug}</p>
                 <div className="mt-3 flex gap-2 text-xs">
-                  <button type="button" className="rounded-full border border-[var(--line)] px-3 py-1" onClick={() => setProjectForm({ id: item.id, title: item.title, slug: item.slug, description: item.description, details: item.details ?? "", role: item.role ?? "", images: item.images.join(", "), techStack: item.techStack.join(", "), playStore: item.links.playStore ?? "", appStore: item.links.appStore ?? "", website: item.links.website ?? "", live: item.links.live ?? "", featured: item.featured })}>Edit</button>
+                  <button type="button" className="rounded-full border border-[var(--line)] px-3 py-1" onClick={() => setProjectForm({ id: item.id, title: item.title, slug: item.slug, summary: item.summary, role: item.role ?? "", coverImage: item.coverImage, technologies: item.technologies.join(", "), playStore: item.links.playStore ?? "", appStore: item.links.appStore ?? "", website: item.links.website ?? "", live: item.links.live ?? "", featured: item.featured })}>Edit</button>
                   <button type="button" className="rounded-full border border-rose-400 px-3 py-1 text-rose-500" onClick={() => handleDelete("projects", item.id)}>Delete</button>
                 </div>
               </article>

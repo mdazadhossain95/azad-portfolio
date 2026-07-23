@@ -2,7 +2,6 @@ import { ImageResponse } from "next/og";
 import { getArticleBySlug } from "@/lib/mdx";
 import { profile } from "@/content/profile";
 
-export const runtime = "edge";
 export const alt = "Article Preview Image";
 export const size = {
   width: 1200,

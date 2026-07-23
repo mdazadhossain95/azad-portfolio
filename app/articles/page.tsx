@@ -25,6 +25,7 @@ export default async function ArticlesPage() {
       />
       <div className="grid gap-5 md:grid-cols-2">
         {articles.map((article) => (
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           <ArticleCard key={article.id} article={article as any} />
         ))}
       </div>

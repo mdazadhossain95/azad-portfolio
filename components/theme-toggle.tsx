@@ -31,12 +31,20 @@ function MoonIcon({ className }: { className?: string }) {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(getStoredTheme);
+  const [theme, setTheme] = useState<Theme>("dark");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+    setTheme(getStoredTheme());
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, [theme, mounted]);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-color-scheme: dark)");
