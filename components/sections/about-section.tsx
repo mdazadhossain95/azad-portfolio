@@ -34,7 +34,7 @@ export function AboutSection() {
           />
           <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)]">
             <Image
-              src="/azad.jpeg"
+              src="/profile-photo.png"
               alt="Md Azad Hossain Tutul"
               fill
               sizes="(min-width: 1024px) 384px, 100vw"

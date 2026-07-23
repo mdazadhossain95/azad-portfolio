@@ -244,10 +244,10 @@ export const projects: CaseStudy[] = [
     ],
     technologies: ["Flutter", "Dart", "Method Channels", "REST APIs"],
     integrations: ["WireGuard", "In-App Purchases", "Subscriptions"],
-    coverImage: "/project-assets/vpn/1.png",
+    coverImage: "/project-assets/vpn/1.jpg",
     gallery: [
-      { src: "/project-assets/vpn/1.png", alt: "VPN connection screen", caption: "Connection state and location" },
-      { src: "/project-assets/vpn/2.png", alt: "VPN location selection", caption: "Country selection" },
+      { src: "/project-assets/vpn/1.jpg", alt: "VPN App", caption: "App home" },
+      { src: "/project-assets/vpn/2.jpg", alt: "VPN Selection", caption: "Server selection" }
     ],
     links: {
       playStore: "https://play.google.com/store/apps/details?id=com.codego.fibervpns",
@@ -317,11 +317,11 @@ export const projects: CaseStudy[] = [
     ],
     technologies: ["Flutter", "Dart", "Firebase", "OpenAI API"],
     integrations: ["ChatGPT", "Cloud Firestore", "Push Notifications"],
-    coverImage: "/project-assets/studygenie-ai/1.png",
+    coverImage: "/project-assets/studygenie-ai/1.jpg",
     gallery: [
-      { src: "/project-assets/studygenie-ai/1.png", alt: "AI chat", caption: "AI study assistant chat" },
-      { src: "/project-assets/studygenie-ai/2.png", alt: "Flashcards", caption: "Generated flashcards" },
-      { src: "/project-assets/studygenie-ai/3.png", alt: "Quiz", caption: "Quiz practice" },
+      { src: "/project-assets/studygenie-ai/1.jpg", alt: "AI Chat", caption: "AI Chat Assistant" },
+      { src: "/project-assets/studygenie-ai/2.jpg", alt: "Flashcards", caption: "Study tools" },
+      { src: "/project-assets/studygenie-ai/3.jpg", alt: "Dashboard", caption: "Progress dashboard" }
     ],
     links: {},
   },
@@ -349,8 +349,9 @@ export const projects: CaseStudy[] = [
     technologies: ["Flutter", "Laravel", "Wallet", "Payments"],
     coverImage: "/project-assets/nxfund/0.jpg",
     gallery: [
-      { src: "/project-assets/nxfund/0.jpg", alt: "Campaigns", caption: "Campaign listing" },
-      { src: "/project-assets/nxfund/1.jpg", alt: "Campaign detail", caption: "Campaign detail" },
+      { src: "/project-assets/nxfund/0.jpg", alt: "Campaign", caption: "Fundraising campaign" },
+      { src: "/project-assets/nxfund/1.jpg", alt: "Donation", caption: "Donation flow" },
+      { src: "/project-assets/nxfund/2.jpg", alt: "Wallet", caption: "Wallet dashboard" }
     ],
     links: {},
   },
@@ -376,10 +377,11 @@ export const projects: CaseStudy[] = [
     ],
     results: [{ statement: "Delivered end-to-end commerce flows.", evidence: "client-approved" }],
     technologies: ["Flutter", "Laravel", "E-commerce", "Cart", "Payments"],
-    coverImage: "/project-assets/nxmart/Promo%201.jpg",
+    coverImage: "/project-assets/nxmart/Promo 1.jpg",
     gallery: [
-      { src: "/project-assets/nxmart/Promo%201.jpg", alt: "Home", caption: "Product home" },
-      { src: "/project-assets/nxmart/Promo%202.jpg", alt: "Product detail", caption: "Product detail" },
+      { src: "/project-assets/nxmart/Promo 1.jpg", alt: "E-commerce App", caption: "App overview" },
+      { src: "/project-assets/nxmart/Promo 2.jpg", alt: "Products", caption: "Product catalog" },
+      { src: "/project-assets/nxmart/Promo 3.jpg", alt: "Cart", caption: "Shopping cart" }
     ],
     links: {},
   },
@@ -407,8 +409,9 @@ export const projects: CaseStudy[] = [
     technologies: ["Flutter", "Laravel", "Wallet", "Crypto", "Multi-currency"],
     coverImage: "/project-assets/nexopay/1.jpg",
     gallery: [
-      { src: "/project-assets/nexopay/1.jpg", alt: "Wallet", caption: "Wallet dashboard" },
-      { src: "/project-assets/nexopay/2.jpg", alt: "Transfer", caption: "Transfer flow" },
+      { src: "/project-assets/nexopay/1.jpg", alt: "Dashboard", caption: "Wallet dashboard" },
+      { src: "/project-assets/nexopay/2.jpg", alt: "Transfer", caption: "Transfer money" },
+      { src: "/project-assets/nexopay/3.jpg", alt: "Activity", caption: "Recent activity" }
     ],
     links: {},
   },
@@ -437,7 +440,8 @@ export const projects: CaseStudy[] = [
     coverImage: "/project-assets/runava/1.jpg",
     gallery: [
       { src: "/project-assets/runava/1.jpg", alt: "Activity", caption: "Activity tracking" },
-      { src: "/project-assets/runava/2.jpg", alt: "Events", caption: "Event listing" },
+      { src: "/project-assets/runava/2.jpg", alt: "Events", caption: "Event booking" },
+      { src: "/project-assets/runava/3.jpg", alt: "Challenge", caption: "Challenges" }
     ],
     links: {},
   },
@@ -463,10 +467,10 @@ export const projects: CaseStudy[] = [
     ],
     results: [{ statement: "Delivered agri-investment listing and purchase flows.", evidence: "client-approved" }],
     technologies: ["Flutter", "Agri FinTech", "Investment Tracking", "Payments"],
-    coverImage: "/project-assets/nexgro/1.png",
+    coverImage: "/project-assets/nexgro/1.jpg",
     gallery: [
-      { src: "/project-assets/nexgro/1.png", alt: "Listing", caption: "Farm listing" },
-      { src: "/project-assets/nexgro/2.png", alt: "Detail", caption: "Project detail" },
+      { src: "/project-assets/nexgro/1.jpg", alt: "Farms", caption: "Farm listings" },
+      { src: "/project-assets/nexgro/2.jpg", alt: "Detail", caption: "Project details" }
     ],
     links: {},
   },
@@ -492,10 +496,11 @@ export const projects: CaseStudy[] = [
     ],
     results: [{ statement: "Delivered Quran reading and community feed features.", evidence: "client-approved" }],
     technologies: ["Flutter", "Laravel", "Donations", "Community"],
-    coverImage: "/project-assets/ummah-charity/1.png",
+    coverImage: "/project-assets/ummah-charity/1.jpg",
     gallery: [
-      { src: "/project-assets/ummah-charity/1.png", alt: "Quran", caption: "Quran reading" },
-      { src: "/project-assets/ummah-charity/2.png", alt: "Feed", caption: "Community feed" },
+      { src: "/project-assets/ummah-charity/1.jpg", alt: "Home", caption: "Community home" },
+      { src: "/project-assets/ummah-charity/2.jpg", alt: "Quran", caption: "Quran reading" },
+      { src: "/project-assets/ummah-charity/3.jpg", alt: "Feed", caption: "Community feed" }
     ],
     links: {},
   },
@@ -523,8 +528,9 @@ export const projects: CaseStudy[] = [
     technologies: ["Flutter", "Firebase", "Realtime Chat", "Authentication"],
     coverImage: "/project-assets/kream-suger/1.jpg",
     gallery: [
-      { src: "/project-assets/kream-suger/1.jpg", alt: "Chat", caption: "Chat conversation" },
-      { src: "/project-assets/kream-suger/2.jpg", alt: "Profile", caption: "User profile" },
+      { src: "/project-assets/kream-suger/1.jpg", alt: "Chat", caption: "Chat list" },
+      { src: "/project-assets/kream-suger/2.jpg", alt: "Conversation", caption: "Conversation" },
+      { src: "/project-assets/kream-suger/3.jpg", alt: "Profile", caption: "User profile" }
     ],
     links: {},
   },
@@ -550,10 +556,11 @@ export const projects: CaseStudy[] = [
     ],
     results: [{ statement: "Completed UI concept for media discovery.", evidence: "public" }],
     technologies: ["Flutter", "Dart", "Video UI", "Media Discovery"],
-    coverImage: "/project-assets/nexflix-latest/2015.jpg",
+    coverImage: "/project-assets/nexflix/2015.jpg",
     gallery: [
-      { src: "/project-assets/nexflix-latest/2015.jpg", alt: "Browse", caption: "Media browsing" },
-      { src: "/project-assets/nexflix-latest/2016.jpg", alt: "Detail", caption: "Movie detail" },
+      { src: "/project-assets/nexflix/2015.jpg", alt: "Browse", caption: "Movie browsing" },
+      { src: "/project-assets/nexflix/2016.jpg", alt: "Detail", caption: "Movie details" },
+      { src: "/project-assets/nexflix/2017.jpg", alt: "Player", caption: "Video player" }
     ],
     links: {},
   },
