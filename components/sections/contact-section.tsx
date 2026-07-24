@@ -1,179 +1,73 @@
-"use client";
-
-import { useState } from "react";
 import { profile } from "@/content/profile";
+import { Mail, ArrowRight } from "lucide-react";
 
-type FormState = {
-  name: string;
-  email: string;
-  company: string;
-  projectType: string;
-  summary: string;
-  startDate: string;
-};
-
-const initialState: FormState = {
-  name: "",
-  email: "",
-  company: "",
-  projectType: "",
-  summary: "",
-  startDate: "",
-};
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
 
 export function ContactSection() {
-  const [form, setForm] = useState<FormState>(initialState);
-  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-  const [submitted, setSubmitted] = useState(false);
-
-  const validate = () => {
-    const next: Partial<Record<keyof FormState, string>> = {};
-    if (!form.name.trim()) next.name = "Name is required";
-    if (!form.email.trim()) {
-      next.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      next.email = "Enter a valid email";
-    }
-    if (!form.summary.trim()) next.summary = "Project summary is required";
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    const subject = `Project inquiry from ${form.name}`;
-    const body = `Name: ${form.name}\nEmail: ${form.email}\nCompany/Product: ${form.company || "N/A"}\nProject Type: ${form.projectType || "N/A"}\nExpected Start: ${form.startDate || "N/A"}\n\nSummary:\n${form.summary}`;
-    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
-  };
-
   return (
     <section id="contact" className="mx-auto w-full max-w-6xl px-5 py-24 md:px-8 md:py-32">
       <div className="grid gap-12 lg:grid-cols-2">
-        <div className="space-y-6">
-          <p className="mono text-sm font-medium uppercase tracking-[0.14em] text-[var(--accent)]">
+        <div className="flex flex-col justify-center space-y-6">
+          <p className="font-mono text-sm font-medium uppercase tracking-[0.14em] text-[var(--accent)]">
             05. What’s next?
           </p>
-          <h2 className="text-3xl font-semibold tracking-tight text-[var(--text)] md:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-[var(--text)] md:text-5xl lg:text-6xl">
             Let’s build something reliable.
           </h2>
-          <p className="text-base leading-8 text-[var(--text-muted)]">
+          <p className="max-w-md text-base leading-relaxed text-[var(--text-muted)] md:text-lg">
             I’m available for Flutter development, existing-app improvement, FinTech and payment features, production fixes, and long-term maintenance.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={profile.links.upwork}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-primary px-6 py-3 text-sm font-medium"
-            >
-              Discuss Your Project on Upwork
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              className="btn-secondary px-6 py-3 text-sm font-medium"
-            >
-              Send an Email
-            </a>
-          </div>
         </div>
 
-        <div className="surface-card p-6 md:p-8">
-          {submitted ? (
-            <div className="py-12 text-center">
-              <p className="text-lg font-semibold text-[var(--text)]">Thanks for reaching out.</p>
-              <p className="mt-2 text-sm text-[var(--text-muted)]">Your email client should open with a draft message.</p>
+        <div className="flex flex-col gap-6">
+          {/* Work with me */}
+          <div className="surface-card group flex flex-col items-start gap-4 p-8 transition-all duration-300 hover:border-[var(--accent)]/40 hover:bg-[var(--surface-raised)] hover:shadow-2xl hover:shadow-[var(--accent)]/5">
+            <h3 className="text-2xl font-bold text-[var(--text)] transition-colors group-hover:text-[var(--accent)]">Want to work with me?</h3>
+            <p className="text-[var(--text-secondary)] leading-relaxed">
+              Book a 1-on-1 project consultation on Upwork. We can discuss your architecture, timeline, and budget. It’s just $5 to get started.
+            </p>
+            <a
+              href={profile.links.upworkConsultation}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-primary mt-4 flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-transform hover:scale-105"
+            >
+              Book Consultation ($5)
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+
+          {/* Talk with me */}
+          <div className="surface-card group flex flex-col items-start gap-4 p-8 transition-all duration-300 hover:border-[var(--accent)]/40 hover:bg-[var(--surface-raised)] hover:shadow-2xl hover:shadow-[var(--accent)]/5">
+            <h3 className="text-2xl font-bold text-[var(--text)] transition-colors group-hover:text-[var(--accent)]">Just want to talk?</h3>
+            <p className="text-[var(--text-secondary)] leading-relaxed">
+              If you have a quick question or want to connect, my inbox is always open. Knock me on LinkedIn or send a direct email.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <a
+                href={profile.links.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-secondary flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-transform hover:scale-105"
+              >
+                <LinkedInIcon className="h-4 w-4" />
+                LinkedIn
+              </a>
+              <a
+                href={`mailto:${profile.email}`}
+                className="btn-secondary flex items-center gap-2 px-6 py-3.5 text-sm font-medium transition-transform hover:scale-105"
+              >
+                <Mail className="h-4 w-4" />
+                Email Me
+              </a>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">Name</label>
-                  <input
-                    id="name"
-                    type="text"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="field"
-                    placeholder="Your name"
-                  />
-                  {errors.name ? <p className="mt-1 text-xs text-[var(--danger)]">{errors.name}</p> : null}
-                </div>
-                <div>
-                  <label htmlFor="email" className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">Email</label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="field"
-                    placeholder="you@example.com"
-                  />
-                  {errors.email ? <p className="mt-1 text-xs text-[var(--danger)]">{errors.email}</p> : null}
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="company" className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">Company or product</label>
-                <input
-                  id="company"
-                  type="text"
-                  value={form.company}
-                  onChange={(e) => setForm({ ...form, company: e.target.value })}
-                  className="field"
-                  placeholder="Company or product name"
-                />
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="projectType" className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">Project type</label>
-                  <select
-                    id="projectType"
-                    value={form.projectType}
-                    onChange={(e) => setForm({ ...form, projectType: e.target.value })}
-                    className="field"
-                  >
-                    <option value="">Select one</option>
-                    <option value="New Flutter app">New Flutter app</option>
-                    <option value="Existing app improvement">Existing app improvement</option>
-                    <option value="FinTech / payment features">FinTech / payment features</option>
-                    <option value="Release / maintenance">Release / maintenance</option>
-                    <option value="AI-powered features">AI-powered features</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="startDate" className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">Expected start date</label>
-                  <input
-                    id="startDate"
-                    type="date"
-                    value={form.startDate}
-                    onChange={(e) => setForm({ ...form, startDate: e.target.value })}
-                    className="field"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="summary" className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">Project summary</label>
-                <textarea
-                  id="summary"
-                  rows={4}
-                  value={form.summary}
-                  onChange={(e) => setForm({ ...form, summary: e.target.value })}
-                  className="field resize-none"
-                  placeholder="Tell me about your project, goals, and timeline."
-                />
-                {errors.summary ? <p className="mt-1 text-xs text-[var(--danger)]">{errors.summary}</p> : null}
-              </div>
-
-              <button type="submit" className="btn-primary w-full py-3 text-sm font-medium">
-                Send Message
-              </button>
-            </form>
-          )}
+          </div>
         </div>
       </div>
     </section>

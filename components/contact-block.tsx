@@ -9,8 +9,8 @@ export function ContactBlock() {
       {/* Header */}
       <div className="space-y-2">
         <h3 className="text-2xl font-semibold bg-gradient-to-r from-[var(--text)] to-[var(--accent)] bg-clip-text text-transparent">Let&apos;s work together</h3>
-        <p className="text-sm leading-6 text-[var(--muted)] max-w-lg">
-          Have a mobile app idea or an existing product that needs work? Reach out — I respond within 24 hours.
+        <p className="text-[var(--text-secondary)] text-sm md:text-base leading-relaxed mb-6">
+          Have a mobile app idea or an existing product that needs work? Reach out. I respond within 24 hours.
         </p>
       </div>
 

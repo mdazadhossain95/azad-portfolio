@@ -10,7 +10,7 @@ const navigation = [
   { href: "/#about", label: "About", number: "01" },
   { href: "/#experience", label: "Experience", number: "02" },
   { href: "/#work", label: "Work", number: "03" },
-  { href: "/articles", label: "Articles", number: "04" },
+  { href: "/#expertise", label: "Expertise", number: "04" },
   { href: "/#contact", label: "Contact", number: "05" },
 ];
 
@@ -143,6 +143,20 @@ export function SiteHeader() {
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("/#") && pathname === "/") {
+      e.preventDefault();
+      const sectionId = href.replace("/#", "");
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        // Update URL hash without jumping
+        window.history.pushState(null, "", `#${sectionId}`);
+      }
+      setOpen(false);
+    }
+  };
+
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-50 transition-transform duration-300 ${
@@ -154,9 +168,12 @@ export function SiteHeader() {
           scrolled ? "border-[var(--line)] bg-[var(--bg)]/90 backdrop-blur-xl" : "border-transparent bg-transparent"
         }`}
       >
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4 md:px-8">
-          <Link href="/" className="text-sm font-semibold tracking-[0.14em] text-[var(--text)] uppercase">
-            AZAD
+        <div className="flex w-full items-center justify-between px-6 py-4 md:px-10 lg:px-12">
+          <Link href="/" className="text-base font-mono tracking-tight group flex items-center gap-1.5">
+            <span className="text-[#64748B] transition-colors group-hover:text-[var(--accent)]">//</span>
+            <span className="text-[var(--text)] font-semibold tracking-wide text-lg">azadhossain</span>
+            <span className="text-[var(--accent)] font-semibold text-lg -ml-1.5">.dev</span>
+            <span className="text-[#64748B] transition-colors group-hover:text-[var(--accent)]">()</span>
           </Link>
 
           <div className="flex items-center gap-6">
@@ -166,6 +183,7 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className={`group flex items-center gap-1.5 px-3 py-2 text-sm transition ${
                     isActive(item.href) ? "text-[var(--accent)]" : "text-[var(--text-muted)] hover:text-[var(--text)]"
                   }`}
@@ -227,7 +245,7 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition ${
                     isActive(item.href)
                       ? "bg-[var(--accent-soft)] text-[var(--accent)]"

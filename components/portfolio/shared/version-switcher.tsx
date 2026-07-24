@@ -3,7 +3,7 @@ import { versions, PortfolioVersion } from "@/lib/portfolio/versions";
 
 export function VersionSwitcher({ current }: { current: PortfolioVersion }) {
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 rounded-full border border-[var(--line)] bg-[var(--bg)] p-1.5 shadow-lg backdrop-blur-xl">
+    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-1 rounded-full border border-[var(--line)] bg-[var(--bg)] p-1.5 shadow-lg backdrop-blur-xl">
       {versions.map((v) => (
         <Link
           key={v.id}
@@ -16,7 +16,7 @@ export function VersionSwitcher({ current }: { current: PortfolioVersion }) {
           title={v.description}
           aria-current={current === v.id ? "page" : undefined}
         >
-          {v.name}
+          {v.id.toUpperCase()}
         </Link>
       ))}
     </div>

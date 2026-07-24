@@ -1,8 +1,8 @@
 export const profile = {
   name: "Md Azad Hossain Tutul",
   shortName: "Azad",
-  title: "Senior Flutter Developer",
-  positioning: "FinTech, Payments & AI Mobile Apps",
+  title: "Product Engineer | Mobile, Web & Backend",
+  positioning: "Production-ready apps across the full stack",
   status: "Independent / Freelance",
   location: "Chattogram, Bangladesh",
   availability: true,
@@ -12,6 +12,7 @@ export const profile = {
     github: "https://github.com/mdazadhossain95",
     linkedin: "https://www.linkedin.com/in/azadhossain-tutul/",
     upwork: "https://www.upwork.com/freelancers/azadflutterdev",
+    upworkConsultation: "https://www.upwork.com/services/product/development-it-md-azad-hossain-2076284299918704882?ref=project_share",
     resume: "/azad-hossain-resume.pdf",
     x: "https://twitter.com/mdazadhossain95",
     stackoverflow: "https://stackoverflow.com/users/14659281/azad-hossain",

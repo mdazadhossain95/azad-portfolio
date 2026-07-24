@@ -1,23 +1,31 @@
 export const skills = [
   {
-    category: "Mobile Engineering",
-    items: ["Flutter", "Dart", "Android", "iOS", "Adaptive UI"],
+    category: "Mobile & Hybrid Apps",
+    items: ["Flutter", "Dart", "React Native", "Android", "iOS", "Adaptive UI"],
   },
   {
     category: "Architecture & State",
-    items: ["Clean Architecture", "BLoC", "Cubit", "Riverpod", "Provider"],
+    items: ["Clean Architecture", "BLoC", "Cubit", "Riverpod", "Provider", "Redux"],
   },
   {
-    category: "Backend & Data",
-    items: ["REST APIs", "Firebase", "Supabase", "PostgreSQL", "Django"],
+    category: "Full-Stack & Web",
+    items: ["React.js", "Next.js", "TypeScript", "Node.js", "Express.js", "MERN Stack", "GraphQL", "Tailwind CSS"],
   },
   {
-    category: "Product Integrations",
-    items: ["Payments", "Subscriptions", "KYC", "Biometric Auth", "Push Notifications", "Deep Links"],
+    category: "Backend & Databases",
+    items: ["REST APIs", "Firebase", "Supabase", "PostgreSQL", "MongoDB", "Django"],
+  },
+  {
+    category: "FinTech & Web3",
+    items: ["FinTech", "Payment Gateways", "DeFi", "Web3", "Blockchain", "Cryptography", "KYC"],
+  },
+  {
+    category: "AI & Integrations",
+    items: ["AI Mobile App Development", "Claude Certified", "ChatGPT", "Gemini", "Biometric Auth", "Push Notifications"],
   },
   {
     category: "Delivery & Quality",
-    items: ["Git", "CI/CD", "Codemagic", "Fastlane", "Crashlytics", "TestFlight", "App Store Connect", "Play Console"],
+    items: ["CI/CD", "Codemagic", "Crashlytics", "TestFlight", "App Store Connect", "Play Console"],
   },
 ];
 
