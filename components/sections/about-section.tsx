@@ -10,11 +10,11 @@ export function AboutSection() {
             01. About
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-[var(--text)] md:text-4xl">
-            Product Engineer | Mobile, Web & Backend
+            Full-Stack App Developer | SaaS, FinTech & AI Apps
           </h2>
           <div className="space-y-4 text-base leading-8 text-[var(--text-muted)]">
             <p>
-              I build <span className="bg-[var(--accent)]/10 text-[var(--accent)] px-1.5 py-0.5 rounded font-medium">stable, production-ready</span> mobile applications. For the past five years, I’ve engineered scalable iOS and Android apps for <span className="bg-[var(--text)]/10 text-[var(--text)] px-1.5 py-0.5 rounded font-medium">FinTech and AI</span> companies using Flutter, React, and Node.js. My work goes beyond UI. I handle the <span className="bg-[var(--accent)]/10 text-[var(--accent)] px-1.5 py-0.5 rounded font-medium">entire app lifecycle</span> from clean architecture and secure APIs, to testing and App Store deployment, ensuring reliable products that users love.
+              I build <span className="bg-[var(--accent)]/10 text-[var(--accent)] px-1.5 py-0.5 rounded font-medium">stable, production-ready</span> mobile applications. For the past five years, I’ve engineered scalable iOS and Android apps for <span className="bg-[var(--text)]/10 text-[var(--text)] px-1.5 py-0.5 rounded font-medium">SaaS, FinTech, and AI</span> companies using Flutter, React, and Node.js. My work goes beyond UI. I handle the <span className="bg-[var(--accent)]/10 text-[var(--accent)] px-1.5 py-0.5 rounded font-medium">entire app lifecycle</span> from clean architecture and secure APIs, to testing and App Store deployment, ensuring reliable products that users love.
             </p>
             <p className="pt-2">
               Here are the core technologies I work with regularly:
@@ -81,19 +81,19 @@ export function AboutSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           <div className="flex flex-col gap-2 md:gap-3 border-l-2 border-[var(--accent)] pl-5">
             <span className="text-xl md:text-2xl font-bold tracking-tight text-[var(--text)]">5+ Years</span>
-            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">Flutter Experience</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">Full-Stack Experience</span>
           </div>
           <div className="flex flex-col gap-2 md:gap-3 border-l-2 border-[var(--line)] pl-5 transition-colors hover:border-[var(--accent)]/50">
-            <span className="text-xl md:text-2xl font-bold tracking-tight text-[var(--text)]">Multiple</span>
-            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">Production Apps</span>
+            <span className="text-xl md:text-2xl font-bold tracking-tight text-[var(--text)]">100%</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">Job Success Score</span>
           </div>
           <div className="flex flex-col gap-2 md:gap-3 border-l-2 border-[var(--line)] pl-5 transition-colors hover:border-[var(--accent)]/50">
-            <span className="text-xl md:text-2xl font-bold tracking-tight text-[var(--text)]">Android + iOS</span>
-            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">Store Delivery</span>
+            <span className="text-xl md:text-2xl font-bold tracking-tight text-[var(--text)]">16+</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">Certifications</span>
           </div>
           <div className="flex flex-col gap-2 md:gap-3 border-l-2 border-[var(--line)] pl-5 transition-colors hover:border-[var(--accent)]/50">
-            <span className="text-xl md:text-2xl font-bold tracking-tight text-[var(--text)]">International</span>
-            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">Remote Experience</span>
+            <span className="text-xl md:text-2xl font-bold tracking-tight text-[var(--text)]">Global</span>
+            <span className="text-xs font-mono uppercase tracking-widest text-[var(--text-muted)]">Client Experience</span>
           </div>
         </div>
       </div>

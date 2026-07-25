@@ -34,7 +34,7 @@ export function SiteFooter() {
           <div className="space-y-2">
             <p className="text-sm font-semibold text-[var(--text)]">{profile.name}</p>
             <p className="text-xs text-[var(--text-muted)]">
-              {profile.title} · FinTech · Payments · AI Mobile Products
+              Full-Stack App Developer · SaaS · FinTech · AI Apps
             </p>
           </div>
 
@@ -69,8 +69,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-2 border-t border-[var(--line)] pt-8 text-xs text-[var(--text-muted)] md:flex-row md:items-center md:justify-between">
-          <p>Designed and built with Next.js and TypeScript.</p>
+        <div className="mt-8 flex border-t border-[var(--line)] pt-8 text-xs text-[var(--text-muted)] items-center justify-center">
           <p>© {year} {profile.name}. All rights reserved.</p>
         </div>
       </div>

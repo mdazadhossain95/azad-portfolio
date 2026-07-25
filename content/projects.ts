@@ -9,7 +9,7 @@ export const projects: CaseStudy[] = [
     category: "FinTech & Payments",
     status: "live",
     featured: true,
-    priority: 10,
+    priority: 1,
     summary:
       "Mobile banking products supporting account onboarding, IBAN operations, SEPA transfers, and secure access.",
     productContext:
@@ -85,14 +85,80 @@ export const projects: CaseStudy[] = [
     ],
     technologies: ["Flutter", "Dart", "BLoC", "REST APIs", "Firebase", "Biometric Auth"],
     integrations: ["SEPA", "KYC", "Push Notifications", "Crashlytics"],
-    coverImage: "https://codegopay.com/1.png",
+    coverImage: "/project-assets/codegopay-individual/cover.png",
     gallery: [
-      { src: "https://codegopay.com/1.png", alt: "CodegoPay app screen", caption: "Personal banking dashboard" },
+      { src: "/project-assets/codegopay-individual/cover.png", alt: "CodegoPay app screen", caption: "Personal banking dashboard" },
     ],
     links: {
       playStore: "https://play.google.com/store/apps/details?id=com.codegopay.individual",
       appStore: "https://apps.apple.com/ie/app/codegopay-individual/id6478804402",
-      website: "https://codegopay.com/",
+    },
+  },
+  {
+    id: "p1-kyc",
+    slug: "codegokyc",
+    shortTitle: "CodegoKYC",
+    title: "CodegoKYC Identity Verification",
+    category: "FinTech & Payments",
+    status: "live",
+    featured: true,
+    priority: 2,
+    summary:
+      "Secure digital identity verification platform supporting document scanning and biometric liveness checks.",
+    productContext:
+      "CodegoKYC provides seamless identity verification for FinTech onboarding, featuring automated document scanning and facial recognition.",
+    businessProblem:
+      "Regulatory compliance requires strict KYC (Know Your Customer) processes. The app needed a flawless, high-conversion camera and document scanning flow.",
+    role: "Flutter Developer",
+    timeframe: "2024 - 2026",
+    company: "Codego",
+    teamContext: "Collaborated with backend security engineers and compliance teams.",
+    ownershipNote:
+      "I engineered the Flutter application, specializing in the camera integrations and local image processing.",
+    confidentialityNote: "Specific verification volumes and internal compliance thresholds are confidential.",
+    platforms: ["Android", "iOS"],
+    responsibilities: [
+      "Built document scanning and facial liveness detection flows.",
+      "Integrated secure APIs for transmitting sensitive identity data.",
+      "Optimized camera performance across a wide range of mobile devices."
+    ],
+    challenges: [
+      "Handling camera permissions and hardware differences across Android devices.",
+      "Ensuring high-quality image capture without excessive file sizes."
+    ],
+    approach: [
+      "Implemented strict UI overlays to guide users to take perfect document photos.",
+      "Used native camera plugins with custom focus and exposure controls."
+    ],
+    contributions: [
+      "Delivered a production-ready KYC flow.",
+      "Significantly reduced onboarding drop-off rates through better UX."
+    ],
+    technicalDecisions: [
+      {
+        title: "Native Camera Integration",
+        explanation: "Used direct platform channel configurations to ensure maximum camera resolution for document OCR."
+      }
+    ],
+    results: [
+      {
+        statement: "Successfully verified identities for the Codego platform.",
+        evidence: "client-approved"
+      }
+    ],
+    lessons: [
+      "Hardware fragmentation on Android makes camera-heavy apps particularly challenging to standardize."
+    ],
+    technologies: ["Flutter", "Dart", "Camera APIs", "REST APIs"],
+    integrations: ["OCR", "Biometrics", "KYC Providers"],
+    coverImage: "/project-assets/codegokyc/1.png",
+    gallery: [
+      { src: "/project-assets/codegokyc/1.png", alt: "CodegoKYC App", caption: "Identity Verification" },
+      { src: "/project-assets/codegokyc/2.png", alt: "CodegoKYC Scan", caption: "Document Scanning" }
+    ],
+    links: {
+      playStore: "https://play.google.com/store/apps/details?id=code.go.kyc",
+      website: "https://codegokyc.com/",
     },
   },
   {
@@ -102,7 +168,7 @@ export const projects: CaseStudy[] = [
     title: "CodegoPay Business Banking",
     category: "FinTech & Payments",
     status: "live",
-    featured: true,
+    featured: false,
     priority: 11,
     summary:
       "Business banking platform focused on fast onboarding, dedicated IBAN accounts, and SEPA payment operations.",
@@ -184,7 +250,7 @@ export const projects: CaseStudy[] = [
     category: "Social / Utility Apps",
     status: "live",
     featured: true,
-    priority: 5,
+    priority: 3,
     summary:
       "VPN app with country selection, connection state, premium plan prompts, and payment-ready upgrade flow.",
     productContext:
@@ -252,6 +318,7 @@ export const projects: CaseStudy[] = [
     links: {
       playStore: "https://play.google.com/store/apps/details?id=com.codego.fibervpns",
       appStore: "https://apps.apple.com/ie/app/fibervpn/id6755590267",
+      website: "https://fibervpn.io/",
     },
   },
   {
@@ -261,7 +328,7 @@ export const projects: CaseStudy[] = [
     title: "StudyGenie AI Learning Assistant",
     category: "AI & Smart Apps",
     status: "live",
-    featured: true,
+    featured: false,
     priority: 12,
     summary:
       "AI learning assistant with chat support, flashcards, quizzes, and progress planning.",
@@ -496,10 +563,10 @@ export const projects: CaseStudy[] = [
     ],
     results: [{ statement: "Delivered Quran reading and community feed features.", evidence: "client-approved" }],
     technologies: ["Flutter", "Laravel", "Donations", "Community"],
-    coverImage: "/project-assets/ummah-charity/1.jpg",
+    coverImage: "/project-assets/ummah-charity/2.png",
     gallery: [
+      { src: "/project-assets/ummah-charity/2.png", alt: "Quran", caption: "Quran reading" },
       { src: "/project-assets/ummah-charity/1.jpg", alt: "Home", caption: "Community home" },
-      { src: "/project-assets/ummah-charity/2.jpg", alt: "Quran", caption: "Quran reading" },
       { src: "/project-assets/ummah-charity/3.jpg", alt: "Feed", caption: "Community feed" }
     ],
     links: {},

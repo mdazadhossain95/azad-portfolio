@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { Sora, Space_Mono } from "next/font/google";
-import { CursorGlow } from "@/components/cursor-glow";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import { SocialRails } from "@/components/social-rails";
-import { SplashScreen } from "@/components/splash-screen";
 import { profile } from "@/content/profile";
+import { LayoutWrapper } from "@/components/layout-wrapper";
 import "./globals.css";
 
 const sora = Sora({
@@ -104,7 +100,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <SplashScreen />
         <JsonLd />
         <a
           href="#main-content"
@@ -112,13 +107,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <CursorGlow />
-        <SocialRails />
-        <SiteHeader />
-        <main id="main-content" className="relative z-10 flex-1 pt-20">
-          {children}
-        </main>
-        <SiteFooter />
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );

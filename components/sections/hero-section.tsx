@@ -5,12 +5,20 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative mx-auto flex min-h-[90vh] w-full max-w-6xl flex-col justify-center px-5 pb-20 pt-8 md:px-12 md:pb-24 md:pt-12"
+      className="relative mx-auto flex min-h-[90vh] w-full max-w-7xl flex-col justify-center px-5 pb-32 pt-8 md:px-12 lg:px-16 md:pt-12"
     >
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 w-full">
         
         {/* Left Side: Text Content */}
         <div className="w-full lg:w-[55%] space-y-6">
+          <div className="inline-flex items-center gap-2.5 bg-[var(--success)]/10 px-3 py-1.5 rounded-full mb-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--success)] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--success)]"></span>
+            </span>
+            <span className="text-[10px] tracking-widest text-[var(--success)] font-mono uppercase">Available for work</span>
+          </div>
+
           <p className="mono text-sm font-medium tracking-[0.14em] text-[var(--accent)]">
             Hello, my name is
           </p>
@@ -25,7 +33,7 @@ export function HeroSection() {
           </div>
 
           <p className="max-w-xl text-base leading-8 text-[var(--text-muted)] md:text-lg md:leading-relaxed">
-            I&apos;m a {profile.title} focusing on scalable, production-ready software. I build secure iOS, Android, and web products from the backend architecture to the frontend interface.
+            I&apos;m a Full-Stack App Developer focusing on scalable, production-ready software. I build secure iOS, Android, and web products from the backend architecture to the frontend interface.
           </p>
 
           <div className="flex flex-col items-start gap-4 pt-4">
@@ -34,15 +42,15 @@ export function HeroSection() {
                 href="/#work" 
                 className="btn-primary px-7 py-3.5 text-sm font-medium transition-transform hover:scale-105"
               >
-                View Selected Work
+                Explore Client Work
               </Link>
               <a 
-                href={profile.links.resume}
+                href={profile.links.upwork}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-secondary px-7 py-3.5 text-sm font-medium transition-transform hover:scale-105"
               >
-                Download Resume
+                Discuss Your Project
               </a>
             </div>
             <p className="text-sm font-mono text-[var(--text-secondary)] mt-2 opacity-80">
@@ -52,7 +60,7 @@ export function HeroSection() {
         </div>
 
         {/* Right Side: Code Editor Window */}
-        <div className="hidden lg:block w-full lg:w-[45%]">
+        <div className="w-full lg:w-[45%] mt-8 lg:mt-0">
           <div className="rounded-xl overflow-hidden bg-[#111116] border border-[#2a2a35] shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(100,255,218,0.2)] hover:border-[var(--accent)]/40 cursor-default">
             {/* Window Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#181820] border-b border-[#2a2a35]">
@@ -84,8 +92,8 @@ export function HeroSection() {
                   <span className="text-[#89ddff]">void</span> <span className="text-[#82aaff]">main</span>() {`{`}<br/>
                   &nbsp;&nbsp;<span className="text-[#89ddff]">const</span> azad = <span className="text-[#ffcb6b]">Developer</span>(<br/>
                   &nbsp;&nbsp;&nbsp;&nbsp;name: <span className="text-[#c3e88d]">'Md Azad Hossain Tutul'</span>,<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;role: <span className="text-[#c3e88d]">'Senior Flutter Engineer'</span>,<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;skills: [<span className="text-[#c3e88d]">'Flutter'</span>, <span className="text-[#c3e88d]">'Dart'</span>, <span className="text-[#c3e88d]">'Firebase'</span>],<br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;role: <span className="text-[#c3e88d]">'Full-Stack App Developer'</span>,<br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;skills: [<span className="text-[#c3e88d]">'Flutter'</span>, <span className="text-[#c3e88d]">'React'</span>, <span className="text-[#c3e88d]">'Node.js'</span>],<br/>
                   &nbsp;&nbsp;);<br/>
                   {`}`}
                 </code>
@@ -93,18 +101,18 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 animate-bounce">
-        <div className="[writing-mode:vertical-rl] text-xs text-[var(--text-muted)] tracking-widest mono uppercase mb-2">
-          Scroll to explore
+      {/* Bottom Bar: Scroll Indicator Only */}
+      <div className="absolute bottom-8 left-0 w-full flex items-center justify-center">
+        <div className="hidden md:flex flex-col items-center gap-2 animate-bounce">
+          <span className="text-xs text-[var(--text-muted)] tracking-widest mono uppercase">
+            Scroll to explore
+          </span>
+          <svg className="w-4 h-4 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
-        <div className="w-[1px] h-12 bg-[var(--text-muted)]"></div>
-        <svg className="w-4 h-4 text-[var(--text-muted)] -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
       </div>
     </section>
   );

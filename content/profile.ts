@@ -1,7 +1,7 @@
 export const profile = {
   name: "Md Azad Hossain Tutul",
   shortName: "Azad",
-  title: "Product Engineer | Mobile, Web & Backend",
+  title: "Full-Stack App Developer",
   positioning: "Production-ready apps across the full stack",
   status: "Independent / Freelance",
   location: "Chattogram, Bangladesh",
@@ -24,9 +24,9 @@ export const profile = {
     upworkBadge: "Rising Talent",
   },
   meta: {
-    title: "Md Azad Hossain Tutul | Senior Flutter Developer",
+    title: "Md Azad Hossain Tutul | Full-Stack App Developer",
     description:
-      "Senior Flutter Developer specializing in production FinTech, payment, AI-powered, and API-driven Android and iOS applications.",
+      "Full-Stack App Developer specializing in production SaaS, FinTech, AI-powered, and API-driven Android and iOS applications.",
   },
 };
 

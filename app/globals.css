@@ -23,25 +23,31 @@
   --line: rgba(203, 213, 225, 0.1);
   --border-strong: rgba(203, 213, 225, 0.2);
   --card: var(--surface);
+  --btn-text: var(--bg-deep);
 
   --pointer-x: 50%;
   --pointer-y: 50%;
 }
 
 [data-theme="light"] {
-  --bg: #f4f7fb;
-  --bg-deep: #e7eef7;
-  --surface: #ffffff;
-  --surface-raised: #f0f4f9;
-  --surface-hover: #e5ebf3;
+  --bg: #F6F9FC;
+  --bg-deep: #EEF4FA;
+  --surface: #FFFFFF;
+  --surface-raised: #F8FBFF;
+  --surface-hover: #E6EDF5;
 
-  --text: #0b1623;
-  --text-secondary: #3a506f;
-  --text-muted: #5e7a9b;
+  --text: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
 
-  --line: rgba(11, 22, 35, 0.12);
-  --border-strong: rgba(11, 22, 35, 0.22);
-  --card: var(--surface);
+  --line: #E6EDF5;
+  --border-strong: #D9E3F0;
+  --card: #FFFFFF;
+
+  --accent: #2563EB;
+  --accent-strong: #1D4ED8;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --btn-text: #FFFFFF;
 }
 
 html {
@@ -137,7 +143,7 @@ html {
   padding: 0.625rem 1.25rem;
   border-radius: 0.625rem;
   background: var(--accent);
-  color: var(--bg-deep);
+  color: var(--btn-text);
   font-weight: 500;
   box-shadow: 0 8px 20px rgba(66, 200, 245, 0.18);
   transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
@@ -253,4 +259,50 @@ html {
   .btn-secondary {
     box-shadow: none !important;
   }
+}
+
+/* =========================================
+   V1 (Original) Theme Overrides
+   ========================================= */
+.v1-theme {
+  --bg: #f5f7fb;
+  --text: #0f172a;
+  --muted: #4b5563;
+  --text-muted: #4b5563;
+  --line: #c2cedf;
+  --card: #ffffff;
+  --accent: #0f766e;
+  
+  background:
+    radial-gradient(circle at 8% 4%, rgba(15, 118, 110, 0.12), transparent 36%),
+    radial-gradient(circle at 92% 0%, rgba(59, 130, 246, 0.07), transparent 34%),
+    var(--bg) !important;
+  color: var(--text);
+}
+
+[data-theme="dark"] .v1-theme {
+  --bg: #111827;
+  --text: #f8fafc;
+  --muted: #9ba7bd;
+  --text-muted: #9ba7bd;
+  --line: #2b3850;
+  --card: #162033;
+  --accent: #2dd4bf;
+}
+
+.v1-theme .btn-primary {
+  border-radius: 9999px;
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--text) 20%, transparent);
+}
+
+.v1-theme .btn-secondary {
+  border-radius: 9999px;
+  background: transparent;
+}
+
+.v1-theme .surface-card {
+  border-radius: 1.125rem;
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--text) 8%, transparent);
 }

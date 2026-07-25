@@ -40,7 +40,7 @@ export function V1About() {
         <div className="md:col-span-2 relative group w-3/4 md:w-full mx-auto max-w-[300px]">
           <div className="relative z-10 rounded overflow-hidden mix-blend-multiply filter grayscale hover:filter-none hover:mix-blend-normal transition-all duration-300 outline outline-2 outline-offset-2 outline-transparent hover:outline-[var(--accent)] bg-[var(--accent)]">
             <img 
-              src="/project-assets/studygenie-ai/1.jpg" // fallback using a project asset for now, should be a real portrait in a real project
+              src="/profile-photo.png" // using global profile photo
               alt={profile.name} 
               className="w-full h-auto rounded object-cover aspect-square block transition-all"
               style={{ filter: "brightness(0.9)" }}

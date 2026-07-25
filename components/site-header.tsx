@@ -109,7 +109,7 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const scrollDirection = useScrollDirection();
   const pathname = usePathname();
-  const activeSection = useActiveSection(["about", "experience", "work", "contact"]);
+  const activeSection = useActiveSection(["about", "experience", "work", "expertise", "contact"]);
   const { containerRef, triggerRef } = useFocusTrap(open, () => setOpen(false));
 
   useEffect(() => {
