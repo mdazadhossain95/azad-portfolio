@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LiveProjects } from "@/components/live-projects";
 import { LiveReviews } from "@/components/live-reviews";
+import { LiveArticles } from "@/components/live-articles";
 import { SectionTitle } from "@/components/section-title";
 import { VersionSwitcher } from "@/components/portfolio/shared/version-switcher";
 import { getSharedMetadata } from "@/lib/portfolio/metadata";
@@ -155,7 +156,7 @@ export default function V1Page() {
                 alt="Md Azad Hossain Tutul"
                 fill
                 sizes="(min-width: 1024px) 256px, 224px"
-                className="object-cover object-top scale-[1.15] origin-top"
+                className="object-cover object-top scale-[1.3] origin-top"
                 priority
               />
             </div>
@@ -208,6 +209,39 @@ export default function V1Page() {
                   {s}
                 </span>
               ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl space-y-8 px-5 py-24 md:px-8 md:py-28">
+        <SectionTitle
+          eyebrow="Expertise"
+          title="How I help product teams"
+          description="Four areas that cover a build end to end, from interface to production release."
+        />
+        <div className="grid gap-4 sm:grid-cols-2">
+          {[
+            {
+              title: "Mobile & Cross-Platform",
+              description: "Maintainable Android and iOS apps with Flutter, native integrations, and production-focused architecture.",
+            },
+            {
+              title: "Web Frontend Engineering",
+              description: "Responsive web products, dashboards, and API-driven interfaces with React, Next.js, and TypeScript.",
+            },
+            {
+              title: "Backend, APIs & Data",
+              description: "Secure APIs, authentication, and data flows to power cross-platform applications.",
+            },
+            {
+              title: "Integrations & Delivery",
+              description: "Connecting payments, AI, and SaaS platforms, then handling testing and store deployment.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="surface-card rounded-3xl border p-5">
+              <p className="text-xs uppercase tracking-[0.16em] text-[var(--accent)]">{item.title}</p>
+              <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
             </div>
           ))}
         </div>
@@ -311,6 +345,20 @@ export default function V1Page() {
           description="Public-source review proof and long-term trust from shipped projects."
         />
         <LiveReviews />
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl space-y-8 px-5 py-24 md:px-8 md:py-28">
+        <SectionTitle
+          eyebrow="Articles"
+          title="Practical notes from real Flutter projects"
+          description="Architecture decisions, performance wins, backend choices, and release checklists."
+          action={
+            <Link href="/v1/articles" className="btn-secondary px-5 py-2.5 text-xs font-medium">
+              View All Articles ↗
+            </Link>
+          }
+        />
+        <LiveArticles />
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-5 py-20 md:px-8 md:py-24">
