@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { profile } from "@/content/profile";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -15,6 +15,15 @@ const navigation = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const resumeUrl = profile.links.resume;
+
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] backdrop-blur-xl" style={{ backgroundColor: 'color-mix(in srgb, var(--bg) 90%, transparent)' }}>
@@ -49,7 +58,8 @@ export function SiteHeader() {
           {/* Hamburger — mobile only */}
           <button
             type="button"
-            aria-label="Toggle menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line)] text-[var(--text)] transition hover:bg-[var(--card)] md:hidden"
           >
