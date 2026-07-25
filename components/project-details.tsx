@@ -6,7 +6,6 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { profile } from "@/content/profile";
 import { CaseStudy } from "@/lib/types";
-import { ImageGalleryModal } from "./image-gallery-modal";
 
 type ProjectDetailsProps = {
   project: CaseStudy;
@@ -42,7 +41,6 @@ function BulletList({ items }: { items: string[] }) {
 }
 
 export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
-  const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const searchParams = useSearchParams();
   const returnVersion = searchParams?.get("v");
@@ -138,20 +136,14 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
 
         <div className="relative">
           <div className="surface-card relative aspect-[4/3] w-full overflow-hidden">
-            <button
-              type="button"
-              onClick={() => setGalleryIndex(activeSlide)}
-              className="relative block h-full w-full"
-            >
-              <Image
-                src={project.gallery[activeSlide]?.src ?? project.coverImage}
-                alt={project.gallery[activeSlide]?.alt ?? project.title}
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-                priority
-              />
-            </button>
+            <Image
+              src={project.gallery[activeSlide]?.src ?? project.coverImage}
+              alt={project.gallery[activeSlide]?.alt ?? project.title}
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+              priority
+            />
 
             {hasManyImages ? (
               <>
@@ -351,15 +343,6 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
           ) : null}
         </aside>
       </div>
-
-      {galleryIndex !== null ? (
-        <ImageGalleryModal
-          images={project.gallery.map((g) => g.src)}
-          initialIndex={galleryIndex}
-          title={project.title}
-          onClose={() => setGalleryIndex(null)}
-        />
-      ) : null}
     </section>
   );
 }

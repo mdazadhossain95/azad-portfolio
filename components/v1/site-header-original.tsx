@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { doc, onSnapshot } from "firebase/firestore";
-import { db } from "@/lib/firebase-client";
-import { Settings } from "@/lib/types";
+import { profile } from "@/content/profile";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
@@ -14,24 +12,9 @@ const navigation = [
   { href: "/v1/contact", label: "Contact" },
 ];
 
-const FALLBACK_RESUME = "https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing";
-
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [resumeUrl, setResumeUrl] = useState(FALLBACK_RESUME);
-
-  useEffect(() => {
-    if (!db) return;
-    const unsubscribe = onSnapshot(doc(db, "settings", "main"), (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.data() as Omit<Settings, "id">;
-        if (data.resume) {
-          setResumeUrl(data.resume);
-        }
-      }
-    });
-    return unsubscribe;
-  }, []);
+  const resumeUrl = profile.links.resume;
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] backdrop-blur-xl" style={{ backgroundColor: 'color-mix(in srgb, var(--bg) 90%, transparent)' }}>
@@ -101,7 +84,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <a
-              href="https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing"
+              href={resumeUrl}
               target="_blank"
               rel="noreferrer"
               onClick={() => setOpen(false)}

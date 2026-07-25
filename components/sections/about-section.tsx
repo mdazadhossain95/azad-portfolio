@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { profile } from "@/content/profile";
 
 export function AboutSection() {
   return (
@@ -33,7 +34,9 @@ export function AboutSection() {
 
             <div className="mt-8 pt-4">
               <a
-                href="/resume"
+                href={profile.links.resume}
+                target="_blank"
+                rel="noreferrer"
                 className="btn-secondary inline-flex items-center gap-2 px-6 py-3 text-sm font-medium transition-transform hover:scale-105"
               >
                 View Full Resume

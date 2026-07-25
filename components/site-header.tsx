@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { profile } from "@/content/profile";
 
 const navigation = [
   { href: "/#about", label: "About", number: "01" },
@@ -191,12 +192,14 @@ export function SiteHeader() {
                   <span>{item.label}</span>
                 </Link>
               ))}
-              <Link
-                href="/resume"
+              <a
+                href={profile.links.resume}
+                target="_blank"
+                rel="noreferrer"
                 className="btn-secondary ml-2 px-4 py-2 text-xs font-medium"
               >
                 Resume
-              </Link>
+              </a>
             </nav>
 
             <div className="flex items-center gap-2">
@@ -255,13 +258,15 @@ export function SiteHeader() {
                   <span className="text-base">{item.label}</span>
                 </Link>
               ))}
-              <Link
-                href="/resume"
+              <a
+                href={profile.links.resume}
+                target="_blank"
+                rel="noreferrer"
                 onClick={() => setOpen(false)}
                 className="mt-4 btn-secondary justify-center py-3 text-sm font-medium"
               >
                 Resume ↗
-              </Link>
+              </a>
             </nav>
           </div>
         </>
