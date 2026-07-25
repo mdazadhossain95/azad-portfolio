@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { profile } from "@/content/profile";
 import { experience } from "@/content/experience";
 import { skills } from "@/content/skills";

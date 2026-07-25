@@ -125,11 +125,20 @@ npm run build        → succeeds, 20 routes generated
    unsourced hero stats) — owner sign-off needed, not an agent decision.
 2. No Lighthouse/CrUX performance measurement taken (architecture-based
    inference only — see `docs/accessibility-seo-performance-report.md`).
-3. Dead code: `components/portfolio/v1/*.tsx` (9 files) are unused —
-   candidate for removal in Prompt 12, not touched here to keep this QA
-   commit scoped to testing/verification rather than cleanup.
-4. `docs/firebase-admin-claims.md` references a system that no longer exists
-   in this branch — should be updated/retired in Prompt 12's documentation
-   pass.
+3. ~~Dead code: `components/portfolio/v1/*.tsx` (9 files)~~ — removed in
+   Prompt 12, along with unused default `create-next-app` placeholder SVGs
+   in `public/` and an unused `Link` import in `app/resume/page.tsx`.
+4. ~~`docs/firebase-admin-claims.md` referenced a removed system~~ — updated
+   in Prompt 12 to clearly mark it historical.
+5. **`npm audit` reports 12 high-severity advisories** (from a clean
+   `npm ci`), the largest being in `next@16.2.4` itself (DoS, cache
+   poisoning, SSRF, and XSS advisories fixed in `next@16.2.11`) and in
+   transitive `brace-expansion`/`postcss`/`sharp`. `npm audit fix --force`
+   would bump `next` to `16.2.11` and `eslint` to `10.8.0` — both outside
+   the versions currently pinned in `package.json`. **Not applied in this
+   pass**: `AGENTS.md` explicitly warns this repository's Next.js has
+   deprecation/behavior differences from stock Next.js ("This is NOT the
+   Next.js you know"), so bumping the pinned version is a decision for the
+   owner, not something to change silently during a QA/docs pass.
 
 Nothing in this phase was merged or deployed.
