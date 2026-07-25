@@ -357,3 +357,74 @@ html {
   font-family: var(--font-space-mono), ui-monospace, monospace;
   font-size: 0.75rem;
 }
+
+/* =========================================
+   V3 (Engineering Notebook) Theme Overrides
+   ========================================= */
+.v3-theme {
+  --bg: #F6F1E4;
+  --bg-deep: #EFE7D4;
+  --card: #FCF9F0;
+  --surface: #FCF9F0;
+  --surface-raised: #F1EAD9;
+
+  --text: #2B2F35;
+  --muted: #5B564C;
+  --text-muted: #5B564C;
+
+  --line: #DCD2B8;
+  --border-strong: #C9BC94;
+
+  --accent: #1E3A5F;
+  --accent-strong: #16283F;
+  --accent-soft: rgba(30, 58, 95, 0.1);
+  --btn-text: #F6F1E4;
+
+  --v3-ink: #1E3A5F;
+  --v3-gold: #8A6114;
+  --v3-burgundy: #7F1D1D;
+
+  background: var(--bg) !important;
+  color: var(--text);
+}
+
+[data-theme="dark"] .v3-theme {
+  --bg: #1B1712;
+  --bg-deep: #141110;
+  --card: #231E17;
+  --surface: #231E17;
+  --surface-raised: #2B241B;
+
+  --text: #EFE7D4;
+  --muted: #B8AD94;
+  --text-muted: #B8AD94;
+
+  --line: #3A3123;
+  --border-strong: #4A3E2C;
+
+  --accent: #D4A62A;
+  --accent-strong: #E8C158;
+  --accent-soft: rgba(212, 166, 42, 0.14);
+  --btn-text: #1B1712;
+
+  --v3-ink: #E8C158;
+  --v3-gold: #D4A62A;
+  --v3-burgundy: #C4635F;
+}
+
+.v3-theme .btn-primary {
+  border-radius: 0.375rem;
+}
+
+.v3-theme .btn-secondary {
+  border-radius: 0.375rem;
+}
+
+.v3-theme .surface-card {
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 0 var(--line);
+}
+
+.font-handwriting {
+  font-family: var(--font-caveat), cursive;
+}

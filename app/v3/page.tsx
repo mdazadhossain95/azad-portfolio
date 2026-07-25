@@ -1,26 +1,33 @@
+import { V3CoverHero } from "@/components/portfolio/v3/v3-cover-hero";
+import { V3About } from "@/components/portfolio/v3/v3-about";
+import { V3CareerTimeline } from "@/components/portfolio/v3/v3-career-timeline";
+import { V3ProductSketches } from "@/components/portfolio/v3/v3-product-sketches";
+import { V3TechnicalToolkit } from "@/components/portfolio/v3/v3-technical-toolkit";
+import { V3WorkProcess } from "@/components/portfolio/v3/v3-work-process";
+import { V3ClientNotes } from "@/components/portfolio/v3/v3-client-notes";
+import { V3Contact } from "@/components/portfolio/v3/v3-contact";
 import { VersionSwitcher } from "@/components/portfolio/shared/version-switcher";
 import { getSharedMetadata } from "@/lib/portfolio/metadata";
 
 export const metadata = getSharedMetadata(
-  "DevTools & Open Source",
-  "CLI tools, SDKs, and open source development.",
+  "Engineering Notebook",
+  "An engineering notebook of shipped Flutter products — process, decisions, and client notes.",
   "/v3",
-  true // noindex
+  true
 );
 
 export default function V3Page() {
   return (
-    <main className="flex min-h-[80vh] flex-col items-center justify-center p-8 text-center">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight text-[var(--text)]">V3: DevTools Maker</h1>
-        <p className="text-lg text-[var(--text-muted)] max-w-lg mx-auto">
-          A terminal-inspired, highly technical layout designed to appeal to open-source maintainers and developer tool companies.
-        </p>
-        <div className="inline-block rounded-full bg-[var(--surface-raised)] px-4 py-1 text-sm font-medium text-[var(--accent)] mt-8">
-          Status: Shell / Under Construction
-        </div>
-      </div>
+    <>
+      <V3CoverHero />
+      <V3About />
+      <V3CareerTimeline />
+      <V3ProductSketches />
+      <V3TechnicalToolkit />
+      <V3WorkProcess />
+      <V3ClientNotes />
+      <V3Contact />
       <VersionSwitcher current="v3" />
-    </main>
+    </>
   );
 }

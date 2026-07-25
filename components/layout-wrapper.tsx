@@ -10,7 +10,8 @@ import { SplashScreen } from "@/components/splash-screen";
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   // Versions with their own nested layout/header/footer disable the global V4 chrome
-  const hasOwnLayout = pathname?.startsWith("/v1") || pathname?.startsWith("/v2");
+  const hasOwnLayout =
+    pathname?.startsWith("/v1") || pathname?.startsWith("/v2") || pathname?.startsWith("/v3");
   // Boot-sequence splash is a V4 homepage intro only, not a global gate
   const isV4Home = pathname === "/" || pathname === "/v4";
 
