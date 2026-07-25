@@ -20,6 +20,7 @@ export default function ProjectsPage() {
 
       <section className="space-y-10">
         <SectionTitle
+          level="h1"
           eyebrow="Projects"
           title="Real shipped apps organized for client decisions"
           description="Grouped by FinTech & Payments, AI & Smart Apps, Social / Utility Apps, and E-commerce & Lifestyle. Built only from verified project data and real screenshots."

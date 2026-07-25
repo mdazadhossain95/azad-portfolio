@@ -21,6 +21,7 @@ export default function ServicesPage() {
 
       <section className="w-full space-y-10 py-12 md:py-16">
         <SectionTitle
+          level="h1"
           eyebrow="Services"
           title="Ways to work together"
           description="Each service links to a related shipped case study, not a generic promise."

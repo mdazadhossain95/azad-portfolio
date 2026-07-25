@@ -19,7 +19,32 @@ export async function generateMetadata(
   return {
     title: `${article.meta.title} | Article | Azad Portfolio`,
     description: article.meta.preview,
+    alternates: {
+      canonical: `https://azadhossain.dev/articles/${slug}`,
+    },
   };
+}
+
+function ArticleJsonLd({ article, slug }: { article: NonNullable<Awaited<ReturnType<typeof getArticleBySlug>>>; slug: string }) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: article.meta.title,
+    description: article.meta.preview,
+    datePublished: article.meta.publishedAt,
+    url: `https://azadhossain.dev/articles/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "Md Azad Hossain Tutul",
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  );
 }
 
 export default async function ArticleDetailPage(props: ArticleDetailPageProps) {
@@ -32,6 +57,7 @@ export default async function ArticleDetailPage(props: ArticleDetailPageProps) {
 
   return (
     <section className="mx-auto w-full max-w-3xl px-5 py-20 md:px-8 md:py-24">
+      <ArticleJsonLd article={article} slug={slug} />
       <nav className="mb-8 flex items-center gap-2 text-sm text-[var(--muted)]">
         <Link href="/" className="text-[var(--accent)] hover:underline">
           Home

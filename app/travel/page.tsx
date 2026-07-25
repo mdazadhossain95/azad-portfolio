@@ -16,6 +16,7 @@ export default function TravelPage() {
       }}
     >
       <SectionTitle
+        level="h1"
         eyebrow="Travel"
         title="Places, people, and remote work stories"
         description="Light personal section with travel snapshots and short reflections."

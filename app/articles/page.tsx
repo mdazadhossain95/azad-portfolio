@@ -19,6 +19,7 @@ export default async function ArticlesPage() {
       }}
     >
       <SectionTitle
+        level="h1"
         eyebrow="Articles"
         title="Practical notes from real Flutter projects"
         description="Architecture decisions, performance wins, backend choices, and release checklists."

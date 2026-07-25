@@ -16,7 +16,9 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const isV4Home = pathname === "/" || pathname === "/v4";
 
   if (hasOwnLayout) {
-    return <main className="relative z-10 flex-1">{children}</main>;
+    // The version-specific nested layout (app/v1|v2|v3/layout.tsx) supplies its
+    // own <main> landmark, header, and footer — don't add a second <main> here.
+    return <>{children}</>;
   }
 
   return (

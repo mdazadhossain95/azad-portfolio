@@ -5,7 +5,7 @@ export default function V1Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="v1-theme min-h-screen flex flex-col relative">
       <SiteHeader />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {children}
       </main>
       <SiteFooter />

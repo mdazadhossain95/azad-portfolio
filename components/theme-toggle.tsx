@@ -54,7 +54,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] text-[var(--text)] transition hover:bg-[var(--surface-raised)]"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line)] text-[var(--text)] transition hover:bg-[var(--surface-raised)]"
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       title={`Current: ${isDark ? "Dark" : "Light"} mode`}
     >

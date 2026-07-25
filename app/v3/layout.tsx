@@ -12,7 +12,7 @@ export default function V3Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={`v3-theme relative flex min-h-screen flex-col ${caveat.variable}`}>
       <SiteHeader />
-      <main className="flex-1 overflow-x-hidden">{children}</main>
+      <main id="main-content" className="flex-1 overflow-x-hidden">{children}</main>
       <SiteFooter />
     </div>
   );

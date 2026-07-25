@@ -23,6 +23,7 @@ export default function ProjectsPage() {
 
       <section className="w-full space-y-10 py-12 md:py-16">
         <SectionTitle
+          level="h1"
           eyebrow="Archive"
           title="Real shipped apps organized for client decisions"
           description="Grouped by FinTech & Payments, AI & Smart Apps, Social / Utility Apps, and E-commerce & Lifestyle. Built only from verified project data and real screenshots."
