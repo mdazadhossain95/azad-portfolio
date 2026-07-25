@@ -20,7 +20,7 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
 
   return (
     <article className="surface-card surface-card-hover group flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-[4/3] overflow-hidden border-b border-[var(--line)] bg-[var(--bg)]">
+      <Link href={`/projects/${project.slug}`} className="relative block aspect-[4/3] overflow-hidden border-b border-[var(--line)] bg-[var(--bg)]">
         <Image
           src={project.coverImage}
           alt={project.title}
@@ -39,7 +39,7 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
         <span className="absolute left-3 top-3 rounded-full border border-[var(--line)] bg-[var(--bg)]/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--text-secondary)] backdrop-blur-sm">
           {statusLabel[project.status] ?? project.status}
         </span>
-      </div>
+      </Link>
       <div className="flex flex-1 flex-col p-5">
         <div className="space-y-3">
           <h3 className="text-xl font-semibold tracking-tight text-[var(--text)]">{project.title}</h3>

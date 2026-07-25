@@ -20,7 +20,7 @@ export function FeaturedWorkSection() {
             A selection of production mobile applications, FinTech platforms, and AI integrations I have engineered for global clients.
           </p>
         </div>
-        <Link href="/projects" className="group flex items-center gap-2 text-sm font-medium text-[var(--accent)] hover:text-[var(--text)] transition-colors md:pb-2">
+        <Link href="/v4/projects" className="group flex items-center gap-2 text-sm font-medium text-[var(--accent)] hover:text-[var(--text)] transition-colors md:pb-2">
           View full archive
           <span className="transition-transform group-hover:translate-x-1">→</span>
         </Link>

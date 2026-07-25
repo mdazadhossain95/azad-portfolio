@@ -91,9 +91,9 @@ export function HeroSection() {
 
                   <span className="text-[#89ddff]">void</span> <span className="text-[#82aaff]">main</span>() {`{`}<br/>
                   &nbsp;&nbsp;<span className="text-[#89ddff]">const</span> azad = <span className="text-[#ffcb6b]">Developer</span>(<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;name: <span className="text-[#c3e88d]">'Md Azad Hossain Tutul'</span>,<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;role: <span className="text-[#c3e88d]">'Full-Stack App Developer'</span>,<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;skills: [<span className="text-[#c3e88d]">'Flutter'</span>, <span className="text-[#c3e88d]">'React'</span>, <span className="text-[#c3e88d]">'Node.js'</span>],<br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;name: <span className="text-[#c3e88d]">&apos;Md Azad Hossain Tutul&apos;</span>,<br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;role: <span className="text-[#c3e88d]">&apos;Full-Stack App Developer&apos;</span>,<br/>
+                  &nbsp;&nbsp;&nbsp;&nbsp;skills: [<span className="text-[#c3e88d]">&apos;Flutter&apos;</span>, <span className="text-[#c3e88d]">&apos;React&apos;</span>, <span className="text-[#c3e88d]">&apos;Node.js&apos;</span>],<br/>
                   &nbsp;&nbsp;);<br/>
                   {`}`}
                 </code>

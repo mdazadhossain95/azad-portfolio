@@ -10,6 +10,7 @@ export type ArticleMeta = {
   slug: string;
   preview: string;
   publishedAt: string;
+  mediumUrl?: string;
 };
 
 export async function getArticleBySlug(slug: string) {

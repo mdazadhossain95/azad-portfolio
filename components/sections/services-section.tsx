@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { services } from "@/content/services";
 
 export function ServicesSection() {

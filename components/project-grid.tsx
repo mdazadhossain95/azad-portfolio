@@ -1,5 +1,5 @@
 import { ProjectCard } from "@/components/project-card";
-import { categoryOrder, getPrimaryProjectLink, type ProjectCategory } from "@/lib/project-taxonomy";
+import { categoryOrder, type ProjectCategory } from "@/lib/project-taxonomy";
 import { CaseStudy } from "@/lib/types";
 
 type ProjectGridProps = {

@@ -13,7 +13,7 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/azadhossain-tutul/",
     upwork: "https://www.upwork.com/freelancers/azadflutterdev",
     upworkConsultation: "https://www.upwork.com/services/product/development-it-md-azad-hossain-2076284299918704882?ref=project_share",
-    resume: "/azad-hossain-resume.pdf",
+    resume: "https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view",
     x: "https://twitter.com/mdazadhossain95",
     stackoverflow: "https://stackoverflow.com/users/14659281/azad-hossain",
     medium: "https://medium.com/@mdazadhossain95",

@@ -1,5 +1,5 @@
+import Link from "next/link";
 import { HeroSection } from "@/components/sections/hero-section";
-import { TrustStrip } from "@/components/sections/trust-strip";
 import { FeaturedWorkSection } from "@/components/sections/featured-work-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { ExperienceSection } from "@/components/sections/experience-section";
@@ -19,7 +19,13 @@ export function V4Home() {
       <FeaturedWorkSection />
       <ExpertiseSection />
       <section className="py-24 container-main">
-        <h2 className="text-3xl font-bold mb-12">Other Notable Projects</h2>
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <h2 className="text-3xl font-bold">Other Notable Projects</h2>
+          <Link href="/v4/projects" className="group flex items-center gap-2 text-sm font-medium text-[var(--accent)] hover:text-[var(--text)] transition-colors md:pb-1">
+            See all projects
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </Link>
+        </div>
         <ProjectGrid projects={projects.filter(p => !p.featured).sort((a, b) => a.priority - b.priority).slice(0, 4)} />
       </section>
       <TestimonialsSection />

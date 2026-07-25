@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { profile } from "@/content/profile";
 
 function GitHubIcon({ size = 18 }: { size?: number }) {
   return (
@@ -39,23 +40,23 @@ export function SiteFooter() {
         {/* Top row */}
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div className="space-y-1.5">
-            <p className="text-sm font-semibold text-[var(--text)]">Md Azad Hossain Tutul</p>
-            <p className="text-xs text-[var(--muted)]">Senior Flutter Developer · Android & iOS</p>
-            <p className="text-xs text-[var(--muted)]">FinTech · AI · E-commerce · Healthcare</p>
+            <p className="text-sm font-semibold text-[var(--text)]">{profile.name}</p>
+            <p className="text-xs text-[var(--muted)]">{profile.title}</p>
+            <p className="text-xs text-[var(--muted)]">FinTech · AI · SaaS</p>
           </div>
 
           <div className="flex flex-col gap-4 md:items-end">
             {/* Nav links */}
             <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-[var(--muted)]">
-              <Link href="/projects" className="hover:text-[var(--text)] transition">Projects</Link>
-              <Link href="/articles" className="hover:text-[var(--text)] transition">Articles</Link>
-              <Link href="/contact" className="hover:text-[var(--text)] transition">Contact</Link>
+              <Link href="/v1/projects" className="hover:text-[var(--text)] transition">Projects</Link>
+              <Link href="/v1/articles" className="hover:text-[var(--text)] transition">Articles</Link>
+              <Link href="/v1/contact" className="hover:text-[var(--text)] transition">Contact</Link>
             </nav>
 
             {/* Social icon links */}
             <div className="flex items-center gap-4">
               <a
-                href="https://www.linkedin.com/in/mdazadhossain95"
+                href={profile.links.linkedin}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
@@ -64,7 +65,7 @@ export function SiteFooter() {
                 <LinkedInIcon size={20} />
               </a>
               <a
-                href="https://github.com/mdazadhossain95"
+                href={profile.links.github}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -73,7 +74,7 @@ export function SiteFooter() {
                 <GitHubIcon size={20} />
               </a>
               <a
-                href="https://www.upwork.com/freelancers/~01082f851b8bed7bd1?s=996364627857502209"
+                href={profile.links.upwork}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Upwork"
@@ -82,7 +83,7 @@ export function SiteFooter() {
                 <UpworkIcon size={20} />
               </a>
               <a
-                href="https://medium.com/@mdazadhossain95"
+                href={profile.links.medium}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Medium"
@@ -93,7 +94,7 @@ export function SiteFooter() {
                 </svg>
               </a>
               <a
-                href="https://stackoverflow.com/users/14659281/azad-hossain"
+                href={profile.links.stackoverflow}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Stack Overflow"
@@ -109,7 +110,7 @@ export function SiteFooter() {
 
         {/* Bottom row */}
         <div className="flex flex-col gap-1 border-t border-[var(--line)] pt-6 text-xs text-[var(--muted)]">
-          <p>© {year} Md Azad Hossain Tutul. All rights reserved.</p>
+          <p>© {year} {profile.name}. All rights reserved.</p>
         </div>
 
       </div>

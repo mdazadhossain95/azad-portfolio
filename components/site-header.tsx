@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { profile } from "@/content/profile";
 
 const navigation = [
   { href: "/#about", label: "About", number: "01" },
@@ -170,7 +169,7 @@ export function SiteHeader() {
       >
         <div className="flex w-full items-center justify-between px-6 py-4 md:px-10 lg:px-12">
           <Link href="/" className="text-base font-mono tracking-tight group flex items-center gap-1.5">
-            <span className="text-[#64748B] transition-colors group-hover:text-[var(--accent)]">//</span>
+            <span className="text-[#64748B] transition-colors group-hover:text-[var(--accent)]">{"//"}</span>
             <span className="text-[var(--text)] font-semibold tracking-wide text-lg">azadhossain</span>
             <span className="text-[var(--accent)] font-semibold text-lg -ml-1.5">.dev</span>
             <span className="text-[#64748B] transition-colors group-hover:text-[var(--accent)]">()</span>

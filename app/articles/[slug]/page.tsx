@@ -32,9 +32,15 @@ export default async function ArticleDetailPage(props: ArticleDetailPageProps) {
 
   return (
     <section className="mx-auto w-full max-w-3xl px-5 py-20 md:px-8 md:py-24">
-      <Link href="/articles" className="text-sm text-[var(--accent)] hover:underline mb-8 inline-block">
-        ← Back to all articles
-      </Link>
+      <nav className="mb-8 flex items-center gap-2 text-sm text-[var(--muted)]">
+        <Link href="/" className="text-[var(--accent)] hover:underline">
+          Home
+        </Link>
+        <span aria-hidden="true">/</span>
+        <Link href="/articles" className="text-[var(--accent)] hover:underline">
+          Articles
+        </Link>
+      </nav>
       <header className="mb-12 space-y-4">
         <p className="mt-5 text-xs uppercase tracking-[0.14em] text-[var(--muted)]">
           {new Date(article.meta.publishedAt).toLocaleDateString("en-US", {

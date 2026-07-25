@@ -8,9 +8,7 @@ function getStoredTheme(): Theme {
   if (typeof window === "undefined") return "dark";
   const saved = window.localStorage.getItem("theme") as Theme | null;
   if (saved === "light" || saved === "dark") return saved;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  return "dark";
 }
 
 function SunIcon({ className }: { className?: string }) {
@@ -45,18 +43,6 @@ export function ThemeToggle() {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("theme", theme);
   }, [theme, mounted]);
-
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      const saved = window.localStorage.getItem("theme") as Theme | null;
-      if (!saved) {
-        setTheme(e.matches ? "dark" : "light");
-      }
-    };
-    media.addEventListener("change", handleChange);
-    return () => media.removeEventListener("change", handleChange);
-  }, []);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));

@@ -8,10 +8,10 @@ import { Settings } from "@/lib/types";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/articles", label: "Articles" },
-  { href: "/contact", label: "Contact" },
+  { href: "/v1", label: "Home" },
+  { href: "/v1/projects", label: "Projects" },
+  { href: "/v1/articles", label: "Articles" },
+  { href: "/v1/contact", label: "Contact" },
 ];
 
 const FALLBACK_RESUME = "https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view?usp=sharing";
@@ -36,7 +36,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] backdrop-blur-xl" style={{ backgroundColor: 'color-mix(in srgb, var(--bg) 90%, transparent)' }}>
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4 md:px-8">
-        <Link href="/" className="text-sm font-semibold tracking-[0.14em] text-[var(--text)] uppercase">
+        <Link href="/v1" className="text-sm font-semibold tracking-[0.14em] text-[var(--text)] uppercase">
           AZAD
         </Link>
 

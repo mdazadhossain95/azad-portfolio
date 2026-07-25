@@ -13,7 +13,7 @@ export function ArticlesSection() {
             Practical Flutter notes
           </h2>
         </div>
-        <Link href="/articles" className="text-sm font-medium text-[var(--accent)] hover:underline">
+        <Link href="/v4/articles" className="text-sm font-medium text-[var(--accent)] hover:underline">
           View all articles →
         </Link>
       </div>

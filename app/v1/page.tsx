@@ -3,10 +3,10 @@ import Link from "next/link";
 import { LiveProjects } from "@/components/live-projects";
 import { LiveReviews } from "@/components/live-reviews";
 import { SectionTitle } from "@/components/section-title";
-import { SiteHeader } from "@/components/v1/site-header-original";
-import { SiteFooter } from "@/components/v1/site-footer-original";
 import { VersionSwitcher } from "@/components/portfolio/shared/version-switcher";
 import { getSharedMetadata } from "@/lib/portfolio/metadata";
+import { profile } from "@/content/profile";
+import { experience } from "@/content/experience";
 
 export const metadata = getSharedMetadata(
   "Original Portfolio",
@@ -17,10 +17,8 @@ export const metadata = getSharedMetadata(
 
 export default function V1Page() {
   return (
-    <div className="v1-theme min-h-screen flex flex-col relative">
-      <SiteHeader />
-      <main className="flex-1">
-        <section
+    <>
+      <section
         className="relative mx-auto w-full max-w-6xl overflow-hidden px-5 pb-20 pt-16 md:px-8 md:pb-24 md:pt-28"
         style={{
           background: "linear-gradient(180deg, color-mix(in srgb, var(--bg) 98%, white) 0%, color-mix(in srgb, var(--bg) 95%, black) 100%)",
@@ -55,25 +53,25 @@ export default function V1Page() {
             {/* Name + title */}
             <div className="space-y-3">
               <h1 className="text-5xl font-semibold leading-[1.02] tracking-tight text-[var(--text)] sm:text-6xl md:text-7xl lg:text-[5.4rem]">
-                Md Azad<br />Hossain Tutul
+                {profile.name.replace(" Tutul", "")}<br />Tutul
               </h1>
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent)]">
-                I build scalable, production-ready mobile apps for startups and businesses.
+                {profile.positioning}
               </p>
               <p className="mt-1 text-sm font-medium text-[color:color-mix(in_srgb,var(--text)_84%,var(--muted)_16%)]">
-                Flutter-first • Full-stack • AI integrations
+                {profile.title}
               </p>
             </div>
 
             {/* Value proposition */}
             <p className="max-w-xl text-base leading-8 text-[var(--muted)] md:text-lg md:leading-relaxed">
-              I ship Android and iOS apps from planning to release. 5+ years in Flutter, 200+ apps delivered, focused on fintech, AI products, e-commerce, and healthcare.
+              {profile.meta.description}
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3.5">
               <a
-                href="https://www.upwork.com/freelancers/~01082f851b8bed7bd1?s=996364627857502209"
+                href={profile.links.upworkConsultation}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-primary px-6 py-3 text-sm font-medium"
@@ -81,7 +79,7 @@ export default function V1Page() {
                 Hire me
               </a>
               <Link
-                href="/projects"
+                href="/v1/projects"
                 className="btn-secondary px-6 py-3 text-sm font-medium"
               >
                 See work
@@ -89,9 +87,9 @@ export default function V1Page() {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <span className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--muted)]">FinTech • AI • E-commerce • Healthcare</span>
-              <span className="rounded-full bg-[var(--accent)]/10 px-3 py-1 text-xs font-semibold text-[var(--accent)]">200+ apps shipped</span>
-              <span className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--muted)]">100% Upwork success</span>
+              <span className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--muted)]">FinTech • AI • SaaS</span>
+              <span className="rounded-full bg-[var(--accent)]/10 px-3 py-1 text-xs font-semibold text-[var(--accent)]">{profile.proof.experienceYears} Years</span>
+              <span className="rounded-full border border-[var(--line)] px-3 py-1 text-xs text-[var(--muted)]">{profile.proof.upworkJss} Upwork success</span>
             </div>
 
             {/* Stats */}
@@ -157,7 +155,7 @@ export default function V1Page() {
                 alt="Md Azad Hossain Tutul"
                 fill
                 sizes="(min-width: 1024px) 256px, 224px"
-                className="object-cover object-top"
+                className="object-cover object-top scale-[1.15] origin-top"
                 priority
               />
             </div>
@@ -170,6 +168,11 @@ export default function V1Page() {
           eyebrow="Featured Work"
           title="Top projects with real product impact"
           description="Most conversion-ready case studies first: released products, production integrations, and measurable delivery scope."
+          action={
+            <Link href="/v1/projects" className="btn-secondary px-5 py-2.5 text-xs font-medium">
+              View All Projects ↗
+            </Link>
+          }
         />
         <LiveProjects featuredOnly />
       </section>
@@ -259,61 +262,19 @@ export default function V1Page() {
         <div className="relative space-y-0">
           {/* vertical line */}
           <div className="absolute left-[7px] top-2 h-full w-px bg-[var(--line)] md:left-[11px]" />
-          {[
-            {
-              company: "Codego",
-              role: "Mobile Application Developer",
-              period: "Mar 2024 – Present",
-              location: "Remote · Milan, Italy",
-              bullets: [
-                "Shipped CodegoPay Individual and Business to both Play Store and App Store.",
-                "Implemented fintech flows: IBAN onboarding, SEPA transfers, and biometric auth.",
-                "Maintained stable release quality through QA, performance tuning, and production fixes.",
-              ],
-            },
-            {
-              company: "Upwork",
-              role: "Mobile Application Developer (Freelance)",
-              period: "Feb 2024 – Present",
-              location: "Remote",
-              bullets: [
-                "Delivered client apps end-to-end from requirement gathering to production release.",
-                "Maintained 100% Job Success Score on Upwork with strong client retention.",
-                "Integrated APIs, payments, and admin-ready flows across fintech and utility projects.",
-              ],
-            },
-            {
-              company: "AppDevs",
-              role: "Senior Software Engineer",
-              period: "Feb 2022 – Oct 2023",
-              location: "Dhaka, Bangladesh",
-              bullets: [
-                "Led cross-functional team building Flutter apps across fintech, e-commerce, and AI sectors.",
-                "Mentored engineers on architecture, code quality, and scalable delivery practices.",
-                "Recognized as Employee of Month in both 2022 and 2023.",
-              ],
-            },
-            {
-              company: "Divine IT Limited",
-              role: "Software Engineer Intern",
-              period: "Oct 2021 – Dec 2021",
-              location: "Dhaka, Bangladesh",
-              bullets: [
-                "Built Flutter feature modules and supported production release tasks.",
-                "Gained practical experience across planning, coding, testing, and deployment.",
-              ],
-            },
-          ].map((exp) => (
-            <div key={exp.company} className="relative flex gap-6 pb-10">
+          {experience.map((exp) => (
+            <div key={exp.id} className="relative flex gap-6 pb-10">
               {/* dot */}
               <div className="relative z-10 mt-1.5 h-4 w-4 shrink-0 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)]" />
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <p className="font-semibold text-[var(--text)]">{exp.company}</p>
+                  <a href={exp.url || "#"} target="_blank" rel="noreferrer" className="font-semibold text-[var(--text)] hover:text-[var(--accent)] transition-colors">
+                    {exp.company}
+                  </a>
                   <span className="rounded-full border border-[var(--line)] px-2 py-0.5 text-xs text-[var(--muted)]">{exp.period}</span>
                 </div>
                 <p className="text-sm text-[var(--muted)]">{exp.role} · {exp.location}</p>
-                <ul className="space-y-1.5 pt-1">
+                <ul className="space-y-1.5 pt-1 pb-3">
                   {exp.bullets.map((b) => (
                     <li key={b} className="flex gap-2 text-sm leading-6 text-[var(--muted)]">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]" />
@@ -321,6 +282,22 @@ export default function V1Page() {
                     </li>
                   ))}
                 </ul>
+                
+                {exp.projects && exp.projects.length > 0 && (
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {exp.projects.map((proj) => (
+                      <a 
+                        key={proj.name}
+                        href={proj.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="soft-chip text-[11px] hover:border-[var(--accent)] transition-colors"
+                      >
+                        {proj.name.replace(" ↗", "").replace("↗", "")} ↗
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -342,7 +319,7 @@ export default function V1Page() {
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--text)] md:text-4xl">Have an idea or project? Let&apos;s turn it into a high-quality mobile app.</h2>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <a
-              href="https://www.upwork.com/freelancers/~01082f851b8bed7bd1?s=996364627857502209"
+              href={profile.links.upworkConsultation}
               target="_blank"
               rel="noreferrer"
               className="btn-primary px-6 py-3 text-sm font-medium"
@@ -350,7 +327,7 @@ export default function V1Page() {
               Start on Upwork
             </a>
             <a
-              href="mailto:mdazadhossain95@gmail.com"
+              href={`mailto:${profile.email}`}
               className="btn-secondary px-6 py-3 text-sm font-medium"
             >
               Send Email
@@ -358,9 +335,7 @@ export default function V1Page() {
           </div>
         </div>
       </section>
-      </main>
-      <SiteFooter />
       <VersionSwitcher current="v1" />
-    </div>
+    </>
   );
 }
