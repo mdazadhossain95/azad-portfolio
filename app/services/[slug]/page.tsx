@@ -36,7 +36,7 @@ export default async function ServicePage(props: ServicePageProps) {
 
   return (
     <section className="mx-auto w-full max-w-4xl px-5 py-24 md:px-8 md:py-32">
-      <Link href="/#services" className="text-sm font-medium text-[var(--accent)] hover:underline mb-8 inline-block">
+      <Link href="/services" className="text-sm font-medium text-[var(--accent)] hover:underline mb-8 inline-block">
         ← Back to all services
       </Link>
       
@@ -83,7 +83,7 @@ export default async function ServicePage(props: ServicePageProps) {
               Hire me on Upwork ↗
             </a>
             <Link
-              href="/#contact"
+              href="/contact"
               className="btn-secondary px-6 py-3 text-sm font-medium"
             >
               Contact via Email

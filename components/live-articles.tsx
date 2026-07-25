@@ -1,11 +1,14 @@
 import { ArticleCard } from "@/components/article-card";
-import { defaultArticles } from "@/lib/default-content";
+import { getAllArticles } from "@/lib/mdx";
 
-export function LiveArticles() {
+export async function LiveArticles() {
+  const articles = await getAllArticles();
+
   return (
     <div className="grid gap-5 md:grid-cols-2">
-      {defaultArticles.map((article) => (
-        <ArticleCard key={article.id} article={article} />
+      {articles.map((article) => (
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        <ArticleCard key={article.id} article={article as any} />
       ))}
     </div>
   );

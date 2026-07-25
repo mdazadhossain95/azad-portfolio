@@ -26,7 +26,7 @@ export default function ResumePage() {
         </div>
         <div className="flex gap-4">
           <a
-            href="/azad-hossain-resume.pdf"
+            href={profile.links.resume}
             target="_blank"
             rel="noreferrer"
             className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium"
@@ -36,7 +36,7 @@ export default function ResumePage() {
               <polyline points="7 10 12 15 17 10" />
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
-            Download PDF
+            View resume
           </a>
         </div>
       </div>
