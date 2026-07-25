@@ -1,26 +1,31 @@
+import { V2Hero } from "@/components/portfolio/v2/v2-hero";
+import { V2CapabilityModules } from "@/components/portfolio/v2/v2-capability-modules";
+import { V2ProductionSystems } from "@/components/portfolio/v2/v2-production-systems";
+import { V2ArchitectureWorkflow } from "@/components/portfolio/v2/v2-architecture-workflow";
+import { V2ExperienceTimeline } from "@/components/portfolio/v2/v2-experience-timeline";
+import { V2TechnicalMatrix } from "@/components/portfolio/v2/v2-technical-matrix";
+import { V2Contact } from "@/components/portfolio/v2/v2-contact";
 import { VersionSwitcher } from "@/components/portfolio/shared/version-switcher";
 import { getSharedMetadata } from "@/lib/portfolio/metadata";
 
 export const metadata = getSharedMetadata(
-  "AI & Startups Engineer",
-  "Fast-paced AI engineering and MVPs.",
+  "FinTech Systems Lab",
+  "Production FinTech, payments, and systems engineering — banking apps, KYC, and secure API integrations shipped to real users.",
   "/v2",
-  true // noindex
+  true
 );
 
 export default function V2Page() {
   return (
-    <main className="flex min-h-[80vh] flex-col items-center justify-center p-8 text-center">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight text-[var(--text)]">V2: AI & Startups</h1>
-        <p className="text-lg text-[var(--text-muted)] max-w-lg mx-auto">
-          A vibrant, dynamic, glassmorphic design optimized for fast-paced AI startups and founders.
-        </p>
-        <div className="inline-block rounded-full bg-[var(--surface-raised)] px-4 py-1 text-sm font-medium text-[var(--accent)] mt-8">
-          Status: Shell / Under Construction
-        </div>
-      </div>
+    <>
+      <V2Hero />
+      <V2CapabilityModules />
+      <V2ProductionSystems />
+      <V2ArchitectureWorkflow />
+      <V2ExperienceTimeline />
+      <V2TechnicalMatrix />
+      <V2Contact />
       <VersionSwitcher current="v2" />
-    </main>
+    </>
   );
 }

@@ -306,3 +306,54 @@ html {
   border-radius: 1.125rem;
   box-shadow: 0 10px 24px color-mix(in srgb, var(--text) 8%, transparent);
 }
+
+/* =========================================
+   V2 (FinTech Systems Lab) Theme Overrides
+   ========================================= */
+.v2-theme {
+  --bg: #0A0F1C;
+  --bg-deep: #050810;
+  --text: #E7ECF5;
+  --muted: #8B96AC;
+  --text-muted: #8B96AC;
+  --line: #1E2A3D;
+  --border-strong: #2C3B54;
+  --card: #0E1524;
+  --surface: #0E1524;
+  --surface-raised: #131C2E;
+
+  --accent: #3B82F6;
+  --accent-strong: #60A5FA;
+  --accent-soft: rgba(59, 130, 246, 0.12);
+  --btn-text: #F8FAFC;
+
+  --v2-system: #38BDF8;
+  --v2-verified: #10B981;
+  --v2-ai: #8B5CF6;
+
+  background: var(--bg) !important;
+  color: var(--text);
+}
+
+.v2-theme .btn-primary {
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--btn-text);
+}
+
+.v2-theme .btn-secondary {
+  border-radius: 0.5rem;
+  border-color: var(--border-strong);
+}
+
+.v2-theme .surface-card {
+  border-radius: 0.75rem;
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+.v2-theme .soft-chip {
+  border-radius: 0.375rem;
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+}
