@@ -54,7 +54,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle />
+          <ThemeToggle storageKey="v1-theme" />
           {/* Hamburger - mobile only */}
           <button
             type="button"

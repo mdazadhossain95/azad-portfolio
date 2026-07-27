@@ -41,6 +41,9 @@ export function V3PaletteSwitcher() {
     if (mounted) {
       applyPalette(palette);
     }
+    return () => {
+      document.documentElement.removeAttribute("data-v3-palette");
+    };
   }, [palette, mounted]);
 
   const activePalette = useMemo(() => PALETTES.find((item) => item.id === palette) ?? PALETTES[0], [palette]);

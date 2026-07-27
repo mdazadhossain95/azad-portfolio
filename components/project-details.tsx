@@ -9,6 +9,7 @@ import { CaseStudy } from "@/lib/types";
 
 type ProjectDetailsProps = {
   project: CaseStudy;
+  baseUrl?: string;
 };
 
 const statusBadge: Record<string, string> = {
@@ -40,7 +41,7 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
+export function ProjectDetailsPage({ project, baseUrl = "/projects" }: ProjectDetailsProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const searchParams = useSearchParams();
   const returnVersion = searchParams?.get("v");
@@ -62,7 +63,7 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
           ← Return to {returnVersion.toUpperCase()}
         </Link>
       ) : (
-        <Link href="/projects" className="text-sm text-[var(--accent)] hover:underline">
+        <Link href={baseUrl} className="text-sm text-[var(--accent)] hover:underline">
           ← Back to projects
         </Link>
       )}
@@ -297,7 +298,7 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
               >
                 Discuss Your Project on Upwork
               </a>
-              <Link href="/projects" className="btn-secondary px-6 py-3 text-sm font-medium">
+              <Link href={baseUrl} className="btn-secondary px-6 py-3 text-sm font-medium">
                 View More Work
               </Link>
             </div>
@@ -334,7 +335,7 @@ export function ProjectDetailsPage({ project }: ProjectDetailsProps) {
               <p className="text-xs uppercase tracking-[0.12em] text-[var(--text-muted)]">Related Work</p>
               <div className="mt-4 flex flex-col gap-3">
                 {project.relatedProjects.map((rp) => (
-                  <Link key={rp.slug} href={`/projects/${rp.slug}`} className="text-sm font-medium text-[var(--accent)] hover:underline">
+                  <Link key={rp.slug} href={`${baseUrl}/${rp.slug}`} className="text-sm font-medium text-[var(--accent)] hover:underline">
                     {rp.title}
                   </Link>
                 ))}

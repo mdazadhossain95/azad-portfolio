@@ -4,11 +4,8 @@ import { getVersionLabel, versions, PortfolioVersion } from "@/lib/portfolio/ver
 export function VersionSwitcher({ current }: { current: PortfolioVersion }) {
   if (current === "v1") {
     // V1 (Classic/Minimal): Adapt the switcher into a clean, understated bottom footer or subtle inline badge
-    // that fits the classic minimalist layout without floating awkwardly.
     return (
-      <div className="fixed bottom-6 left-6 z-30 flex items-center gap-4 rounded-full border border-[var(--line)] bg-[var(--bg)]/90 px-5 py-2.5 text-xs shadow-sm backdrop-blur-md">
-        <span className="font-semibold tracking-wide text-[var(--text)]">VERSION</span>
-        <div className="h-4 w-px bg-[var(--line)]" />
+      <div className="fixed bottom-6 right-6 z-30 flex items-center gap-3 rounded-full border border-[var(--line)] bg-[var(--bg)]/90 px-5 py-2.5 text-xs shadow-sm backdrop-blur-md">
         <div className="flex items-center gap-3">
           {versions.map((v) => (
             <Link

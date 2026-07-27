@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { getPrimaryProjectLink } from "@/lib/project-taxonomy";
 import { CaseStudy } from "@/lib/types";
 
@@ -16,11 +19,14 @@ const statusLabel: Record<string, string> = {
 };
 
 export function ProjectCard({ project, priority = false }: ProjectCardProps) {
+  const pathname = usePathname();
+  const versionPrefix = pathname?.match(/^\/(v[1-4])/)?.[1] || "";
+  const baseUrl = versionPrefix ? `/${versionPrefix}/projects` : "/projects";
   const primaryLink = getPrimaryProjectLink(project);
 
   return (
     <article className="surface-card surface-card-hover group flex h-full flex-col overflow-hidden">
-      <Link href={`/projects/${project.slug}`} className="relative block aspect-[4/3] overflow-hidden border-b border-[var(--line)] bg-[var(--bg)]">
+      <Link href={`${baseUrl}/${project.slug}`} className="relative block aspect-[4/3] overflow-hidden border-b border-[var(--line)] bg-[var(--bg)]">
         <Image
           src={project.coverImage}
           alt={project.title}
@@ -56,7 +62,7 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
           </div>
         </div>
         <div className="mt-5 flex flex-wrap gap-3">
-          <Link href={`/projects/${project.slug}`} className="btn-primary px-4 py-2 text-sm font-medium">
+          <Link href={`${baseUrl}/${project.slug}`} className="btn-primary px-4 py-2 text-sm font-medium">
             View Details
           </Link>
           {primaryLink ? (

@@ -4,9 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
-function getStoredTheme(): Theme {
+function getStoredTheme(storageKey: string): Theme {
   if (typeof window === "undefined") return "dark";
-  const saved = window.localStorage.getItem("theme") as Theme | null;
+  const saved = window.localStorage.getItem(storageKey) as Theme | null;
   if (saved === "light" || saved === "dark") return saved;
   return "dark";
 }
@@ -28,21 +28,21 @@ function MoonIcon({ className }: { className?: string }) {
   );
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ storageKey = "theme" }: { storageKey?: string }) {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
-    setTheme(getStoredTheme());
-  }, []);
+    setTheme(getStoredTheme(storageKey));
+  }, [storageKey]);
 
   useEffect(() => {
     if (!mounted) return;
     document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem("theme", theme);
-  }, [theme, mounted]);
+    window.localStorage.setItem(storageKey, theme);
+  }, [theme, mounted, storageKey]);
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
