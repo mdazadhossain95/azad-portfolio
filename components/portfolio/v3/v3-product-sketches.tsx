@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SectionTitle } from "@/components/section-title";
+import { SectionTitle } from "@/components/portfolio/v3/v3-section-title";
 import { projects } from "@/content/projects";
 
 export function V3ProductSketches() {
@@ -34,14 +34,18 @@ export function V3ProductSketches() {
               href={`/v3/projects/${project.slug}`}
               className="group block"
             >
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm border border-[var(--line)] bg-[var(--bg)]">
-                <Image
-                  src={project.coverImage}
-                  alt={project.title}
-                  fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  className="object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]"
-                />
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm border border-[var(--line)] bg-[var(--bg)] p-2">
+                {/* Tape strip */}
+                <div className="absolute -top-3 left-1/2 z-10 h-8 w-24 -translate-x-1/2 -rotate-2 bg-[rgba(255,255,255,0.4)] shadow-[0_1px_3px_rgba(0,0,0,0.1)] backdrop-blur-sm mix-blend-overlay"></div>
+                <div className="relative h-full w-full overflow-hidden rounded-sm border border-[var(--line)]">
+                  <Image
+                    src={project.coverImage}
+                    alt={project.title}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
+                </div>
               </div>
               <div className="mt-3 flex items-center justify-between gap-3">
                 <p className="font-handwriting text-xl" style={{ color: "var(--v3-gold)" }}>

@@ -5,7 +5,7 @@ export function V3CoverHero() {
   return (
     <section className="mx-auto w-full max-w-6xl px-5 pb-16 pt-12 md:px-8 md:pb-24 md:pt-16">
       <div className="grid gap-6 lg:grid-cols-[1.15fr_360px] lg:items-start lg:justify-between">
-        <div className="surface-card v3-anim-enter space-y-6 p-6 md:p-8">
+        <div className="v3-anim-enter space-y-6 pt-6 md:pt-8 lg:pr-8">
           <div className="flex flex-wrap items-center gap-3">
             <p className="font-handwriting text-2xl" style={{ color: "var(--v3-gold)" }}>
               Notebook entry no. 1
@@ -26,11 +26,11 @@ export function V3CoverHero() {
             relationships behind the finished app.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a href="#sketches" className="btn-primary w-full sm:w-auto px-6 py-3 text-sm font-medium">
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <a href="#sketches" className="btn-primary w-full sm:w-auto px-8 py-3 text-[15px] font-semibold tracking-wide bg-[var(--v3-gold)] text-white shadow-sm transition-transform hover:-translate-y-0.5 rounded-full">
               Read the sketches
             </a>
-            <a href="#contact" className="btn-secondary w-full sm:w-auto px-6 py-3 text-sm font-medium">
+            <a href="#contact" className="btn-secondary w-full sm:w-auto px-8 py-3 text-[15px] font-medium tracking-wide text-[var(--text)] border border-[var(--border-strong)] bg-white hover:bg-[var(--surface-raised)] transition-all rounded-full shadow-sm">
               Get in touch
             </a>
           </div>
@@ -41,11 +41,14 @@ export function V3CoverHero() {
               { label: "Job success", value: profile.proof.upworkJss },
               { label: "Certifications", value: "16+" },
             ].map((item) => (
-              <div key={item.label} className="rounded-md border border-[var(--line)] bg-[var(--bg)] p-4">
-                <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--muted)]">
+              <div 
+                key={item.label} 
+                className="relative rounded-md border border-[var(--border-strong)] bg-[#FDF8B4] p-4 shadow-sm"
+              >
+                <p className="font-handwriting text-lg text-[var(--muted)]">
                   {item.label}
                 </p>
-                <p className="mt-2 text-lg font-semibold text-[var(--text)]">{item.value}</p>
+                <p className="mt-1 font-handwriting text-2xl text-[var(--text)]">{item.value}</p>
               </div>
             ))}
           </div>

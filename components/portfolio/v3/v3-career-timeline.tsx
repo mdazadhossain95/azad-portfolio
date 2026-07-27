@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SectionTitle } from "@/components/section-title";
+import { SectionTitle } from "@/components/portfolio/v3/v3-section-title";
 import { experience } from "@/content/experience";
 
 export function V3CareerTimeline() {

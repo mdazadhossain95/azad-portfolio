@@ -986,8 +986,6 @@ html {
    ========================================= */
 .v3-theme {
   background-color: var(--bg) !important;
-  background-image: radial-gradient(rgba(44, 42, 40, 0.12) 1px, transparent 1px) !important;
-  background-size: 18px 18px !important;
   color: var(--text);
 }
 

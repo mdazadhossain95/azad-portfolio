@@ -1,4 +1,4 @@
-import { SectionTitle } from "@/components/section-title";
+import { SectionTitle } from "@/components/portfolio/v3/v3-section-title";
 import { profile } from "@/content/profile";
 import { defaultReviews } from "@/lib/default-content";
 

@@ -66,6 +66,46 @@ export function V3ProjectDetails({ project }: { project: CaseStudy }) {
             <div>
               <h2 className="font-handwriting text-2xl" style={{ color: "var(--v3-gold)" }}>Context</h2>
               <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{project.productContext}</p>
+              
+              {project.businessProblem && (
+                <p className="mt-4 text-sm leading-7 text-[var(--muted)]"><strong className="text-[var(--text)]">The problem: </strong>{project.businessProblem}</p>
+              )}
+            </div>
+          )}
+          
+          {(project.teamContext || project.ownershipNote) && (
+            <div>
+              <h2 className="font-handwriting text-2xl" style={{ color: "var(--v3-gold)" }}>Team & Ownership</h2>
+              {project.teamContext && <p className="mt-4 text-sm leading-7 text-[var(--muted)]">{project.teamContext}</p>}
+              {project.ownershipNote && <p className="mt-2 text-sm leading-7 text-[var(--muted)]">{project.ownershipNote}</p>}
+            </div>
+          )}
+          
+          {project.challenges && project.challenges.length > 0 && (
+            <div>
+              <h2 className="font-handwriting text-2xl mb-4" style={{ color: "var(--v3-gold)" }}>Challenges</h2>
+              <ul className="space-y-3">
+                {project.challenges.map((challenge) => (
+                  <li key={challenge} className="flex gap-3 text-sm leading-7 text-[var(--muted)]">
+                    <span style={{ color: "var(--v3-gold)" }}>—</span>
+                    <span>{challenge}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          
+          {project.contributions && project.contributions.length > 0 && (
+            <div>
+              <h2 className="font-handwriting text-2xl mb-4" style={{ color: "var(--v3-gold)" }}>Key Contributions</h2>
+              <ul className="space-y-3">
+                {project.contributions.map((contribution) => (
+                  <li key={contribution} className="flex gap-3 text-sm leading-7 text-[var(--muted)]">
+                    <span style={{ color: "var(--v3-gold)" }}>—</span>
+                    <span>{contribution}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
           
@@ -94,6 +134,46 @@ export function V3ProjectDetails({ project }: { project: CaseStudy }) {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {project.lessons && project.lessons.length > 0 && (
+            <div>
+              <h2 className="font-handwriting text-2xl mb-4" style={{ color: "var(--v3-gold)" }}>Lessons Learned</h2>
+              <ul className="space-y-3">
+                {project.lessons.map((lesson) => (
+                  <li key={lesson} className="flex gap-3 text-sm leading-7 text-[var(--muted)]">
+                    <span style={{ color: "var(--v3-gold)" }}>—</span>
+                    <span>{lesson}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {project.gallery && project.gallery.length > 0 && (
+            <div>
+              <h2 className="font-handwriting text-2xl mb-6" style={{ color: "var(--v3-gold)" }}>Gallery</h2>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {project.gallery.map((image, idx) => (
+                  <div key={idx} className="space-y-2">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm border border-[var(--line)] bg-[var(--bg)]">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="(min-width: 640px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    {image.caption && (
+                      <p className="font-handwriting text-sm text-[var(--muted)] text-center">
+                        {image.caption}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
           

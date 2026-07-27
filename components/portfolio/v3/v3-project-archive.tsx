@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { projects } from "@/content/projects";
-import { SectionTitle } from "@/components/section-title";
+import { SectionTitle } from "@/components/portfolio/v3/v3-section-title";
 
 export function V3ProjectArchive() {
   const items = projects.slice().sort((a, b) => (a.priority ?? 999) - (b.priority ?? 999));

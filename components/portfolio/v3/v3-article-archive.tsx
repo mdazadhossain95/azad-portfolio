@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SectionTitle } from "@/components/section-title";
+import { SectionTitle } from "@/components/portfolio/v3/v3-section-title";
 import type { ArticleMeta } from "@/lib/mdx";
 
 export function V3ArticleArchive({ articles }: { articles: ArticleMeta[] }) {
