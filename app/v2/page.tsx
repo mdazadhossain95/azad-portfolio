@@ -6,7 +6,7 @@ import { V2Articles } from "@/components/portfolio/v2/v2-articles";
 import { V2Capabilities } from "@/components/portfolio/v2/v2-capabilities";
 import { V2Contact } from "@/components/portfolio/v2/v2-contact";
 import { getSharedMetadata } from "@/lib/portfolio/metadata";
-import { VersionSwitcher } from "@/components/portfolio/shared/version-switcher";
+
 
 export const metadata = getSharedMetadata(
   "Cosmic Gravity",
@@ -25,7 +25,7 @@ export default function V2Page() {
       <V2Articles />
       <V2Capabilities />
       <V2Contact />
-      <VersionSwitcher current="v2" />
+
     </>
   );
 }

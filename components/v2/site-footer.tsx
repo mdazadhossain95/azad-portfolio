@@ -57,12 +57,31 @@ export function SiteFooter() {
 
 
 
-        <p
-          className="mt-10 border-t pt-6 text-[13px] text-[var(--muted)]"
+        <div 
+          className="mt-10 border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4"
           style={{ borderColor: "var(--v2-panel-edge)" }}
         >
-          © {year} {profile.name}
-        </p>
+          <p className="text-[13px] text-[var(--muted)]">
+            © {year} {profile.name}
+          </p>
+
+          <div className="flex items-center gap-2 text-xs font-mono">
+            {versions.map((v) => (
+              <Link
+                key={v.id}
+                href={v.path}
+                className={`flex h-6 items-center justify-center rounded-sm transition-all ${
+                  v.id === "v2"
+                    ? "bg-[var(--accent)] px-2 font-bold text-[var(--bg-deep)] shadow-[0_0_10px_var(--accent)]"
+                    : "w-6 text-[var(--muted)] hover:bg-[var(--border-strong)] hover:text-[var(--text)]"
+                }`}
+                title={v.description}
+              >
+                {v.id === "v2" ? "2 ORBIT" : v.id.replace("v", "")}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   );

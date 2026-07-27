@@ -30,7 +30,7 @@ export function VersionSwitcher({ current }: { current: PortfolioVersion }) {
     // V2 (Cosmic Gravity): Style the switcher with a space-themed, clean structural alignment 
     // that blends smoothly into the cosmic background layout without causing side boundary cuts.
     return (
-      <div className="fixed bottom-6 left-6 z-30 flex items-center gap-2 rounded-lg border border-[var(--border-strong)] bg-[var(--surface-raised)]/80 px-3 py-2 text-xs font-mono shadow-[0_0_20px_rgba(59,130,246,0.15)] backdrop-blur-md">
+      <div className="fixed bottom-6 right-6 z-30 flex items-center gap-2 rounded-lg border border-[var(--border-strong)] bg-[var(--surface-raised)]/80 px-3 py-2 text-xs font-mono shadow-[0_0_20px_rgba(59,130,246,0.15)] backdrop-blur-md">
         <span className="text-[var(--muted)] opacity-70">UI_VER//</span>
         {versions.map((v) => (
           <Link
