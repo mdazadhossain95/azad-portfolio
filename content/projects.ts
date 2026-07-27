@@ -158,7 +158,7 @@ export const projects: CaseStudy[] = [
       { src: "/project-assets/codegokyc/2.png", alt: "CodegoKYC Scan", caption: "Document Scanning" }
     ],
     links: {
-      playStore: "https://play.google.com/store/apps/details?id=code.go.kyc",
+      playStore: "https://play.google.com/store/apps/details?id=com.codegokyc.individual",
       website: "https://codegokyc.com/",
     },
   },
