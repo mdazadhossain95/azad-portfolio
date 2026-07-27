@@ -5,7 +5,7 @@ export function VersionSwitcher({ current }: { current: PortfolioVersion }) {
   if (current === "v1") {
     // V1 (Classic/Minimal): Adapt the switcher into a clean, understated bottom footer or subtle inline badge
     return (
-      <div className="fixed bottom-6 right-6 z-30 flex items-center gap-3 rounded-full border border-[var(--line)] bg-[var(--bg)]/90 px-5 py-2.5 text-xs shadow-sm backdrop-blur-md">
+      <div className="fixed bottom-20 right-6 z-30 flex items-center gap-3 rounded-full border border-[var(--line)] bg-[var(--bg)]/90 px-5 py-2.5 text-xs shadow-sm backdrop-blur-md md:bottom-6">
         <div className="flex items-center gap-3">
           {versions.map((v) => (
             <Link
