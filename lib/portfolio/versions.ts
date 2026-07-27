@@ -11,7 +11,7 @@ export const versions: VersionInfo[] = [
   { id: "v1", name: "Classic", description: "V1: Enterprise-grade FinTech portfolio.", path: "/v1" },
   { id: "v2", name: "Orbit", description: "V2: Immersive cosmic and design-led portfolio.", path: "/v2" },
   { id: "v3", name: "Notebook", description: "V3: Personality, process, and product sketches.", path: "/v3" },
-  { id: "v4", name: "Product", description: "V4: Comprehensive Mobile Engineering.", path: "/v4" },
+  { id: "v4", name: "Terminal", description: "V4: Comprehensive Mobile Engineering.", path: "/v4" },
 ];
 
 export function getVersionLabel(version: VersionInfo, current: PortfolioVersion) {
