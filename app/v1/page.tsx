@@ -8,6 +8,8 @@ import { VersionSwitcher } from "@/components/portfolio/shared/version-switcher"
 import { getSharedMetadata } from "@/lib/portfolio/metadata";
 import { profile } from "@/content/profile";
 import { experience } from "@/content/experience";
+import { skills } from "@/content/skills";
+import { expertise } from "@/content/expertise";
 
 export const metadata = getSharedMetadata(
   "Original Portfolio",
@@ -99,19 +101,19 @@ export default function V1Page() {
               style={{ borderColor: "color-mix(in srgb, var(--line) 80%, var(--text) 20%)" }}
             >
               <div>
-                <p className="text-2xl font-semibold text-[var(--text)]">5+</p>
+                <p className="text-2xl font-semibold text-[var(--text)]">{profile.proof.experienceYears}</p>
                 <p className="mt-0.5 text-xs text-[var(--muted)]">Years of Flutter</p>
               </div>
               <div>
-                <p className="text-2xl font-semibold text-[var(--text)]">200+</p>
+                <p className="text-2xl font-semibold text-[var(--text)]">{profile.proof.appsDelivered}</p>
                 <p className="mt-0.5 text-xs text-[var(--muted)]">Apps delivered</p>
               </div>
               <div>
-                <p className="text-2xl font-semibold text-[var(--text)]">100%</p>
+                <p className="text-2xl font-semibold text-[var(--text)]">{profile.proof.upworkJss}</p>
                 <p className="mt-0.5 text-xs text-[var(--muted)]">Upwork job success</p>
               </div>
               <div>
-                <p className="text-2xl font-semibold text-[var(--text)]">15+</p>
+                <p className="text-2xl font-semibold text-[var(--text)]">{profile.proof.happyClients}</p>
                 <p className="mt-0.5 text-xs text-[var(--muted)]">Happy clients</p>
               </div>
             </div>
@@ -191,20 +193,10 @@ export default function V1Page() {
           description="Important stack first: Flutter engineering, backend integration, payments, and release pipeline."
         />
         <div className="space-y-4">
-          {[
-            { label: "Mobile", skills: ["Flutter", "Dart", "Android · iOS"] },
-            { label: "Frontend / Web", skills: ["React.js", "Next.js", "TypeScript"] },
-            { label: "Backend", skills: ["Node.js", "Firebase", "REST API"] },
-            { label: "AI / Integrations", skills: ["ChatGPT API", "AI-powered features"] },
-            { label: "Database", skills: ["MySQL", "MongoDB"] },
-            { label: "Payments", skills: ["Stripe", "PayPal", "Apple Pay · Google Pay"] },
-            { label: "Architecture", skills: ["Clean Architecture", "BLoC"] },
-            { label: "DevOps / Release", skills: ["GitHub", "Fastlane", "App Store Connect"] },
-            { label: "Design", skills: ["Figma"] },
-          ].map((group) => (
-            <div key={group.label} className="flex flex-wrap items-start gap-2">
-              <span className="min-w-[4.5rem] shrink-0 pt-1 text-xs text-[var(--muted)] md:min-w-28">{group.label}</span>
-              {group.skills.map((s) => (
+          {skills.map((group) => (
+            <div key={group.category} className="flex flex-wrap items-start gap-2">
+              <span className="min-w-[9rem] shrink-0 pt-1 text-xs text-[var(--muted)] md:min-w-40">{group.category}</span>
+              {group.items.map((s) => (
                 <span key={s} className="soft-chip text-xs text-[var(--text)]">
                   {s}
                 </span>
@@ -221,25 +213,8 @@ export default function V1Page() {
           description="Four areas that cover a build end to end, from interface to production release."
         />
         <div className="grid gap-4 sm:grid-cols-2">
-          {[
-            {
-              title: "Mobile & Cross-Platform",
-              description: "Maintainable Android and iOS apps with Flutter, native integrations, and production-focused architecture.",
-            },
-            {
-              title: "Web Frontend Engineering",
-              description: "Responsive web products, dashboards, and API-driven interfaces with React, Next.js, and TypeScript.",
-            },
-            {
-              title: "Backend, APIs & Data",
-              description: "Secure APIs, authentication, and data flows to power cross-platform applications.",
-            },
-            {
-              title: "Integrations & Delivery",
-              description: "Connecting payments, AI, and SaaS platforms, then handling testing and store deployment.",
-            },
-          ].map((item) => (
-            <div key={item.title} className="surface-card rounded-3xl border p-5">
+          {expertise.map((item) => (
+            <div key={item.id} className="surface-card rounded-3xl border p-5">
               <p className="text-xs uppercase tracking-[0.16em] text-[var(--accent)]">{item.title}</p>
               <p className="mt-3 text-sm leading-6 text-[var(--muted)]">{item.description}</p>
             </div>

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(npm:*)",
+      "Shell(rm:*)",
+      "Shell(ls components/portfolio/v2/v2-*.tsx 2>/dev/null; echo \"---celestial---\"; ls components/portfolio/v2/celestial/ 2>/dev/null)",
+      "Shell(agent-browser:*)",
+      "Shell(curl -s -o /dev/null -w v2 HTTP %{http_code}\\n http://localhost:3001/v2)",
+      "Shell(curl -s -o /dev/null -w v2/projects HTTP %{http_code}\\n http://localhost:3001/v2/projects)",
+      "Shell(curl -s http://localhost:3001/v2 -o /tmp/v2-render.html; echo \"bytes: $(wc -c < /tmp/v2-render.html)\"; echo \"=== de-cosplay present ===\"; grep -o -e \"Start a build\" -e \"Selected work\" -e \"Recent articles\" -e \"Get in touch\" -e \"01 / About\" -e \"02 / Experience\" -e \"03 / Projects\" -e \"04 / Articles\" -e \"05 / Capabilities\" -e \"06 / Contact\" /tmp/v2-render.html | sort -u; echo \"=== cosplay should be ABSENT ===\"; grep -o -e \"Start a mission\" -e \"Mission status\" -e \"survive the vacuum\" -e \"Knowledge transmissions\" -e \"Missions worth exploring\" -e \"Destination reached\" -e \"Star map\" /tmp/v2-render.html | sort -u || echo \"(none found — good)\"; echo \"=== canvas aria-hidden ===\"; grep -o 'aria-hidden=\"true\"[^>]*pointer-events-none' /tmp/v2-render.html | head -2; echo \"=== section ids ===\"; grep -o -e 'id=\"hero\"' -e 'id=\"about\"' -e 'id=\"experience\"' -e 'id=\"projects\"' -e 'id=\"transmissions\"' -e 'id=\"capabilities\"' -e 'id=\"contact\"' /tmp/v2-render.html | sort -u)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

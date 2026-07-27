@@ -1,0 +1,32 @@
+{
+  "inert_after_entry": 0,
+  "hero_button_heights": [
+    48,
+    48
+  ],
+  "hero_button_widths": [
+    168,
+    168
+  ],
+  "see_work_hash_after_click": "#projects",
+  "earth_keyboard_control": "Interactive Earth. Drag to rotate, or use the arrow keys.",
+  "homepage_article_href": "https://medium.com/@mdazadhossain95/building-scalable-apps-with-flutter-my-process-from-idea-to-deployment-ef7cbb31a50e",
+  "homepage_article_target": "_blank",
+  "homepage_read_labels": 0,
+  "homepage_medium_labels": 0,
+  "archive_article_href": "https://medium.com/@mdazadhossain95/building-scalable-apps-with-flutter-my-process-from-idea-to-deployment-ef7cbb31a50e",
+  "archive_read_labels": 0,
+  "resume_value_count": 0,
+  "contact_button_sizes": [
+    {
+      "width": 200,
+      "height": 48
+    },
+    {
+      "width": 200,
+      "height": 48
+    }
+  ],
+  "mobile_overflow": false,
+  "errors": []
+}

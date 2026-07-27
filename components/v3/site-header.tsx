@@ -5,12 +5,12 @@ import Link from "next/link";
 import { profile } from "@/content/profile";
 
 const navigation = [
-  { href: "#about", label: "About" },
-  { href: "#timeline", label: "Career" },
-  { href: "#sketches", label: "Sketches" },
-  { href: "#toolkit", label: "Toolkit" },
-  { href: "#notes", label: "Client notes" },
-  { href: "#contact", label: "Contact" },
+  { href: "/v3#about", label: "About" },
+  { href: "/v3#timeline", label: "Career" },
+  { href: "/v3#sketches", label: "Sketches" },
+  { href: "/v3#toolkit", label: "Toolkit" },
+  { href: "/v3#notes", label: "Client notes" },
+  { href: "/v3#contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -37,9 +37,9 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-5 md:flex" aria-label="Primary">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm text-[var(--muted)] transition hover:text-[var(--v3-ink)]">
+            <Link key={item.href} href={item.href} className="text-sm text-[var(--muted)] transition hover:text-[var(--v3-ink)]">
               {item.label}
-            </a>
+            </Link>
           ))}
           <a href={profile.links.resume} target="_blank" rel="noreferrer" className="btn-secondary px-4 py-1.5 text-xs font-medium">
             Resume
@@ -73,14 +73,14 @@ export function SiteHeader() {
         <div className="border-t px-5 py-4 md:hidden" style={{ borderColor: "var(--line)", backgroundColor: "var(--bg)" }}>
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-3 py-2.5 text-sm text-[var(--muted)] transition hover:bg-[var(--surface-raised)] hover:text-[var(--text)]"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <a
               href={profile.links.resume}

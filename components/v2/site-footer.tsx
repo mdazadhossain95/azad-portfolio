@@ -1,25 +1,68 @@
+import Link from "next/link";
 import { profile } from "@/content/profile";
+import { getVersionLabel, versions } from "@/lib/portfolio/versions";
+
+const NAV = [
+  { href: "/v2#projects", label: "Missions" },
+  { href: "/v2#transmissions", label: "Articles" },
+  { href: "/v2/projects", label: "All projects" },
+  { href: "/v2/articles", label: "All articles" },
+  { href: "/v2#contact", label: "Contact" },
+];
+
+const SOCIAL = [
+  { href: profile.links.linkedin, label: "LinkedIn" },
+  { href: profile.links.github, label: "GitHub" },
+  { href: profile.links.upwork, label: "Upwork" },
+  { href: profile.links.medium, label: "Medium" },
+];
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t" style={{ borderColor: "var(--line)" }}>
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between md:px-8">
-        <div className="space-y-1">
-          <p className="text-sm font-semibold text-[var(--text)]">{profile.name}</p>
-          <p className="font-mono text-xs text-[var(--muted)]">FinTech Systems Lab · v2</p>
+    <footer className="relative z-20 border-t bg-[var(--v2-void)] text-[var(--text)]" style={{ borderColor: "var(--v2-panel-edge)" }}>
+      <div className="mx-auto w-full max-w-6xl px-5 py-12 md:px-8">
+        <div className="grid gap-8 md:grid-cols-3">
+          <div>
+            <p className="text-base font-semibold text-[var(--text)]">{profile.name}</p>
+          </div>
+
+          <nav className="flex flex-col gap-2.5" aria-label="Footer">
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="inline-flex min-h-6 w-fit items-center text-[14px] text-[var(--muted)] underline-offset-4 transition hover:text-[var(--text)] hover:underline"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex flex-col gap-2.5">
+            {SOCIAL.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex min-h-6 w-fit items-center text-[14px] text-[var(--muted)] underline-offset-4 transition hover:text-[var(--text)] hover:underline"
+              >
+                {item.label} ↗
+              </a>
+            ))}
+          </div>
         </div>
 
-        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-[var(--muted)]" aria-label="Footer">
-          <a href="#systems" className="transition hover:text-[var(--text)]">Systems</a>
-          <a href="#matrix" className="transition hover:text-[var(--text)]">Matrix</a>
-          <a href="#contact" className="transition hover:text-[var(--text)]">Contact</a>
-          <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="transition hover:text-[var(--text)]">LinkedIn</a>
-          <a href={profile.links.github} target="_blank" rel="noreferrer" className="transition hover:text-[var(--text)]">GitHub</a>
-        </nav>
 
-        <p className="text-xs text-[var(--muted)]">© {year} {profile.name}</p>
+
+        <p
+          className="mt-10 border-t pt-6 text-[13px] text-[var(--muted)]"
+          style={{ borderColor: "var(--v2-panel-edge)" }}
+        >
+          © {year} {profile.name}
+        </p>
       </div>
     </footer>
   );

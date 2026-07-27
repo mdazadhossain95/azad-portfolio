@@ -1,9 +1,18 @@
-import { 
-  Smartphone, 
-  Monitor, 
-  Server, 
-  Rocket 
+import {
+  Smartphone,
+  Monitor,
+  Server,
+  Rocket,
+  type LucideIcon,
 } from "lucide-react";
+import { expertise } from "@/content/expertise";
+
+const ICONS: Record<string, LucideIcon> = {
+  mobile: Smartphone,
+  web: Monitor,
+  backend: Server,
+  delivery: Rocket,
+};
 
 export function ExpertiseSection() {
   return (
@@ -24,84 +33,32 @@ export function ExpertiseSection() {
         {/* Capabilities Matrix (Left Side - 7 cols) */}
         <div className="lg:col-span-7">
           <div className="grid gap-6 sm:grid-cols-2">
-            
-            {/* 1. Mobile & Cross-Platform */}
-            <div className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-lg hover:shadow-[var(--accent)]/5">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)] group-hover:text-white">
-                <Smartphone className="h-5 w-5" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
-                Mobile & Cross-Platform
-              </h3>
-              <p className="mb-4 text-sm leading-relaxed text-[var(--text-muted)]">
-                Building maintainable Android and iOS applications with Flutter, native integrations, and production-focused architecture.
-              </p>
-              <div className="flex flex-wrap gap-2 font-mono text-[11px] text-[var(--text-secondary)]">
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Flutter</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Dart</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">React Native</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Native iOS/Android</span>
-              </div>
-            </div>
-            
-            {/* 2. Web Frontend */}
-            <div className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-lg hover:shadow-[var(--accent)]/5">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)] group-hover:text-white">
-                <Monitor className="h-5 w-5" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
-                Web Frontend Engineering
-              </h3>
-              <p className="mb-4 text-sm leading-relaxed text-[var(--text-muted)]">
-                Creating responsive web products, dashboards, and API-driven interfaces using modern JavaScript frameworks.
-              </p>
-              <div className="flex flex-wrap gap-2 font-mono text-[11px] text-[var(--text-secondary)]">
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">React</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Next.js</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">TypeScript</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Tailwind CSS</span>
-              </div>
-            </div>
-
-            {/* 3. Backend & APIs */}
-            <div className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-lg hover:shadow-[var(--accent)]/5">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)] group-hover:text-white">
-                <Server className="h-5 w-5" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
-                Backend, APIs & Data
-              </h3>
-              <p className="mb-4 text-sm leading-relaxed text-[var(--text-muted)]">
-                Developing secure APIs, authentication, data flows, and backend services to power cross-platform applications.
-              </p>
-              <div className="flex flex-wrap gap-2 font-mono text-[11px] text-[var(--text-secondary)]">
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Node.js</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">PHP / Laravel</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Firebase</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Supabase</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">SQL / NoSQL</span>
-              </div>
-            </div>
-
-            {/* 4. Integrations & Delivery */}
-            <div className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-lg hover:shadow-[var(--accent)]/5">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)] group-hover:text-white">
-                <Rocket className="h-5 w-5" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
-                Integrations & Delivery
-              </h3>
-              <p className="mb-4 text-sm leading-relaxed text-[var(--text-muted)]">
-                Connecting wallets, AI, and SaaS platforms, then supporting testing, store deployment, and production maintenance.
-              </p>
-              <div className="flex flex-wrap gap-2 font-mono text-[11px] text-[var(--text-secondary)]">
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">Payments & FinTech</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">AI & LLMs</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">CI/CD</span>
-                <span className="rounded bg-[var(--bg-deep)] px-2 py-1">App Store & Play Store</span>
-              </div>
-            </div>
-
+            {expertise.map((item) => {
+              const Icon = ICONS[item.id];
+              return (
+                <div
+                  key={item.id}
+                  className="group rounded-xl border border-[var(--line)] bg-[var(--surface)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-lg hover:shadow-[var(--accent)]/5"
+                >
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] transition-colors group-hover:bg-[var(--accent)] group-hover:text-white">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mb-2 text-lg font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="mb-4 text-sm leading-relaxed text-[var(--text-muted)]">
+                    {item.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 font-mono text-[11px] text-[var(--text-secondary)]">
+                    {item.tags.map((tag) => (
+                      <span key={tag} className="rounded bg-[var(--bg-deep)] px-2 py-1">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 

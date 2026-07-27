@@ -1,0 +1,18 @@
+{
+  "first_focus": "Skip cosmic entry",
+  "first_visit_remaining_after_1_65s_ms": 5294,
+  "returning_visit_total_ms": 2328,
+  "canvas_count": 1,
+  "mobile_overflow": false,
+  "errors": [],
+  "resources_after_returning_visit": {
+    "total": 594950,
+    "js": 460471,
+    "textures": 26914,
+    "requests": 29,
+    "largest": {
+      "name": "http://localhost:3010/_next/static/chunks/0eamyj42ibl3y.js",
+      "size": 285569
+    }
+  }
+}

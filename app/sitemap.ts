@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: post.publishedAt,
   }));
 
-  // /v4 is intentionally excluded — its canonical tag points at "/".
-  // /v1, /v2, /v3 are intentionally excluded — they are noindex.
+  // /v4 is intentionally excluded - its canonical tag points at "/".
+  // /v1, /v2, /v3 are intentionally excluded - they are noindex.
   return [...staticRoutes, ...projectRoutes, ...articleRoutes, ...serviceRoutes, ...travelRoutes];
 }

@@ -6,12 +6,12 @@ import { V3TechnicalToolkit } from "@/components/portfolio/v3/v3-technical-toolk
 import { V3WorkProcess } from "@/components/portfolio/v3/v3-work-process";
 import { V3ClientNotes } from "@/components/portfolio/v3/v3-client-notes";
 import { V3Contact } from "@/components/portfolio/v3/v3-contact";
-import { VersionSwitcher } from "@/components/portfolio/shared/version-switcher";
 import { getSharedMetadata } from "@/lib/portfolio/metadata";
+import { VersionSwitcher } from "@/components/portfolio/shared/version-switcher";
 
 export const metadata = getSharedMetadata(
   "Engineering Notebook",
-  "An engineering notebook of shipped Flutter products — process, decisions, and client notes.",
+  "An engineering notebook of shipped Flutter products: process, decisions, and client notes.",
   "/v3",
   true
 );

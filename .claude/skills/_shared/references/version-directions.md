@@ -8,13 +8,13 @@ Remembered for: precise typography, numbered navigation, experience tabs, restra
 
 Avoid: cursor glow, cyber effects, excessive cards, generic SaaS sections.
 
-## V2 — FinTech Systems Lab
+## V2 — Cosmic Gravity
 
-Purpose: demonstrate FinTech, payments, secure workflows, APIs, and production systems.
+Purpose: demonstrate creative/frontend range through an immersive space-journey presentation, while still reading as a credible engineering portfolio.
 
-Remembered for: credible systems map and structured project records.
+Remembered for: Earth/Moon/orbit celestial scene, continuous scroll journey through Hero → About → Experience → Projects → Capabilities → Contact, no scroll-jacking.
 
-Avoid: hacker language, Matrix effects, fake live financial data, crypto hype, gaming UI.
+Avoid: cartoon/childish space clip-art, gaming HUD, sci-fi game UI, hacker/terminal cosplay, Matrix effects, fake live data, three.js/WebGL bloat, literal mission-control cosplay.
 
 ## V3 — Engineering Notebook
 

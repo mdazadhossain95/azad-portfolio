@@ -11,6 +11,7 @@ export type ArticleMeta = {
   preview: string;
   publishedAt: string;
   mediumUrl?: string;
+  readingTime: string;
 };
 
 export async function getArticleBySlug(slug: string) {
@@ -28,6 +29,10 @@ export async function getArticleBySlug(slug: string) {
     meta: {
       ...data,
       slug: realSlug,
+      readingTime: `${Math.max(
+        1,
+        Math.ceil(content.trim().split(/\s+/).filter(Boolean).length / 200),
+      )} min read`,
     } as ArticleMeta,
     content,
   };

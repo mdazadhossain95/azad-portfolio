@@ -55,7 +55,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          {/* Hamburger — mobile only */}
+          {/* Hamburger - mobile only */}
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}

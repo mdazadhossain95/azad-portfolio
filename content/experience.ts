@@ -16,7 +16,7 @@ export const experience = [
     projects: [
       { name: "Yazidi Pro", url: "https://play.google.com/store/apps/details?id=com.yazidi.pro&hl=en" },
       { name: "OldPazar", url: "https://play.google.com/store/apps/details?id=com.flutterdevs.oldpazar&hl=en" },
-      { name: "View 30+ Upwork Portfolio Items ↗", url: "https://www.upwork.com/freelancers/azadflutterdev" },
+      { name: "View 30+ Upwork Portfolio Items", url: "https://www.upwork.com/freelancers/azadflutterdev" },
     ]
   },
   {
@@ -62,16 +62,23 @@ export const experience = [
       { name: "Handiman", url: "https://codecanyon.net/item/handiman-on-demand-services-and-parcel-delivery-platform/51250613" },
       { name: "Escroc", url: "https://codecanyon.net/item/escroc-money-transfer-with-escrow-full-solution/49645580" },
       { name: "Xremit Pro", url: "https://codecanyon.net/item/xremit-pro-remittance-money-transfer-solution/48035206" },
+      { name: "GameShop", url: "https://codecanyon.net/item/gameshop-game-topup-diamond-and-coin-selling-business-platform/48224092" },
       { name: "StripCard", url: "https://codecanyon.net/item/stripcard-virtual-credit-card-solution/47909310" },
       { name: "AdChange P2P", url: "https://codecanyon.net/item/adchange-p2p-trading-platform-full-solution/47643709" },
       { name: "CrypInvest", url: "https://codecanyon.net/item/crypinvest-cryptocurrency-investment-platform-full-solution/47446877" },
       { name: "SuperVPN", url: "https://codecanyon.net/item/supervpn-unlimited-free-vpn-flutter-app/47643145" },
       { name: "eFunding", url: "https://codecanyon.net/item/efunding-crowdfunding-platform-android-and-ios-app-website-admin-panel/46864399" },
+      { name: "TikTokShop", url: "https://codecanyon.net/item/tiktokshop-buy-and-sell-tiktok-coin-business-full-solution/46378086" },
       { name: "AdBot Pro", url: "https://codecanyon.net/item/adbotpro-chatgpt-business-platform-website-androidios-app-admin-panel/45299173" },
+      { name: "AdFund", url: "https://codecanyon.net/item/adfund-fund-raising-platform-website-androidios-app-admin-panel/45306012" },
       { name: "AdBot AI", url: "https://codecanyon.net/item/adbot-chatgpt-open-ai-android-and-ios-app/43160720" },
+      { name: "Xremit", url: "https://codecanyon.net/item/xremit-remittance-solutions-money-transfer-flutter-app/40451218" },
       { name: "XTrading", url: "https://codecanyon.net/item/xtrading-online-trading-and-investment-platform-flutter-app/40371860" },
+      { name: "SMMHub", url: "https://codecanyon.net/item/smmhub-social-media-marketing-flutter-app/40025453" },
+      { name: "OneRadio", url: "https://codecanyon.net/item/oneradio-online-radio-streaming-app-with-admob-in-android-and-ios/38689750" },
       { name: "Walletium", url: "https://codecanyon.net/item/walletium-advanced-digital-mobile-wallet-flutter-app/38183039" },
       { name: "xPay", url: "https://codecanyon.net/item/xpay-mobile-banking-e-wallet-flutter-app/37419851" },
+      { name: "CrypInvest UI Kit", url: "https://codecanyon.net/item/crypinvest-cryptocurrency-investment-platform-flutter-app-ui-kit/37184257" },
     ]
   },
   {

@@ -125,7 +125,7 @@ export const projects: CaseStudy[] = [
     challenges: [
       "Handling camera permissions and hardware differences across Android devices.",
       "Ensuring high-quality image capture without excessive file sizes.",
-      "Each submitted document (ID, address proof, selfie/biometric, source of income) needed its own independent verification state — pending, rejected with a specific reason, or verified — so a user whose ID photo was rejected for a name mismatch could fix just that document instead of restarting the entire KYC flow."
+      "Each submitted document (ID, address proof, selfie/biometric, source of income) needed its own independent verification state (pending, rejected with a specific reason, or verified), so a user whose ID photo was rejected for a name mismatch could fix just that document instead of restarting the entire KYC flow."
     ],
     approach: [
       "Implemented strict UI overlays to guide users to take perfect document photos.",
@@ -439,9 +439,9 @@ export const projects: CaseStudy[] = [
     status: "private",
     featured: false,
     priority: 13,
-    summary: "Seller dashboard app for an Islamic goods marketplace — product catalog management, order fulfillment tracking, revenue analytics, and customer reviews.",
+    summary: "Seller dashboard app for an Islamic goods marketplace: product catalog management, order fulfillment tracking, revenue analytics, and customer reviews.",
     productContext: "NXMart is the merchant-side app for Ummah Shop, an Islamic goods seller (Qurans, prayer accessories, apparel, wall art). Shop owners manage their product catalog, track orders through fulfillment stages, monitor revenue and sales trends, respond to customer reviews, and manage shop compliance documents (KYC status, TIN status, shop license).",
-    businessProblem: "The shop owner needed a single mobile dashboard to run the store end-to-end — listing products, tracking which orders were processing versus shipped, watching revenue trends, and handling reviews — instead of juggling separate tools.",
+    businessProblem: "The shop owner needed a single mobile dashboard to run the store end-to-end, listing products, tracking which orders were processing versus shipped, watching revenue trends, and handling reviews, instead of juggling separate tools.",
     role: "Full Stack Flutter Developer",
     ownershipNote: "Built the Flutter frontend and integrated Laravel backend services.",
     platforms: ["Android", "iOS"],
@@ -536,7 +536,7 @@ export const projects: CaseStudy[] = [
     challenges: [
       "GPS tracking accuracy and battery usage.",
       "Event booking state management.",
-      "The app spans five surfaces — solo tracking, a social feed, running clubs, ticketed race events, and challenges — that all needed to feel like one connected running community instead of five separate features.",
+      "The app spans five surfaces (solo tracking, a social feed, running clubs, ticketed race events, and challenges) that all needed to feel like one connected running community instead of five separate features.",
     ],
     approach: ["Used platform location services through Flutter plugins.", "Tested booking flows end-to-end."],
     contributions: [
@@ -615,7 +615,7 @@ export const projects: CaseStudy[] = [
     ],
     challenges: [
       "Audio playback state management.",
-      "The app combines four distinct experiences — Quran reading, campaign donations, a social feed, and a shop — that needed consistent navigation and visual language rather than feeling like separate apps stitched together.",
+      "The app combines four distinct experiences (Quran reading, campaign donations, a social feed, and a shop) that needed consistent navigation and visual language rather than feeling like separate apps stitched together.",
       "Campaign funding progress (amount raised vs. goal) had to stay consistent across the donation category cards, the campaign list, and the campaign detail page.",
     ],
     approach: ["Used audio service plugins for background playback.", "Built feed with optimistic updates."],
@@ -689,7 +689,7 @@ export const projects: CaseStudy[] = [
     featured: false,
     priority: 17,
     summary: "Streaming app UI concept with genre-based discovery, movie detail screens, and a three-tier subscription paywall.",
-    productContext: "Portfolio UI exploration of a Netflix-style streaming app: browse trending movies/TV by genre, view title details with trailers, and a full subscription flow — three tiers (Bronze, Silver, Gold) with monthly/yearly pricing, device and resolution limits per tier, and a payment method selector (Visa, Mastercard, Stripe, PayPal).",
+    productContext: "Portfolio UI exploration of a Netflix-style streaming app: browse trending movies/TV by genre, view title details with trailers, and a full subscription flow covering three tiers (Bronze, Silver, Gold) with monthly/yearly pricing, device and resolution limits per tier, and a payment method selector (Visa, Mastercard, Stripe, PayPal).",
     role: "Flutter Developer",
     ownershipNote: "Built the UI concept as a portfolio exploration.",
     platforms: ["Android", "iOS"],

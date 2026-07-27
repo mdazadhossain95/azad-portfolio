@@ -22,12 +22,28 @@ export const profile = {
     experienceYears: "5+",
     upworkJss: "100%",
     upworkBadge: "Rising Talent",
+    appsDelivered: "200+",
+    happyClients: "15+",
   },
   meta: {
     title: "Md Azad Hossain Tutul | Full-Stack App Developer",
     description:
       "Full-Stack App Developer specializing in production SaaS, FinTech, AI-powered, and API-driven Android and iOS applications.",
   },
+  bio: [
+    "I build stable, production-ready mobile applications. For the past five years, I've engineered scalable iOS and Android apps for SaaS, FinTech, and AI companies using Flutter, React, and Node.js.",
+    "My work goes beyond UI. I handle the entire app lifecycle from clean architecture and secure APIs, to testing and App Store deployment, ensuring reliable products that users love.",
+  ],
+  coreStack: [
+    "Flutter & Dart",
+    "React, Next.js & TS",
+    "Node.js & PHP/Laravel",
+    "PostgreSQL & Firebase",
+    "Clean Architecture",
+    "CI/CD & Deployment",
+    "Payment Systems",
+    "AI & LLM Integrations",
+  ],
 };
 
 export type Profile = typeof profile;

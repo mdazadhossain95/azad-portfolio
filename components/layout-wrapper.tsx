@@ -17,7 +17,7 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
 
   if (hasOwnLayout) {
     // The version-specific nested layout (app/v1|v2|v3/layout.tsx) supplies its
-    // own <main> landmark, header, and footer — don't add a second <main> here.
+    // own <main> landmark, header, and footer - don't add a second <main> here.
     return <>{children}</>;
   }
 

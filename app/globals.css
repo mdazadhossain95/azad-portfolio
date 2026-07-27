@@ -27,6 +27,11 @@
 
   --pointer-x: 50%;
   --pointer-y: 50%;
+
+  /* Scroll position through the document, 0–1. Written on the root element by
+     the V2 rail so the rail, the journey path, and any section accent all read
+     one value instead of each running its own scroll listener. */
+  --v2-progress: 0;
 }
 
 [data-theme="light"] {
@@ -308,14 +313,14 @@ html {
 }
 
 /* =========================================
-   V2 (FinTech Systems Lab) Theme Overrides
+   V2 (Cosmic Gravity) Theme Overrides
    ========================================= */
 .v2-theme {
   --bg: #0A0F1C;
-  --bg-deep: #050810;
+  --bg-deep: #030711;
   --text: #E7ECF5;
-  --muted: #8B96AC;
-  --text-muted: #8B96AC;
+  --muted: #9AA6BD;
+  --text-muted: #9AA6BD;
   --line: #1E2A3D;
   --border-strong: #2C3B54;
   --card: #0E1524;
@@ -331,100 +336,1224 @@ html {
   --v2-verified: #10B981;
   --v2-ai: #8B5CF6;
 
-  background: var(--bg) !important;
+  /* Cosmic scene palette - mapped from the approved brand palette, not new arbitrary colors */
+  --v2-star: #F8FAFC;
+  --v2-star-dim: #A9B8FF;
+  --v2-earth-ocean: #1E3A5F;
+  --v2-earth-deep: #102A4C;
+  --v2-earth-land: #10B981;
+  --v2-earth-atmosphere: #38BDF8;
+  --v2-earth-city: #D4A62A;
+  --v2-moon-surface: #64748B;
+  --v2-moon-shadow: #30343A;
+  --v2-sun-glow: #D4A62A;
+  --v2-mars: #7F1D1D;
+  --v2-orbit-line: rgba(169, 184, 255, 0.16);
+  --v2-orbit-line-strong: rgba(169, 184, 255, 0.32);
+  --v2-particle: rgba(203, 213, 225, 0.55);
+
+  /* Depth layers - keep empty space occupied instead of flat black */
+  --v2-nebula-blue: rgba(30, 58, 95, 0.55);
+  --v2-nebula-violet: rgba(139, 92, 246, 0.14);
+  --v2-nebula-cyan: rgba(56, 189, 248, 0.1);
+  --v2-panel: rgba(11, 31, 58, 0.72);
+  --v2-panel-edge: rgba(169, 184, 255, 0.14);
+
+  /* One virtual sun for the whole page: upper-right, 15° above the horizon.
+     Every celestial body lights and shadows from this direction. */
+  --v2-sun-x: 74%;
+  --v2-sun-y: 24%;
+  --v2-neptune: #3B6FD4;
+  --v2-void: #020711;
+
+  /* Trajectory rail */
+  --v2-rail: rgba(169, 184, 255, 0.2);
+  --v2-rail-live: #38bdf8;
+  --v2-station: rgba(169, 184, 255, 0.45);
+
+  background: var(--bg-deep) !important;
   color: var(--text);
 }
 
-.v2-theme .btn-primary {
+.v2-static-universe {
+  background:
+    radial-gradient(ellipse 58% 52% at 84% 42%, rgba(37, 99, 235, 0.14), transparent 68%),
+    radial-gradient(ellipse 42% 38% at 18% 72%, rgba(139, 92, 246, 0.08), transparent 72%),
+    #020711;
+}
+
+.v2-static-universe::before {
+  content: "";
+  position: absolute;
+  left: -18%;
+  top: 22%;
+  width: 136%;
+  height: 34%;
+  transform: rotate(-13deg);
+  background:
+    radial-gradient(ellipse at center, rgba(169, 184, 255, 0.12), transparent 64%),
+    linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.07), transparent);
+  filter: blur(24px);
+  opacity: 0.72;
+}
+
+.v2-theme section[id] {
+  scroll-margin-top: 88px;
+}
+
+.v2-static-stars {
+  background-image:
+    url("/textures/stars-initial.webp"),
+    radial-gradient(circle at 74% 18%, rgba(169, 184, 255, 0.12), transparent 24%);
+  background-position: center;
+  background-size: cover;
+  opacity: 0.56;
+}
+
+.v2-static-earth {
+  right: -13vw;
+  top: clamp(9rem, 18vh, 13rem);
+  width: min(62vw, 880px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 68% 28%, transparent 0 40%, rgba(2, 7, 17, 0.7) 76%, #020711 100%),
+    url("/textures/planets/earth-day-poster.webp") center / 205% 100%;
+  box-shadow:
+    -10px 0 38px rgba(56, 189, 248, 0.28),
+    0 0 110px rgba(37, 99, 235, 0.14);
+  opacity: 0.82;
+}
+
+/* V2 loading indicator. Deliberately small: a label, a hairline bar and a
+   percentage on the V2 navy, using the same tokens as the rest of the page. */
+.v2-entry {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--bg-deep, #030711);
+  transition: opacity 260ms ease, visibility 0ms linear 280ms;
+}
+
+.v2-entry-inner {
+  display: flex;
+  width: min(88vw, 320px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.v2-entry-label {
+  margin: 0;
+  color: var(--v2-star-dim, #94a3b8);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.v2-entry-bar {
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(169, 184, 255, 0.16);
+}
+
+.v2-entry-bar-fill {
+  display: block;
+  width: calc(var(--v2-entry-progress) * 1%);
+  height: 100%;
+  border-radius: inherit;
+  background: var(--v2-earth-atmosphere, #38bdf8);
+  transition: width 200ms linear;
+}
+
+.v2-entry-value {
+  margin: 0;
+  color: var(--v2-star-dim, #94a3b8);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+.v2-entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.v2-entry-actions button {
+  min-height: 44px;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(169, 184, 255, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--v2-star-dim, #94a3b8);
+  font-family: var(--font-body), var(--font-sans), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.v2-entry-actions button:hover {
+  color: #f8fafc;
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+.v2-entry-actions button:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+.v2-entry.is-leaving {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-entry,
+  .v2-entry-bar-fill {
+    transition-duration: 100ms;
+  }
+}
+
+
+.v2-solar-scatter {
+  background:
+    radial-gradient(
+      ellipse 34% 52% at 50% 82%,
+      color-mix(in srgb, var(--v2-sun-glow) 22%, transparent) 0%,
+      color-mix(in srgb, var(--v2-sun-glow) 8%, transparent) 38%,
+      transparent 76%
+    );
+}
+
+.v2-contact-horizon {
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  background:
+    radial-gradient(ellipse 72% 18% at 50% 0%, rgba(212, 166, 42, 0.1), transparent 70%),
+    linear-gradient(180deg, #071326 0%, #020711 56%);
+  box-shadow:
+    0 -1px 0 rgba(243, 180, 92, 0.28),
+    0 -18px 54px rgba(212, 166, 42, 0.07);
+}
+
+.v2-contact-sun {
+  isolation: isolate;
+  border-radius: 999px;
+}
+
+.v2-contact-sun::before {
+  content: "";
+  position: absolute;
+  inset: -72px;
+  z-index: -2;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(255, 238, 188, 0.5) 0 7%, rgba(243, 180, 92, 0.2) 18%, rgba(212, 166, 42, 0.08) 38%, transparent 70%);
+  filter: blur(8px);
+}
+
+.v2-contact-sun::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: 210px;
+  height: 1px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(243, 180, 92, 0.08) 20%,
+    rgba(255, 236, 176, 0.62) 50%,
+    rgba(243, 180, 92, 0.08) 80%,
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(243, 180, 92, 0.32);
+}
+
+.v2-contact-sun-core {
+  display: block;
+  clip-path: circle(49% at 50% 50%);
+  filter: saturate(1.18) contrast(1.08) brightness(1.08);
+  mix-blend-mode: screen;
+  box-shadow:
+    0 0 0 1px rgba(255, 239, 196, 0.4),
+    0 0 16px rgba(255, 224, 163, 0.68),
+    0 0 44px rgba(243, 180, 92, 0.34);
+}
+
+.v2-contact-horizon-rim {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(243, 180, 92, 0.16) 30%,
+    rgba(255, 224, 163, 0.42) 50%,
+    rgba(243, 180, 92, 0.16) 70%,
+    transparent
+  );
+  filter: blur(0.5px);
+}
+
+.v2-earth-hit-area {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 240ms ease;
+}
+
+.v2-earth-hit-area:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--v2-earth-atmosphere) 78%, white);
+  outline-offset: -12px;
+}
+
+.v2-earth-instruction {
+  transition: opacity 240ms ease;
+}
+
+.v2-debug-safe-zone {
+  border-inline: 1px solid rgba(248, 113, 113, 0.8);
+  background: rgba(248, 113, 113, 0.06);
+}
+
+@media (max-width: 767px) {
+  .v2-static-earth {
+    right: -14vw;
+    top: 8.5rem;
+    width: 48vw;
+    opacity: 0.58;
+  }
+}
+
+/* ---- V2 grid ----------------------------------------------------------
+   Content column is 1180 at the 1440 reference viewport: 12 × 76 columns
+   with 11 × 24 gutters. The wide track (1320) is for compositions that need
+   to run past the reading column - planet frames, trajectory canvases. */
+/* max-width carries the 64px page padding on each side, so the inner content
+   column measures exactly 1180 (and 1320 for wide) from 1308px up. */
+.v2-theme .v2-container {
+  width: 100%;
+  max-width: 1308px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.v2-theme .v2-container-wide {
+  width: 100%;
+  max-width: 1448px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .v2-theme .v2-container,
+  .v2-theme .v2-container-wide {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .v2-theme .v2-container,
+  .v2-theme .v2-container-wide {
+    padding-inline: 3.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .v2-theme .v2-container,
+  .v2-theme .v2-container-wide {
+    padding-inline: 4rem;
+  }
+}
+
+/* ---- Section rhythm ---------------------------------------------------
+   One utility so no section invents its own vertical padding, and so the
+   empty band between two sections never exceeds ~160px. */
+.v2-theme .v2-section {
+  padding-block: 5rem;
+}
+
+@media (min-width: 768px) {
+  .v2-theme .v2-section {
+    padding-block: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .v2-theme .v2-section {
+    padding-block: 7.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .v2-theme .v2-section {
+    padding-block: 9rem;
+  }
+}
+
+/* ---- V2 type scale ----------------------------------------------------
+   V2 runs one step larger than the other versions: body copy has to stay
+   legible against a deep-space field, and the celestial scene needs type
+   with enough mass to hold its own beside a 900px planet.
+   Floors: prose never below 16px, any text below 12px. */
+.v2-theme .v2-display {
+  font-size: clamp(2.75rem, 5.4vw, 4.875rem);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+}
+
+.v2-theme .v2-h2 {
+  font-size: clamp(2.125rem, 3.6vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+}
+
+.v2-theme .v2-h3 {
+  font-size: clamp(1.5rem, 2.1vw, 1.875rem);
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+}
+
+.v2-theme .v2-h4 {
+  font-size: 1.375rem;
+  line-height: 1.3;
+  letter-spacing: -0.008em;
+}
+
+.v2-theme .v2-lcp-heading {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.v2-theme .v2-body-l {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.v2-theme .v2-body {
+  font-size: 1.0625rem;
+  line-height: 1.72;
+}
+
+.v2-theme .v2-body-s {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.v2-theme .v2-label {
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.v2-theme .v2-micro {
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---- Journey path -----------------------------------------------------
+   The travelled portion of the page-long orbit. `pathLength="1"` normalises
+   the geometry, so the reveal is one dash offset driven by scroll progress. */
+.v2-theme .v2-journey-live {
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--v2-progress));
+  opacity: 0.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-theme .v2-journey-live {
+    stroke-dashoffset: 0;
+    opacity: 0.35;
+  }
+}
+
+/* The travelled leg of the career route redraws when the waypoint changes. */
+.v2-theme .v2-route-live {
+  transition: d 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-theme .v2-route-live {
+    transition: none;
+  }
+}
+
+/* ---- Section reveal ---------------------------------------------------
+   Transform + opacity only; resolves immediately under reduced motion. */
+.v2-theme .v2-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.v2-theme .v2-reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-theme .v2-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Instrument panel - content surface that reads as part of the scene.
+   Lifted off pure black so a card never disappears into the starfield. */
+.v2-theme .v2-panel {
+  border: 1px solid var(--v2-panel-edge);
+  border-radius: 0.875rem;
+  background:
+    linear-gradient(160deg, rgba(37, 99, 235, 0.12) 0%, transparent 58%),
+    var(--v2-panel);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.v2-theme .v2-panel-hover {
+  transition:
+    border-color 240ms ease,
+    transform 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.v2-theme .v2-panel-hover:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  transform: translateY(-3px);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.34);
+}
+
+.v2-theme .v2-panel-hover:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+/* The one lit surface per group: active waypoint, featured mission. */
+.v2-theme .v2-panel-active {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-theme .v2-panel-hover:hover {
+    transform: none;
+  }
+}
+
+.v2-theme .btn-primary,
+.v2-theme .btn-secondary {
+  min-height: 3rem;
   border-radius: 0.5rem;
-  background: var(--accent);
+  font-size: 1rem;
+}
+
+.v2-theme .btn-primary {
+  background: #2563eb;
   color: var(--btn-text);
 }
 
 .v2-theme .btn-secondary {
-  border-radius: 0.5rem;
   border-color: var(--border-strong);
 }
 
 .v2-theme .surface-card {
   border-radius: 0.75rem;
   border-color: var(--line);
+  background-color: color-mix(in srgb, var(--card) 78%, transparent);
+  backdrop-filter: blur(10px);
   box-shadow: none;
 }
 
 .v2-theme .soft-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.875rem;
+  padding-inline: 0.625rem;
   border-radius: 0.375rem;
   font-family: var(--font-space-mono), ui-monospace, monospace;
   font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Cosmic scene motion - only animates when the visitor has not requested reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .v2-theme .v2-anim-rotate {
+    animation: v2-rotate 90s linear infinite;
+  }
+  .v2-theme .v2-anim-drift-slow {
+    animation: v2-drift 46s ease-in-out infinite;
+  }
+  .v2-theme .v2-anim-drift {
+    animation: v2-drift 28s ease-in-out infinite;
+  }
+  .v2-theme .v2-anim-twinkle {
+    animation: v2-twinkle 5s ease-in-out infinite;
+  }
+  .v2-theme .v2-anim-orbit-dot {
+    animation: v2-orbit-travel 22s linear infinite;
+  }
+  .v2-theme .v2-anim-orbit-dot-slow {
+    animation: v2-orbit-travel 48s linear infinite;
+  }
+  .v2-theme .v2-anim-spin-slow {
+    animation: v2-spin 240s linear infinite;
+  }
+  .v2-theme .v2-anim-clouds {
+    animation: v2-spin 300s linear infinite reverse;
+  }
+  .v2-theme .v2-anim-pulse {
+    animation: v2-pulse 4.5s ease-in-out infinite;
+  }
+  .v2-theme .v2-anim-beacon {
+    animation: v2-beacon 5s ease-out infinite;
+  }
+  .v2-theme .v2-anim-parallax-far {
+    animation: v2-parallax 180s linear infinite;
+  }
+  .v2-theme .v2-anim-parallax-near {
+    animation: v2-parallax 110s linear infinite;
+  }
+}
+
+@keyframes v2-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes v2-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+@keyframes v2-beacon {
+  0% { opacity: 0.5; transform: scale(0.6); }
+  70% { opacity: 0; transform: scale(1.6); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+@keyframes v2-parallax {
+  from { background-position: 0 0; }
+  to { background-position: -340px 220px; }
+}
+
+@keyframes v2-rotate {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
+}
+
+@keyframes v2-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -14px, 0); }
+}
+
+@keyframes v2-twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes v2-orbit-travel {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
 }
 
 /* =========================================
    V3 (Engineering Notebook) Theme Overrides
    ========================================= */
 .v3-theme {
-  --bg: #F6F1E4;
-  --bg-deep: #EFE7D4;
-  --card: #FCF9F0;
-  --surface: #FCF9F0;
-  --surface-raised: #F1EAD9;
-
-  --text: #2B2F35;
-  --muted: #5B564C;
-  --text-muted: #5B564C;
-
-  --line: #DCD2B8;
-  --border-strong: #C9BC94;
-
-  --accent: #1E3A5F;
-  --accent-strong: #16283F;
-  --accent-soft: rgba(30, 58, 95, 0.1);
-  --btn-text: #F6F1E4;
-
-  --v3-ink: #1E3A5F;
-  --v3-gold: #8A6114;
-  --v3-burgundy: #7F1D1D;
-
-  background: var(--bg) !important;
+  background-color: var(--bg) !important;
+  background-image: radial-gradient(rgba(44, 42, 40, 0.12) 1px, transparent 1px) !important;
+  background-size: 18px 18px !important;
   color: var(--text);
 }
 
-[data-theme="dark"] .v3-theme {
-  --bg: #1B1712;
-  --bg-deep: #141110;
-  --card: #231E17;
-  --surface: #231E17;
-  --surface-raised: #2B241B;
+html[data-v3-palette="paper"] {
+  --bg: #F7F1E2;
+  --bg-deep: #EFE4CA;
+  --card: #FFF9EE;
+  --surface: #FFF9EE;
+  --surface-raised: #F2E7CF;
+  --text: #2A2E34;
+  --muted: #625C50;
+  --text-muted: #625C50;
+  --line: #D9C8A3;
+  --border-strong: #C1A772;
+  --accent: #D29A2E;
+  --accent-strong: #996B15;
+  --accent-soft: rgba(210, 154, 46, 0.12);
+  --btn-text: #FFF9EE;
+  --v3-ink: #2A2E34;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #7F1D1D;
+}
 
-  --text: #EFE7D4;
-  --muted: #B8AD94;
-  --text-muted: #B8AD94;
+html[data-v3-palette="coral"] {
+  --bg: #F5E8D1;
+  --bg-deep: #E9D6B4;
+  --card: #FFF6E7;
+  --surface: #FFF6E7;
+  --surface-raised: #F0DACF;
+  --text: #31231F;
+  --muted: #6E5B55;
+  --text-muted: #6E5B55;
+  --line: #D6B2A5;
+  --border-strong: #C27969;
+  --accent: #E05B4C;
+  --accent-strong: #A9382E;
+  --accent-soft: rgba(224, 91, 76, 0.12);
+  --btn-text: #FFF6E7;
+  --v3-ink: #31231F;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #7C2F26;
+}
 
-  --line: #3A3123;
-  --border-strong: #4A3E2C;
+html[data-v3-palette="orange"] {
+  --bg: #F3F0E6;
+  --bg-deep: #E8E1D0;
+  --card: #FFFBEF;
+  --surface: #FFFBEF;
+  --surface-raised: #F5D8AB;
+  --text: #31261C;
+  --muted: #725C44;
+  --text-muted: #725C44;
+  --line: #D7B98A;
+  --border-strong: #C48F4A;
+  --accent: #E98B2A;
+  --accent-strong: #A95F0D;
+  --accent-soft: rgba(233, 139, 42, 0.12);
+  --btn-text: #FFFBEF;
+  --v3-ink: #31261C;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #7B3F46;
+}
 
-  --accent: #D4A62A;
-  --accent-strong: #E8C158;
-  --accent-soft: rgba(212, 166, 42, 0.14);
-  --btn-text: #1B1712;
+html[data-v3-palette="yellow"] {
+  --bg: #F5F0E2;
+  --bg-deep: #E9E2CF;
+  --card: #FFF9F0;
+  --surface: #FFF9F0;
+  --surface-raised: #F0DF9E;
+  --text: #2D2E28;
+  --muted: #67614B;
+  --text-muted: #67614B;
+  --line: #D7C56D;
+  --border-strong: #C2A92E;
+  --accent: #D9A927;
+  --accent-strong: #9D7414;
+  --accent-soft: rgba(217, 169, 39, 0.12);
+  --btn-text: #FFF9F0;
+  --v3-ink: #2D2E28;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #7F1D1D;
+}
 
-  --v3-ink: #E8C158;
-  --v3-gold: #D4A62A;
-  --v3-burgundy: #C4635F;
+html[data-v3-palette="mint"] {
+  --bg: #EFF7F0;
+  --bg-deep: #DDEBDD;
+  --card: #FBFFFC;
+  --surface: #FBFFFC;
+  --surface-raised: #D8F0E0;
+  --text: #20312A;
+  --muted: #557064;
+  --text-muted: #557064;
+  --line: #B9D7C1;
+  --border-strong: #7CB18F;
+  --accent: #7CBF9B;
+  --accent-strong: #4A8C6D;
+  --accent-soft: rgba(124, 191, 155, 0.12);
+  --btn-text: #FBFFFC;
+  --v3-ink: #20312A;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #7A4C56;
+}
+
+html[data-v3-palette="teal"] {
+  --bg: #EDF7F6;
+  --bg-deep: #DCECE9;
+  --card: #FAFFFE;
+  --surface: #FAFFFE;
+  --surface-raised: #D5ECE8;
+  --text: #203130;
+  --muted: #57706E;
+  --text-muted: #57706E;
+  --line: #B7D7D1;
+  --border-strong: #6EAFA7;
+  --accent: #4FA8A3;
+  --accent-strong: #2F7571;
+  --accent-soft: rgba(79, 168, 163, 0.12);
+  --btn-text: #FAFFFE;
+  --v3-ink: #203130;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #7B3F46;
+}
+
+html[data-v3-palette="blue"] {
+  --bg: #EDF4FD;
+  --bg-deep: #DCE7F8;
+  --card: #FBFDFF;
+  --surface: #FBFDFF;
+  --surface-raised: #D9E8FB;
+  --text: #1E2B42;
+  --muted: #53667D;
+  --text-muted: #53667D;
+  --line: #B8CCE8;
+  --border-strong: #6C92C4;
+  --accent: #4D87D8;
+  --accent-strong: #27599E;
+  --accent-soft: rgba(77, 135, 216, 0.12);
+  --btn-text: #FBFDFF;
+  --v3-ink: #1E2B42;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #74416D;
+}
+
+html[data-v3-palette="navy"] {
+  --bg: #EEF2FB;
+  --bg-deep: #DAE2F1;
+  --card: #FBFCFF;
+  --surface: #FBFCFF;
+  --surface-raised: #D7DEEF;
+  --text: #20304A;
+  --muted: #55657C;
+  --text-muted: #55657C;
+  --line: #B7C2D9;
+  --border-strong: #7287A9;
+  --accent: #35527B;
+  --accent-strong: #243954;
+  --accent-soft: rgba(53, 82, 123, 0.12);
+  --btn-text: #FBFCFF;
+  --v3-ink: #20304A;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #72404D;
+}
+
+html[data-v3-palette="purple"] {
+  --bg: #F5EFFB;
+  --bg-deep: #E6DCF4;
+  --card: #FEFCFF;
+  --surface: #FEFCFF;
+  --surface-raised: #E8DCF7;
+  --text: #2E243D;
+  --muted: #66557E;
+  --text-muted: #66557E;
+  --line: #D0BEEA;
+  --border-strong: #9B7AC8;
+  --accent: #8E67CF;
+  --accent-strong: #6141A2;
+  --accent-soft: rgba(142, 103, 207, 0.12);
+  --btn-text: #FEFCFF;
+  --v3-ink: #2E243D;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #82476E;
+}
+
+html[data-v3-palette="pink"] {
+  --bg: #FBEEF4;
+  --bg-deep: #F2DAE5;
+  --card: #FFFCFD;
+  --surface: #FFFCFD;
+  --surface-raised: #F5D9E4;
+  --text: #3A2430;
+  --muted: #745165;
+  --text-muted: #745165;
+  --line: #E2BFD0;
+  --border-strong: #CB84AA;
+  --accent: #D56FA4;
+  --accent-strong: #A44379;
+  --accent-soft: rgba(213, 111, 164, 0.12);
+  --btn-text: #FFFCFD;
+  --v3-ink: #3A2430;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #8A4A63;
+}
+
+html[data-v3-palette="brown"] {
+  --bg: #F5EFE9;
+  --bg-deep: #E6D9CC;
+  --card: #FFFDF9;
+  --surface: #FFFDF9;
+  --surface-raised: #E9D8C8;
+  --text: #342720;
+  --muted: #6D5849;
+  --text-muted: #6D5849;
+  --line: #CCB39A;
+  --border-strong: #A67E5A;
+  --accent: #A06A43;
+  --accent-strong: #734A2C;
+  --accent-soft: rgba(160, 106, 67, 0.12);
+  --btn-text: #FFFDF9;
+  --v3-ink: #342720;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #7A3C31;
+}
+
+html[data-v3-palette="gray"] {
+  --bg: #F2F3F5;
+  --bg-deep: #E0E4E8;
+  --card: #FCFCFD;
+  --surface: #FCFCFD;
+  --surface-raised: #E1E5EA;
+  --text: #2A313A;
+  --muted: #65707B;
+  --text-muted: #65707B;
+  --line: #C6CDD4;
+  --border-strong: #8C98A5;
+  --accent: #8E949C;
+  --accent-strong: #5D666F;
+  --accent-soft: rgba(142, 148, 156, 0.12);
+  --btn-text: #FCFCFD;
+  --v3-ink: #2A313A;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #72535A;
+}
+
+html[data-v3-palette="olive"] {
+  --bg: #F2F4E8;
+  --bg-deep: #E1E5CF;
+  --card: #FBFDF6;
+  --surface: #FBFDF6;
+  --surface-raised: #DDE8BC;
+  --text: #2B3022;
+  --muted: #5F684F;
+  --text-muted: #5F684F;
+  --line: #C3D09A;
+  --border-strong: #90A357;
+  --accent: #7E8C3E;
+  --accent-strong: #596629;
+  --accent-soft: rgba(126, 140, 62, 0.12);
+  --btn-text: #FBFDF6;
+  --v3-ink: #2B3022;
+  --v3-gold: var(--accent);
+  --v3-burgundy: #7A4C42;
 }
 
 .v3-theme .btn-primary {
-  border-radius: 0.375rem;
+  border-radius: 9999px;
+  background: var(--v3-gold);
+  color: #fff;
+  border: 1px solid var(--accent-strong);
+  box-shadow: 2px 4px 0 rgba(210, 154, 46, 0.3);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, color 220ms ease;
 }
 
 .v3-theme .btn-secondary {
-  border-radius: 0.375rem;
+  border-radius: 9999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  box-shadow: 2px 4px 0 var(--line);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+
+.v3-theme .btn-primary:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 3px 6px 0 rgba(210, 154, 46, 0.4);
+}
+
+.v3-theme .btn-secondary:hover {
+  transform: translate(-1px, -2px);
+  box-shadow: 3px 6px 0 var(--line);
+}
+
+.v3-theme .btn-primary:focus-visible,
+.v3-theme .btn-secondary:focus-visible {
+  outline: 2px solid var(--v3-gold);
+  outline-offset: 3px;
 }
 
 .v3-theme .surface-card {
-  border-radius: 0.25rem;
-  box-shadow: 0 2px 0 var(--line);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 0 var(--line);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.v3-theme .surface-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--line);
+}
+
+.v3-theme .v3-anim-enter {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: v3-enter 700ms ease-out forwards;
+}
+
+@keyframes v3-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.v3-theme .v3-anim-settle {
+  animation: v3-settle 900ms ease-out both;
+}
+
+@keyframes v3-settle {
+  0% { transform: translateY(10px) rotate(0.8deg); opacity: 0; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+}
+
+.v3-theme .v3-scratch {
+  position: relative;
+  display: inline-block;
+}
+
+.v3-theme .v3-scratch::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.18em;
+  height: 0.28em;
+  border-radius: 9999px;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(168, 115, 24, 0.92) 18%, rgba(168, 115, 24, 0.92) 82%, transparent 100%);
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: v3-scratch-draw 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.v3-theme .v3-scratch-ink {
+  text-shadow: 0 0 0 rgba(168, 115, 24, 0.1);
+  animation: v3-ink-fade 900ms ease-out both;
+}
+
+.v3-theme .v3-park-scene,
+.v3-theme .v3-park-tree,
+.v3-theme .v3-park-walker,
+.v3-theme .v3-park-bench,
+.v3-theme .v3-park-coder,
+.v3-theme .v3-note-pad,
+.v3-theme .v3-park-note,
+.v3-theme .v3-laptop-lines {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.v3-theme .v3-park-walker-one {
+  animation: v3-park-walk-one 7s ease-in-out infinite;
+}
+
+.v3-theme .v3-park-walker-two {
+  animation: v3-park-walk-two 9s ease-in-out infinite;
+}
+
+.v3-theme .v3-park-coder {
+  animation: v3-park-typing 2.8s ease-in-out infinite;
+}
+
+.v3-theme .v3-note-pad {
+  animation: v3-note-bob 4.4s ease-in-out infinite;
+}
+
+.v3-theme .v3-park-tree {
+  animation: v3-tree-sway 5.8s ease-in-out infinite;
+}
+
+.v3-theme .v3-laptop-lines {
+  animation: v3-laptop-glow 2.2s ease-in-out infinite;
+}
+
+@keyframes v3-scratch-draw {
+  0% {
+    transform: scaleX(0) skewX(-16deg);
+    opacity: 0;
+  }
+  65% {
+    transform: scaleX(1.03) skewX(3deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1) skewX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes v3-park-walk-one {
+  0%, 100% { transform: translateX(0) translateY(0); opacity: 0.95; }
+  50% { transform: translateX(12px) translateY(-1px); opacity: 1; }
+}
+
+@keyframes v3-park-walk-two {
+  0%, 100% { transform: translateX(0) translateY(0); opacity: 0.9; }
+  50% { transform: translateX(-10px) translateY(1px); opacity: 1; }
+}
+
+@keyframes v3-park-typing {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(0.8px) rotate(-0.15deg); }
+  50% { transform: translateY(-0.8px) rotate(0.1deg); }
+  75% { transform: translateY(0.6px) rotate(-0.05deg); }
+}
+
+@keyframes v3-note-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes v3-tree-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-1deg); }
+}
+
+@keyframes v3-laptop-glow {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+@keyframes v3-ink-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v3-theme .v3-anim-enter,
+  .v3-theme .v3-anim-settle,
+  .v3-theme .v3-scratch::after,
+  .v3-theme .v3-scratch-ink,
+  .v3-theme .v3-park-scene,
+  .v3-theme .v3-park-tree,
+  .v3-theme .v3-park-walker,
+  .v3-theme .v3-park-bench,
+  .v3-theme .v3-park-coder,
+  .v3-theme .v3-note-pad,
+  .v3-theme .v3-park-note,
+  .v3-theme .v3-laptop-lines,
+  .v3-theme .surface-card,
+  .v3-theme .surface-card:hover {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 .font-handwriting {
   font-family: var(--font-caveat), cursive;
+}
+
+/* V3 Root Overrides (Scrollbar & Background) */
+html.v3-active, html.v3-active body {
+  background-color: var(--bg) !important;
+}
+
+html.v3-active::-webkit-scrollbar,
+html.v3-active ::-webkit-scrollbar {
+  width: 14px;
+}
+
+html.v3-active::-webkit-scrollbar-track,
+html.v3-active ::-webkit-scrollbar-track {
+  background: #F7F1E2;
+  background-image: radial-gradient(rgba(44, 42, 40, 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+  border-left: 1px dashed #D9C8A3;
+}
+
+html.v3-active::-webkit-scrollbar-thumb,
+html.v3-active ::-webkit-scrollbar-thumb {
+  background-color: #D29A2E;
+  border-radius: 10px;
+  border: 3px solid #F7F1E2;
+}
+
+html.v3-active::-webkit-scrollbar-thumb:hover,
+html.v3-active ::-webkit-scrollbar-thumb:hover {
+  background-color: #996B15;
+}
+
+body.hide-root-scroll {
+  overflow: hidden !important;
+}
+
+html:has(body.hide-root-scroll) {
+  scrollbar-gutter: auto !important;
+}
+
+/* =========================================
+   Global Scrollbar Styling (V1, V2, V4) - Subtle
+   ========================================= */
+html, .v1-scroll-container, .v2-scroll-container {
+  scrollbar-color: var(--line) var(--bg);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar, .v1-scroll-container::-webkit-scrollbar, .v2-scroll-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track, .v1-scroll-container::-webkit-scrollbar-track, .v2-scroll-container::-webkit-scrollbar-track {
+  background: var(--bg);
+  border: none;
+}
+
+::-webkit-scrollbar-thumb, .v1-scroll-container::-webkit-scrollbar-thumb, .v2-scroll-container::-webkit-scrollbar-thumb {
+  background-color: var(--line);
+  border: none;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover, .v1-scroll-container::-webkit-scrollbar-thumb:hover, .v2-scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-muted);
+}
+
+/* =========================================
+   V3 Custom Notebook Scrollbar
+   ========================================= */
+.v3-scroll-container::-webkit-scrollbar {
+  width: 14px;
+}
+
+.v3-scroll-container::-webkit-scrollbar-track {
+  background: var(--bg);
+  background-image: radial-gradient(rgba(44, 42, 40, 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+  border-left: 1px dashed var(--line);
+}
+
+.v3-scroll-container::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 10px;
+  border-left: 3px solid var(--bg);
+  border-right: 3px solid var(--bg);
+}
+
+.v3-scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--v3-ink);
+}
+
+.v3-scroll-container {
+  scrollbar-color: var(--accent) var(--bg);
+  scrollbar-width: thin;
 }
