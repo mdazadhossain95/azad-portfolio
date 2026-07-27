@@ -158,7 +158,7 @@ export default function V1Page() {
                 alt="Md Azad Hossain Tutul"
                 fill
                 sizes="(min-width: 1024px) 256px, 224px"
-                className="object-cover object-top scale-[1.3] origin-top"
+                className="object-cover object-top"
                 priority
               />
             </div>
