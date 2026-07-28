@@ -17,16 +17,16 @@ export function SplashScreen() {
     document.body.style.overflow = "hidden";
     
     const sequence = [
-      { text: "$ flutter clean", delay: 100 },
-      { text: "Cleaning workspace...", delay: 500, style: "text-[var(--text-muted)]" },
-      { text: "$ flutter pub get", delay: 1000 },
-      { text: "Resolving dependencies...", delay: 1400, style: "text-[var(--text-muted)]" },
-      { text: "Got dependencies!", delay: 2000, style: "text-[var(--success)]" },
-      { text: "$ flutter build apk --release", delay: 2500 },
-      { text: "Compiling lib/main.dart for Android...", delay: 3000, style: "text-[var(--text-muted)]" },
-      { text: "Running Gradle task 'assembleRelease'...", delay: 3500, style: "text-[var(--text-muted)]" },
-      { text: "Built build/app/outputs/flutter-apk/app-release.apk (18.2MB).", delay: 4200, style: "text-[var(--success)]" },
-      { text: "Launching azadhossain.dev...", delay: 4600, style: "text-[var(--accent)]" },
+      { text: "$ flutter clean", delay: 50 },
+      { text: "Cleaning workspace...", delay: 250, style: "text-[var(--text-muted)]" },
+      { text: "$ flutter pub get", delay: 500 },
+      { text: "Resolving dependencies...", delay: 700, style: "text-[var(--text-muted)]" },
+      { text: "Got dependencies!", delay: 1000, style: "text-[var(--success)]" },
+      { text: "$ flutter build apk --release", delay: 1250 },
+      { text: "Compiling lib/main.dart for Android...", delay: 1500, style: "text-[var(--text-muted)]" },
+      { text: "Running Gradle task 'assembleRelease'...", delay: 1750, style: "text-[var(--text-muted)]" },
+      { text: "Built build/app/outputs/flutter-apk/app-release.apk (18.2MB).", delay: 2100, style: "text-[var(--success)]" },
+      { text: "Launching azadhossain.dev...", delay: 2300, style: "text-[var(--accent)]" },
     ];
 
     const timeouts = sequence.map((item) => 
@@ -39,7 +39,7 @@ export function SplashScreen() {
       setVisible(false);
       document.body.style.overflow = "";
       sessionStorage.setItem("hasSeenSplash", "true");
-    }, 5500);
+    }, 3000);
 
     return () => {
       timeouts.forEach(clearTimeout);
@@ -54,7 +54,7 @@ export function SplashScreen() {
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--bg-deep)] px-4 transition-opacity duration-300"
       style={{
-        animation: "fadeOut 0.3s ease-out 5.2s forwards"
+        animation: "fadeOut 0.3s ease-out 2.7s forwards"
       }}
     >
       <div className="w-full max-w-lg rounded-xl overflow-hidden bg-[#111116] border border-[#2a2a35] shadow-2xl">

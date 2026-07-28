@@ -26,9 +26,9 @@ export const profile = {
     happyClients: "15+",
   },
   meta: {
-    title: "Md Azad Hossain Tutul | Full-Stack App Developer",
+    title: "Azad Hossain | Full-Stack App Developer | SaaS, FinTech & AI Apps",
     description:
-      "Full-Stack App Developer specializing in production SaaS, FinTech, AI-powered, and API-driven Android and iOS applications.",
+      "Expert Flutter & React developer specializing in FinTech, AI integrations, and production-ready mobile apps. Delivering high-impact SaaS products end-to-end.",
   },
   bio: [
     "I build stable, production-ready mobile applications. For the past five years, I've engineered scalable iOS and Android apps for SaaS, FinTech, and AI companies using Flutter, React, and Node.js.",

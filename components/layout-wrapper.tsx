@@ -6,7 +6,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SocialRails } from "@/components/social-rails";
 import { SplashScreen } from "@/components/splash-screen";
-
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   // Versions with their own nested layout/header/footer disable the global V4 chrome
