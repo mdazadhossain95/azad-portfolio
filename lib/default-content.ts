@@ -34,7 +34,7 @@ export const defaultSettings: Settings = {
   linkedin: "https://www.linkedin.com/in/azadhossain-tutul/",
   github: "https://github.com/mdazadhossain95",
   upwork: "https://www.upwork.com/freelancers/azadflutterdev",
-  resume: "https://drive.google.com/file/d/1lzpW1MCBbpNHdJvapKe9J0iKja_XNyoU/view",
+  resume: "https://drive.google.com/file/d/17Zn1Sq-7JfqW5FOHcV3j3b0l5pyL0y9v/view?usp=sharing",
   x: "https://twitter.com/mdazadhossain95",
   stackoverflow: "https://stackoverflow.com/users/14659281/azad-hossain",
   instagram: "https://www.instagram.com/azad.officialll",
